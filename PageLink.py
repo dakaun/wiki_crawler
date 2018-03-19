@@ -2,9 +2,6 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-triple_object = []
-ttl_triple = []
-
 # open file of wikipedia article and extract sentence
 def extract_sentence(triple_object):
     with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_de_Bergerac_modified.xml',
@@ -14,7 +11,14 @@ def extract_sentence(triple_object):
         re_match = re.search(r'([^.]*\[\[' + triple_object + '\]\][^.]*\.)', wiki_file,
                             re.IGNORECASE)  # TODO adapting regex to sentence strucutre
         sentence = re_match.group()
-        print('### Sentence with containing object: \n{}'.format(sentence))
+    print('### Sentence with containing object: \n{}'.format(sentence))
+    return sentence
+
+file = open("file_result.txt", "w+", encoding='cp65001')
+
+def write_file(ttl_triple, sentence):
+    file.write(ttl_triple[0] +' '+ ttl_triple[2] +' '+ sentence +'\n')
+    print('### Successfully wrote to File')
 
 # open file of links
 with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_links.ttl') as ttl_f:
@@ -28,12 +32,19 @@ with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano
 
     # extracting the object and extracting sentence from file
     i = 2
-    # for ttl_triple in ttl_file:
     while i <= 11:
         print('### Iterating through ttf_file with index: {}'.format(i))
         triple_object = ttl_triple[i].split('/')[4][:-1]
         print('### Tripple Object: \n{}'.format(triple_object))
-        extract_sentence(triple_object)
+        if triple_object:
+            sentence = extract_sentence(triple_object)
+            print('after calling function : {}'.format(sentence))
+        else:
+            print("No Triple Object")
+        if sentence:
+            write_file(ttl_triple, sentence)
+        else:
+            print('No sentence')
         i += 3
 
 # extracting sentence from wikipedia
@@ -50,4 +61,3 @@ def extract_wiki(url):
                             str(element)))  # alternative no regex, split(".") + if 'sannois' in element; RE
 # extract_wiki("https://en.wikipedia.org/wiki/Cyrano_de_Bergerac")
 
-# TODO creating file
