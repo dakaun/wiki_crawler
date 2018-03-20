@@ -4,24 +4,38 @@ from bs4 import BeautifulSoup
 
 # open file of wikipedia article and extract sentence
 def extract_sentence(triple_object):
-    with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_de_Bergerac_modified.xml',
+    with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_de_Bergerac.xml',
               encoding='cp65001') as wiki_f:
         # ENCODING: cp437, cp850, cp852, cp858, cp1250, cp65001 !, latin_1, iso8859_2, iso8859_15
         wiki_file = wiki_f.read()
-        re_match = re.search(r'([^.]*\[\[' + triple_object + '\]\][^.]*\.)', wiki_file,
+
+        #adapting tripe_object for regex
+        triple_object = triple_object.replace('_', ' ')
+        triple_object = triple_object.replace('(', '\(')
+        triple_object = triple_object.replace(')', '\)')
+
+        #search only where line does not start with |
+        re_match = re.search(r'([^.]*\[\[' + triple_object + '(\#.+)?(\|.+)?\]\][^.]*\.)', wiki_file,
                             re.IGNORECASE)  # TODO adapting regex to sentence strucutre
+
+    if not re_match:
+        sentence = 'NO SENTENCE FOUND'
+    else:
         sentence = re_match.group()
-    print('### Sentence with containing object: \n{}'.format(sentence))
+        sentence = sentence.replace('\n', ' ')
+        print('### Sentence with containing object: \n{}'.format(sentence))
     return sentence
 
-file = open("file_result.txt", "w+", encoding='cp65001')
 
-def write_file(ttl_triple, sentence):
-    file.write(ttl_triple[0] +' '+ ttl_triple[2] +' '+ sentence +'\n')
+file = open("file_result_split_period.txt", "w+", encoding='cp65001')
+
+# write triple to file 'file_result.txt
+def write_file(ttl_triple, sentence, i):
+    file.write(ttl_triple[i-2] +' '+ ttl_triple[i] +' '+ sentence +'\n')
     print('### Successfully wrote to File')
 
 # open file of links
-with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_links.ttl') as ttl_f:
+with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_links.ttl', encoding='cp65001') as ttl_f:
     ttl_file = ttl_f.read()
     # print(ttl_file)
     # print(f.readlines())
@@ -32,22 +46,21 @@ with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano
 
     # extracting the object and extracting sentence from file
     i = 2
-    while i <= 11:
+    for line in ttl_file:
         print('### Iterating through ttf_file with index: {}'.format(i))
         triple_object = ttl_triple[i].split('/')[4][:-1]
         print('### Tripple Object: \n{}'.format(triple_object))
         if triple_object:
             sentence = extract_sentence(triple_object)
-            print('after calling function : {}'.format(sentence))
         else:
             print("No Triple Object")
         if sentence:
-            write_file(ttl_triple, sentence)
+            write_file(ttl_triple, sentence, i)
         else:
             print('No sentence')
         i += 3
 
-# extracting sentence from wikipedia
+# NOT USING: extracting sentence from wikipedia
 def extract_wiki(url):
     # url = "https://en.wikipedia.org/wiki/Cyrano_de_Bergerac"
     response = requests.get(url)
