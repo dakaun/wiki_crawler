@@ -14,8 +14,10 @@ def extract_sentence(triple_object):
         triple_object = triple_object.replace('(', '\(')
         triple_object = triple_object.replace(')', '\)')
 
+        #enhancing wiki_file - remove all links
+
         #search only where line does not start with |
-        re_match = re.search(r'([^.]*\[\[' + triple_object + '(\#.+)?(\|.+)?\]\][^.]*\.)', wiki_file,
+        re_match = re.search(r'([^.]*\[\[' + triple_object + '[^.]*\.)', wiki_file, #(\#.+)?(\|.+)?\]\]
                             re.IGNORECASE)  # TODO adapting regex to sentence strucutre
 
     if not re_match:
