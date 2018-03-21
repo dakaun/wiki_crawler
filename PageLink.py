@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 def extract_sentence(triple_object):
     with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_de_Bergerac.xml',
               encoding='cp65001') as wiki_f:
-        # ENCODING: cp437, cp850, cp852, cp858, cp1250, cp65001 !, latin_1, iso8859_2, iso8859_15
         wiki_file = wiki_f.read()
 
         #adapting tripe_object for regex
@@ -15,6 +14,9 @@ def extract_sentence(triple_object):
         triple_object = triple_object.replace(')', '\)')
 
         #enhancing wiki_file - remove all links
+        re_remove = re.findall(r"\&lt\;ref.*?\&lt\;/ref\&gt\;", wiki_file, re.IGNORECASE)
+        for element in re_remove:
+            wiki_file = wiki_file.replace(element, '')
 
         #search only where line does not start with |
         re_match = re.search(r'([^.]*\[\[' + triple_object + '[^.]*\.)', wiki_file, #(\#.+)?(\|.+)?\]\]
@@ -29,7 +31,7 @@ def extract_sentence(triple_object):
     return sentence
 
 
-file = open("file_result_split_period.txt", "w+", encoding='cp65001')
+file = open("file_result_split_period_advanced.txt", "w+", encoding='cp65001')
 
 # write triple to file 'file_result.txt
 def write_file(ttl_triple, sentence, i):
@@ -39,12 +41,9 @@ def write_file(ttl_triple, sentence, i):
 # open file of links
 with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_links.ttl', encoding='cp65001') as ttl_f:
     ttl_file = ttl_f.read()
-    # print(ttl_file)
-    # print(f.readlines())
 
     # spliting each triples of ttl file in subj, pred, obj
     ttl_triple = ttl_file.split(" ")
-    # print('1' + ttl_triple[0])     print('2' + ttl_triple[1])     print('3' + ttl_triple[2])
 
     # extracting the object and extracting sentence from file
     i = 2
