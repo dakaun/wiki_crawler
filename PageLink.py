@@ -2,25 +2,48 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+#adapting tripe_object for regex
+def enhance_entity(triple_object):
+    triple_object = triple_object.replace('_', ' ')
+    triple_object = triple_object.replace('(', '\(')
+    triple_object = triple_object.replace(')', '\)')
+    return triple_object
+
+#enhancing wiki_file - remove all links, references, title
+def enhance_wikifile(wiki_file):
+    re_remove = re.findall(r"\&lt\;ref.*?\&lt\;/ref\&gt\;", wiki_file, re.IGNORECASE)
+    for element in re_remove:
+        wiki_file = wiki_file.replace(element, '')
+    return wiki_file
+
 # open file of wikipedia article and extract sentence
 def extract_sentence(triple_object):
     with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_de_Bergerac.xml',
               encoding='cp65001') as wiki_f:
         wiki_file = wiki_f.read()
 
-        #adapting tripe_object for regex
+        #enhance_entity(triple_object)
         triple_object = triple_object.replace('_', ' ')
         triple_object = triple_object.replace('(', '\(')
         triple_object = triple_object.replace(')', '\)')
 
-        #enhancing wiki_file - remove all links
-        re_remove = re.findall(r"\&lt\;ref.*?\&lt\;/ref\&gt\;", wiki_file, re.IGNORECASE)
-        for element in re_remove:
+        #enhance_wikifile(wiki_file)
+        #<ref></ref>
+        re_links = re.findall(r"\&lt\;ref.*?\&lt\;/ref\&gt\;", wiki_file, re.IGNORECASE) #TODO modify
+        for element in re_links:
+            wiki_file = wiki_file.replace(element, '')
+        #{{refn|}}
+        re_reference = re.findall(r"\{\{refn\|.*?\}\}", wiki_file, re.IGNORECASE) #TODO modify to {{refn|as{{sk}}sl}}
+        for element in re_reference:
+            wiki_file = wiki_file.replace(element, '')
+        #====heading====
+        re_heading = re.findall(r"={2,4}.*?={2,4}", wiki_file, re.IGNORECASE)
+        for element in re_heading:
             wiki_file = wiki_file.replace(element, '')
 
         #search only where line does not start with |
         re_match = re.search(r'([^.]*\[\[' + triple_object + '[^.]*\.)', wiki_file, #(\#.+)?(\|.+)?\]\]
-                            re.IGNORECASE)  # TODO adapting regex to sentence strucutre
+                            re.IGNORECASE)  
 
     if not re_match:
         sentence = 'NO SENTENCE FOUND'
@@ -35,7 +58,7 @@ file = open("file_result_split_period_advanced.txt", "w+", encoding='cp65001')
 
 # write triple to file 'file_result.txt
 def write_file(ttl_triple, sentence, i):
-    file.write(ttl_triple[i-2] +' '+ ttl_triple[i] +' '+ sentence +'\n')
+    file.write(ttl_triple[i-2] +' '+ ttl_triple[i] +' \"'+ sentence +'\"\n')
     print('### Successfully wrote to File')
 
 # open file of links
