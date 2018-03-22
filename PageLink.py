@@ -33,28 +33,37 @@ def extract_sentence(triple_object):
         for element in re_links:
             wiki_file = wiki_file.replace(element, '')
         #{{refn|}}
-        re_reference = re.findall(r"\{\{refn\|.*?\}\}", wiki_file, re.IGNORECASE) #TODO modify to {{refn|as{{sk}}sl}}
+        re_reference = re.findall(r"\{\{refn\|.*?\}\}", wiki_file, re.IGNORECASE) #TODO modify to {{refn|xx{{xx}}xx}}
         for element in re_reference:
             wiki_file = wiki_file.replace(element, '')
         #====heading====
-        re_heading = re.findall(r"={2,4}.*?={2,4}", wiki_file, re.IGNORECASE)
+        re_heading = re.findall(r"={2,}.*?={2,}", wiki_file, re.IGNORECASE) #removed upper limit --> still working?
         for element in re_heading:
             wiki_file = wiki_file.replace(element, '')
 
-        #search only where line does not start with |
+        #"<!--[^-]*-->"
+        re_something = re.findall(r"<!--[^-]*-->", wiki_file)
+        for element in re_something:
+            wiki_file = wiki_file.replace(element, '')
+
+        #file
+        #re_file = re.findall()
+
+        #exctract sentence with entity
         re_match = re.search(r'([^.]*\[\[' + triple_object + '[^.]*\.)', wiki_file, #(\#.+)?(\|.+)?\]\]
-                            re.IGNORECASE)  
+                            re.IGNORECASE)
 
     if not re_match:
         sentence = 'NO SENTENCE FOUND'
     else:
         sentence = re_match.group()
         sentence = sentence.replace('\n', ' ')
+        sentence = sentence.replace('#&quot;', '"')
         print('### Sentence with containing object: \n{}'.format(sentence))
     return sentence
 
 
-file = open("file_result_split_period_advanced.txt", "w+", encoding='cp65001')
+file = open("file_result_split_period_advanced2.txt", "w+", encoding='cp65001')
 
 # write triple to file 'file_result.txt
 def write_file(ttl_triple, sentence, i):
