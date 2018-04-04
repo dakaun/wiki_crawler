@@ -30,24 +30,31 @@ def extract_sentence(triple_object):
         #enhance_wikifile(wiki_file)
         #<ref></ref>
         re_links = re.findall(r"\&lt\;ref.*?\&lt\;/ref\&gt\;", wiki_file, re.IGNORECASE) #TODO modify
-        for element in re_links:
-            wiki_file = wiki_file.replace(element, '')
+        for element_links in re_links:
+            wiki_file = wiki_file.replace(element_links, '')
         #{{refn|}}
         re_reference = re.findall(r"\{\{refn\|.*?\}\}", wiki_file, re.IGNORECASE) #TODO modify to {{refn|xx{{xx}}xx}}
-        for element in re_reference:
-            wiki_file = wiki_file.replace(element, '')
+        for element_reference in re_reference:
+            wiki_file = wiki_file.replace(element_reference, '')
         #====heading====
         re_heading = re.findall(r"={2,}.*?={2,}", wiki_file, re.IGNORECASE) #removed upper limit --> still working?
-        for element in re_heading:
-            wiki_file = wiki_file.replace(element, '')
+        for element_heading in re_heading:
+            wiki_file = wiki_file.replace(element_heading, '')
 
-        #"<!--[^-]*-->"
-        re_something = re.findall(r"<!--[^-]*-->", wiki_file)
-        for element in re_something:
-            wiki_file = wiki_file.replace(element, '')
+        # "<!--[^-]*-->"
+        re_something = re.findall(r"&lt;!--[^-]*--&gt;", wiki_file)
+        #re_something = re.findall(r"<!--[^-]*-->", wiki_file) #???????
+        for element_something in re_something:
+            wiki_file = wiki_file.replace(element_something, '')
 
         #file
-        #re_file = re.findall()
+
+        #infobox
+        re_info = re.findall(r'(\{\{Infobox.*?(\{\{.*?\}\}.*?)*}})', wiki_file, re.DOTALL)
+        wiki_file = wiki_file.replace(re_info[0][0], '.') #TODO modify
+
+        #quote
+        wiki_file = wiki_file.replace("&quot;","\"")
 
         #exctract sentence with entity
         re_match = re.search(r'([^.]*\[\[' + triple_object + '[^.]*\.)', wiki_file, #(\#.+)?(\|.+)?\]\]
@@ -63,7 +70,7 @@ def extract_sentence(triple_object):
     return sentence
 
 
-file = open("file_result_split_period_advanced2.txt", "w+", encoding='cp65001')
+file = open("file_result_split_period_advanced4.txt", "w+", encoding='cp65001')
 
 # write triple to file 'file_result.txt
 def write_file(ttl_triple, sentence, i):
