@@ -2,87 +2,104 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-#adapting tripe_object for regex
-def enhance_entity(triple_object):
-    triple_object = triple_object.replace('_', ' ')
-    triple_object = triple_object.replace('(', '\(')
-    triple_object = triple_object.replace(')', '\)')
-    return triple_object
 
-#enhancing wiki_file - remove all links, references, title
-def enhance_wikifile(wiki_file):
-    re_remove = re.findall(r"\&lt\;ref.*?\&lt\;/ref\&gt\;", wiki_file, re.IGNORECASE)
-    for element in re_remove:
-        wiki_file = wiki_file.replace(element, '')
-    return wiki_file
+# def file_handling(wiki_file, triple_object): #TODO
+#     #if object = file     #then extract sentence    #otherwise replace file with ''
+#     if triple_object in re_file:
+#         sentence = re_file
+#     else:
+#         sentence = ''
+#         for element_file in re_file:
+#             wiki_file = wiki_file.replace(element_file, '')
+#     return sentence, wiki_file
 
-# open file of wikipedia article and extract sentence
-def extract_sentence(triple_object):
+
+def open_wiki_file():
     with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_de_Bergerac.xml',
               encoding='cp65001') as wiki_f:
         wiki_file = wiki_f.read()
-
-        #enhance_entity(triple_object)
-        triple_object = triple_object.replace('_', ' ')
-        triple_object = triple_object.replace('(', '\(')
-        triple_object = triple_object.replace(')', '\)')
-
-        #enhance_wikifile(wiki_file)
-        #<ref></ref>
-        re_links = re.findall(r"\&lt\;ref.*?\&lt\;/ref\&gt\;", wiki_file, re.IGNORECASE) #TODO modify
+        # enhance_wikifile
+        # <ref></ref>
+        re_links = re.findall(r"\&lt\;ref.*?\&lt\;/ref\&gt\;", wiki_file, re.IGNORECASE)
         for element_links in re_links:
             wiki_file = wiki_file.replace(element_links, '')
-        #{{refn|}}
-        re_reference = re.findall(r"\{\{refn\|.*?\}\}", wiki_file, re.IGNORECASE) #TODO modify to {{refn|xx{{xx}}xx}}
+        print('§§§ re_links with ref: {}'.format(re_links))
+        # {{refn|}}
+        re_reference = re.findall(r"\{\{refn\|.*?\}\}", wiki_file, re.IGNORECASE)
         for element_reference in re_reference:
             wiki_file = wiki_file.replace(element_reference, '')
-        #====heading====
-        re_heading = re.findall(r"={2,}.*?={2,}", wiki_file, re.IGNORECASE) #removed upper limit --> still working?
+        print('§§§ re_reference with refn: {}'.format(re_reference))
+        # ====heading====
+        re_heading = re.findall(r"={2,}.*?={2,}", wiki_file, re.IGNORECASE)  # removed upper limit --> still working?
         for element_heading in re_heading:
             wiki_file = wiki_file.replace(element_heading, '')
-
+        print('§§§ re_heading with ==header==: {}'.format(re_heading))
         # "<!--[^-]*-->"
-        re_something = re.findall(r"&lt;!--[^-]*--&gt;", wiki_file)
-        #re_something = re.findall(r"<!--[^-]*-->", wiki_file) #???????
-        for element_something in re_something:
-            wiki_file = wiki_file.replace(element_something, '')
-
-        #file
-
-        #infobox
+        re_notes = re.findall(r"&lt;!--[^-]*--&gt;", wiki_file)
+        # re_notes = re.findall(r"<!--[^-]*-->", wiki_file) #???????
+        for element_notes in re_notes:
+            wiki_file = wiki_file.replace(element_notes, '')
+        print('§§§ re_notes with <!--: {}'.format(re_notes))
+        # # file
+        re_file = re.findall(r'\[\[File:[^]]+\]\]', wiki_file)
+        for element_file in re_file:
+            wiki_file = wiki_file.replace(element_file, '')
+        print('§§§ re_files as File {}'.format(re_file))
+        # infobox
         re_info = re.findall(r'(\{\{Infobox.*?(\{\{.*?\}\}.*?)*}})', wiki_file, re.DOTALL)
-        wiki_file = wiki_file.replace(re_info[0][0], '.') #TODO modify
+        wiki_file = wiki_file.replace(re_info[0][0], '.')
+        print('§§§ re_info with Infobox: {}'.format(re_info))
+        # quote
+        wiki_file = wiki_file.replace("&quot;", "\"")
+        return wiki_file
 
-        #quote
-        wiki_file = wiki_file.replace("&quot;","\"")
 
-        #exctract sentence with entity
-        re_match = re.search(r'([^.]*\[\[' + triple_object + '[^.]*\.)', wiki_file, #(\#.+)?(\|.+)?\]\]
-                            re.IGNORECASE)
+# open file of wikipedia article and extract sentence
+def extract_sentence(triple_object, wiki_file):
+    # enhance_entity
+    triple_object = triple_object.replace('_', ' ')
+    triple_object = triple_object.replace('(', '\(')
+    triple_object = triple_object.replace(')', '\)')
 
+    # if triple_object in from_wiki_file[1]:
+    #     re_match = from_wiki_file[1]
+    #     print('TRIPPLE OBJECT IN RE FILE = sentence: {}'.format(sentence))
+    #     for element_file in from_wiki_file[1]:
+    #         wiki_file = from_wiki_file[0].replace(element_file, '')
+    # else:
+    # exctract sentence with entity
+    re_match = re.search(r'([^.]*\[\[' + triple_object + '[^.]*\.)', wiki_file,  # (\#.+)?(\|.+)?\]\]
+                         re.IGNORECASE)
     if not re_match:
         sentence = 'NO SENTENCE FOUND'
     else:
         sentence = re_match.group()
         sentence = sentence.replace('\n', ' ')
-        sentence = sentence.replace('#&quot;', '"')
         print('### Sentence with containing object: \n{}'.format(sentence))
     return sentence
 
 
-file = open("file_result_split_period_advanced4.txt", "w+", encoding='cp65001')
+# resulting file
+file = open("file_result_split_period_advanced1804.txt", "w+", encoding='cp65001')
+
 
 # write triple to file 'file_result.txt
 def write_file(ttl_triple, sentence, i):
-    file.write(ttl_triple[i-2] +' '+ ttl_triple[i] +' \"'+ sentence +'\"\n')
+    file.write(ttl_triple[i - 2] + ' ' + ttl_triple[i] + ' \"' + sentence + '\"')
     print('### Successfully wrote to File')
 
+
 # open file of links
-with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_links.ttl', encoding='cp65001') as ttl_f:
+with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_links.ttl',
+          encoding='cp65001') as ttl_f:
     ttl_file = ttl_f.read()
 
     # spliting each triples of ttl file in subj, pred, obj
     ttl_triple = ttl_file.split(" ")
+    # get wikifile
+    from_wiki_file = open_wiki_file()
+    # print('WIKIFILE {}'.format(from_wiki_file[0]))
+    # print('RE_FILE {}'.format(from_wiki_file[1]))
 
     # extracting the object and extracting sentence from file
     i = 2
@@ -91,7 +108,14 @@ with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano
         triple_object = ttl_triple[i].split('/')[4][:-1]
         print('### Tripple Object: \n{}'.format(triple_object))
         if triple_object:
-            sentence = extract_sentence(triple_object)
+            # if triple_object in from_wiki_file[1]:
+            #     sentence = from_wiki_file[1]
+            #     print('TRIPPLE OBJECT IN RE FILE = sentence: {}'.format(sentence))
+            #     for element_file in from_wiki_file[1]:
+            #         wiki_file = from_wiki_file[0].replace(element_file, '')
+            # else:
+            sentence = extract_sentence(triple_object, from_wiki_file)
+            # print('OBJECT IS NOT IN RE_FILE, NORMAL SENTENCE EXTRACTION: {}'.format(sentence))
         else:
             print("No Triple Object")
         if sentence:
@@ -99,6 +123,7 @@ with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano
         else:
             print('No sentence')
         i += 3
+
 
 # NOT USING: extracting sentence from wikipedia
 def extract_wiki(url):
@@ -113,4 +138,3 @@ def extract_wiki(url):
             print(re.search(r"[^.]*Sannois[^.]*\.",
                             str(element)))  # alternative no regex, split(".") + if 'sannois' in element; RE
 # extract_wiki("https://en.wikipedia.org/wiki/Cyrano_de_Bergerac")
-
