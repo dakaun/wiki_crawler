@@ -2,6 +2,18 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+
+# def file_handling(wiki_file, triple_object): #TODO
+#     #if object = file     #then extract sentence    #otherwise replace file with ''
+#     if triple_object in re_file:
+#         sentence = re_file
+#     else:
+#         sentence = ''
+#         for element_file in re_file:
+#             wiki_file = wiki_file.replace(element_file, '')
+#     return sentence, wiki_file
+
+
 def open_wiki_file():
     with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_de_Bergerac.xml',
               encoding='cp65001') as wiki_f:
@@ -30,8 +42,8 @@ def open_wiki_file():
         print('§§§ re_notes with <!--: {}'.format(re_notes))
         # # file
         re_file = re.findall(r'\[\[File:[^]]+\]\]', wiki_file)
-        for element_file in re_file:
-            wiki_file = wiki_file.replace(element_file, '')
+        # for element_file in re_file:
+        #    wiki_file = wiki_file.replace(element_file, '')
         print('§§§ re_files as File {}'.format(re_file))
         # infobox
         re_info = re.findall(r'(\{\{Infobox.*?(\{\{.*?\}\}.*?)*}})', wiki_file, re.DOTALL)
@@ -47,10 +59,12 @@ def extract_sentence(triple_object, wiki_file):
     # enhance_entity
     triple_object = triple_object.replace('_', ' ')
     triple_object = triple_object.replace('(', '\(')
-    triple_object = triple_object.replace(')', '\)') #TODO add & replacing with &amp;
+    triple_object = triple_object.replace(')', '\)')
 
+    # exctract sentence with entity
     re_match = re.search(r'([^.]*\[\[' + triple_object + '[^.]*\.)', wiki_file,  # (\#.+)?(\|.+)?\]\]
                          re.IGNORECASE)
+    print(re_match)
     if not re_match:
         sentence = 'NO SENTENCE FOUND'
     else:
@@ -61,7 +75,7 @@ def extract_sentence(triple_object, wiki_file):
 
 
 # resulting file
-file = open("file_result_split_period_advanced1904.txt", "w+", encoding='cp65001')
+file = open("file_result_split_period_advanced1804a.txt", "w+", encoding='cp65001')
 
 
 # write triple to file 'file_result.txt
@@ -81,7 +95,7 @@ with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano
     from_wiki_file = open_wiki_file()
 
     # extracting the object and extracting sentence from file
-    i = 2
+    i = 65 #2
     for line in ttl_file:
         print('### Iterating through ttf_file with index: {}'.format(i))
         triple_object = ttl_triple[i].split('/')[4][:-1]
@@ -95,18 +109,3 @@ with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano
         else:
             print('No sentence')
         i += 3
-
-
-# NOT USING: extracting sentence from wikipedia
-def extract_wiki(url):
-    # url = "https://en.wikipedia.org/wiki/Cyrano_de_Bergerac"
-    response = requests.get(url)
-    html = response.text
-    soup = BeautifulSoup(html, 'html.parser')
-    content_div = soup.find(id="mw-content-text").find(class_="mw-parser-output")
-    for element in content_div.find_all('p', recursive=False):
-        for child_element in element.find_all(title='Sannois', recursive=False, href=True):
-            print(element)
-            print(re.search(r"[^.]*Sannois[^.]*\.",
-                            str(element)))  # alternative no regex, split(".") + if 'sannois' in element; RE
-# extract_wiki("https://en.wikipedia.org/wiki/Cyrano_de_Bergerac")
