@@ -18,33 +18,33 @@ def enhance_xmlfile(xml_page):
     re_links = re.findall(r"\&lt\;ref.*?\&lt\;/ref\&gt\;", xml_page, re.IGNORECASE)
     for element_links in re_links:
         xml_page = xml_page.replace(element_links, '')
-    print('§§§ re_links with ref: {}'.format(re_links))
+    print('--- re_links with ref: {}'.format(re_links))
     # {{refn|}}
     re_reference = re.findall(r"\{\{refn\|.*?\}\}", xml_page, re.IGNORECASE)
     for element_reference in re_reference:
         xml_page = xml_page.replace(element_reference, '')
-    print('§§§ re_reference with refn: {}'.format(re_reference))
+    print('--- re_reference with refn: {}'.format(re_reference))
     # ====heading====
     re_heading = re.findall(r"={2,}.*?={2,}", xml_page, re.IGNORECASE)  # removed upper limit --> still working?
     for element_heading in re_heading:
         xml_page = xml_page.replace(element_heading, '')
-    print('§§§ re_heading with ==header==: {}'.format(re_heading))
+    print('--- re_heading with ==header==: {}'.format(re_heading))
     # "<!--[^-]*-->"
     re_notes = re.findall(r"&lt;!--[^-]*--&gt;", xml_page)
     # re_notes = re.findall(r"<!--[^-]*-->", xml_file) #???????
     for element_notes in re_notes:
         xml_page = xml_page.replace(element_notes, '')
-    print('§§§ re_notes with <!--: {}'.format(re_notes))
+    print('--- re_notes with <!--: {}'.format(re_notes))
     # # file
     re_file = re.findall(r'\[\[File:[^]]+\]\]', xml_page)
     for element_file in re_file:
         xml_page = xml_page.replace(element_file, '')
-    print('§§§ re_files as File {}'.format(re_file))
+    print('--- re_files as File {}'.format(re_file))
     # infobox
     re_info = re.findall(r'(\{\{Infobox.*?(\{\{.*?\}\}.*?)*}})', xml_page, re.DOTALL)
     if re_info:
         xml_page = xml_page.replace(re_info[0][0], '.')
-    print('§§§ re_info with Infobox: {}'.format(re_info))
+    print('--- re_info with Infobox: {}'.format(re_info))
     # quote
     xml_page = xml_page.replace("&quot;", "\"")
     return xml_page
