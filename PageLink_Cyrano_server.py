@@ -5,9 +5,10 @@ import time
 
 start = time.time()
 
+
 def open_wiki_file():
-    with open('/home/daniela/wiki_pagelinks_2016-10/Cyrano_de_Bergerac/Cyrano_de_Bergerac.xml',
-              encoding='cp65001') as wiki_f:
+    with open(
+            '/home/daniela/wiki_pagelinks_2016-10/Cyrano_de_Bergerac/Cyrano_de_Bergerac.xml') as wiki_f:  # , encoding='cp65001'
         wiki_file = wiki_f.read()
         # enhance_wikifile
         # <ref></ref>
@@ -44,6 +45,7 @@ def open_wiki_file():
         wiki_file = wiki_file.replace("&quot;", "\"")
         return wiki_file
 
+
 # open file of wikipedia article and extract sentence
 def extract_sentence(triple_object, wiki_file):
     # enhance_entity
@@ -64,7 +66,7 @@ def extract_sentence(triple_object, wiki_file):
 
 
 # resulting file
-file = open("/home/daniela/wiki_pagelinks_2016-10/Cyrano_de_Bergerac/result_file_0705", "w+", encoding='cp65001')
+file = open("/home/daniela/wiki_pagelinks_2016-10/Cyrano_de_Bergerac/result_file_0705", "w+")  # , encoding='cp65001'
 
 
 # write triple to file 'file_result.txt
@@ -74,15 +76,14 @@ def write_file(ttl_triple, sentence):
 
 
 # open file of links
-with open('/home/daniela/wiki_pagelinks_2016-10/Cyrano_de_Bergerac/Cyrano_links.ttl',
-          encoding='cp65001') as ttl_f:
+with open('/home/daniela/wiki_pagelinks_2016-10/Cyrano_de_Bergerac/Cyrano_links.ttl') as ttl_f:  # , encoding='cp65001'
     ttl_file = ttl_f.readlines()
     # get wikifile
     from_wiki_file = open_wiki_file()
     # extracting the object and extracting sentence from file
     for line in ttl_file:
         print('--- LINE: {} '.format(line))
-        ttl_triple = line.split(" ")    # spliting each triples of ttl file in subj, pred, obj
+        ttl_triple = line.split(" ")  # spliting each triples of ttl file in subj, pred, obj
         triple_object = ttl_triple[2].split('/')[4][:-1]
         print('--- Tripple Object: \n{}'.format(triple_object))
         if triple_object:
@@ -93,7 +94,7 @@ with open('/home/daniela/wiki_pagelinks_2016-10/Cyrano_de_Bergerac/Cyrano_links.
             write_file(ttl_triple, sentence)
         else:
             print('No sentence')
-        #i += 3
+        # i += 3
 
 end = time.time()
-print('--- TIME {}'.format(end-start))
+print('--- TIME {}'.format(end - start))
