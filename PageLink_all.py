@@ -5,8 +5,7 @@ from bs4 import BeautifulSoup
 start = time.time()
 
 def open_wiki_file():
-    with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/2wikifiles.txt',
-              encoding='cp65001') as wiki_f:
+    with open('/home/daniela/wiki_pagelinks_2016-10/wikipedia20180401/wikipartfirst6000') as wiki_f: #encoding='cp65001'
         xml_file = wiki_f.read()
         soup = BeautifulSoup(xml_file, "html.parser")
         pages = soup.find_all('page')
@@ -65,18 +64,18 @@ def extract_sentence(triple_object, page):
     else:
         sentence = re_match.group()
         sentence = sentence.replace('\n', ' ')
-        print('### Sentence with containing object: \n{}'.format(sentence))
+        print('-- Sentence with containing object: \n{}'.format(sentence))
     return sentence
 
 
 # resulting file
-file = open("file_result2804.txt", "w+", encoding='cp65001')
+file = open("/home/daniela/wiki_pagelinks_2016-10/results/result_file0705", "w+") #, encoding='cp65001'
 
 
 # write triple to file 'file_result.txt
 def write_file(ttl_triple, sentence):
     file.write(ttl_triple[0] + ' ' + ttl_triple[2] + ' \"' + sentence + '\" \n')
-    print('### Successfully wrote to File')
+    print('-- Successfully wrote to File')
 
 
 def enhance_subject(triple_subject):
@@ -86,20 +85,19 @@ def enhance_subject(triple_subject):
 
 
 # open file of links
-with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/test_ttl_file.ttl',
-          encoding='cp65001') as ttl_f:
+with open('/home/daniela/wiki_pagelinks_2016-10/page_links_en.ttl') as ttl_f: #encoding='cp65001'
     ttl_file = ttl_f.readlines()
     # get wikifile
     wiki_pages = open_wiki_file()
     # extracting the object and extracting sentence from file
     for line in ttl_file: #iterate through every triple in the ttl_file
-        print('### LINE: {} '.format(line))
+        print('-- LINE: {} '.format(line))
         ttl_triple = line.split(" ")  # spliting each triples of ttl file in subj, pred, obj
         triple_subject = ttl_triple[0].split('/')[4][:-1]
-        print('### SUBJECT: {}'.format(triple_subject))
+        print('-- SUBJECT: {}'.format(triple_subject))
         triple_subject = enhance_subject(triple_subject)  # adapt triple_subject to match to the name of the article
         triple_object = ttl_triple[2].split('/')[4][:-1]
-        print('### Tripple Object: \n{}'.format(triple_object))
+        print('-- Tripple Object: \n{}'.format(triple_object))
         for page in wiki_pages: #iterate through all pages
             if (triple_subject == page.title.string): #if page with right title is found
                 #in right page - now extract sentences
@@ -115,4 +113,4 @@ with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/test_t
 
 
 end = time.time()
-print('### TIME {}'.format(end - start))
+print('-- TIME {}'.format(end - start))
