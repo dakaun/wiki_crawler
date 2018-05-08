@@ -1,0 +1,2 @@
+<http://dbpedia.org/resource/test1> <http://dbpedia.org/resource/test> "<page> <title>test1</title> 	Cyrano's short life is poorly documented [[test]]." 
+<http://dbpedia.org/resource/test2> <http://dbpedia.org/resource/test> "<page> <title>test2</title> 	Cyrano's short life is poorly documented [[test]]." 

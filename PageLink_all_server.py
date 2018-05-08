@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 start = time.time()
 
 def open_wiki_file():
-    with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/2wikifiles.txt', encoding='cp65001') as wiki_f:
+    with open('/home/daniela/wiki_pagelinks_2016-10/wikipedia20180401/wikipartfirst6000') as wiki_f: #encoding='cp65001'
         xml_file = wiki_f.read()
         soup = BeautifulSoup(xml_file, "html.parser")
         pages = soup.find_all('page')
@@ -69,7 +69,7 @@ def extract_sentence(triple_object, page):
 
 
 # resulting file
-file = open("test_file_result0805.txt", "w+", encoding='cp65001')
+file = open("/home/daniela/wiki_pagelinks_2016-10/results/result_file0705", "w+") #, encoding='cp65001'
 
 
 # write triple to file 'file_result.txt
@@ -85,7 +85,7 @@ def enhance_subject(triple_subject):
 
 
 # open file of links
-with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/test_ttl_file.ttl', encoding='cp65001') as ttl_f:
+with open('/home/daniela/wiki_pagelinks_2016-10/page_links_en.ttl') as ttl_f: #encoding='cp65001'
     ttl_file = ttl_f.readlines()
     # get wikifile
     wiki_pages = open_wiki_file()
