@@ -79,7 +79,7 @@ def write_file(ttl_triple, sentence):
 
 
 def enhance_subject(triple_subject):
-    triple_subject = triple_subject.replace('_', '')
+    triple_subject = triple_subject.replace('_', ' ')
     triple_subject = triple_subject.replace('&', '&amp;')
     return triple_subject
 
@@ -108,8 +108,8 @@ with open('/home/daniela/wiki_pagelinks_2016-10/page_links_en.ttl') as ttl_f: #e
                 else:
                     sentence = "NO TRIPLE OBJECT"
                 write_file(ttl_triple, sentence)
-            else:
-                print("NOT FOUND")
+                break
+
 
 
 end = time.time()

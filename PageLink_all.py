@@ -79,7 +79,7 @@ def write_file(ttl_triple, sentence):
 
 
 def enhance_subject(triple_subject):
-    triple_subject = triple_subject.replace('_', '')
+    triple_subject = triple_subject.replace('_', ' ')
     triple_subject = triple_subject.replace('&', '&amp;')
     return triple_subject
 
@@ -108,8 +108,7 @@ with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/test_t
                 else:
                     sentence = "NO TRIPLE OBJECT"
                 write_file(ttl_triple, sentence)
-            else:
-                print("NOT FOUND")
+                break
 
 
 end = time.time()
