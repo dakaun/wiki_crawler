@@ -91,24 +91,25 @@ with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/test_t
     wiki_pages = open_wiki_file()
     # extracting the object and extracting sentence from file
     for line in ttl_file: #iterate through every triple in the ttl_file
-        print('-- LINE: {} '.format(line))
-        ttl_triple = line.split(" ")  # spliting each triples of ttl file in subj, pred, obj
-        triple_subject = ttl_triple[0].split('/')[4][:-1]
-        print('-- SUBJECT: {}'.format(triple_subject))
-        triple_subject = enhance_subject(triple_subject)  # adapt triple_subject to match to the name of the article
-        triple_object = ttl_triple[2].split('/')[4][:-1]
-        print('-- Tripple Object: \n{}'.format(triple_object))
-        for page in wiki_pages: #iterate through all pages
-            if (triple_subject == page.title.string): #if page with right title is found
-                #in right page - now extract sentences
-                page =str(page)
-                page = enhance_xmlfile(page) # enhance page
-                if triple_object:
-                    sentence = extract_sentence(triple_object, page)
-                else:
-                    sentence = "NO TRIPLE OBJECT"
-                write_file(ttl_triple, sentence)
-                break
+        if "<" in line:
+            print('-- LINE: {} '.format(line))
+            ttl_triple = line.split(" ")  # spliting each triples of ttl file in subj, pred, obj
+            triple_subject = ttl_triple[0].split('/')[4][:-1]
+            print('-- SUBJECT: {}'.format(triple_subject))
+            triple_subject = enhance_subject(triple_subject)  # adapt triple_subject to match to the name of the article
+            triple_object = ttl_triple[2].split('/')[4][:-1]
+            print('-- Tripple Object: {}'.format(triple_object))
+            for page in wiki_pages: #iterate through all pages
+                if (triple_subject == page.title.string): #if page with right title is found
+                    #in right page - now extract sentences
+                    page =str(page)
+                    page = enhance_xmlfile(page) # enhance page
+                    if triple_object:
+                        sentence = extract_sentence(triple_object, page)
+                    else:
+                        sentence = "NO TRIPLE OBJECT"
+                    write_file(ttl_triple, sentence)
+                    break
 
 
 end = time.time()
