@@ -69,7 +69,7 @@ def extract_sentence(triple_object, page):
 
 
 # resulting file
-file = open("/home/daniela/wiki_pagelinks_2016-10/results/result_file0905", "w+") #, encoding='cp65001'
+file = open("/home/daniela/wiki_pagelinks_2016-10/results/result_file1405", "w+") #, encoding='cp65001'
 
 
 # write triple to file 'file_result.txt
