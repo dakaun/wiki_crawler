@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 start = time.time()
 
 def open_wiki_file():
-    with open('/home/daniela/wiki_pagelinks_2016-10/wikipedia20180401/wikipartfirst6000') as wiki_f: #encoding='cp65001'
+    with open('/home/daniela/wiki_pagelinks_2016-10/wikipedia20180401/enwiki-20180401-pages-articles-multistream.xml') as wiki_f: #encoding='cp65001'
         xml_file = wiki_f.read()
         soup = BeautifulSoup(xml_file, "html.parser")
         pages = soup.find_all('page')
@@ -85,7 +85,7 @@ def enhance_subject(triple_subject):
 
 
 # open file of links
-with open('/home/daniela/wiki_pagelinks_2016-10/page_links_en.ttl') as ttl_f: #encoding='cp65001'
+with open('/home/daniela/wiki_pagelinks_2016-10/page_links_en_first5000.ttl') as ttl_f: #encoding='cp65001'
     ttl_file = ttl_f.readlines()
     # get wikifile
     wiki_pages = open_wiki_file()
