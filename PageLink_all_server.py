@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 start = time.time()
 
 def open_wiki_file():
-    with open('/home/daniela/wiki_pagelinks_2016-10/wikipedia20180401/enwiki-20180401-pages-articles-multistream.xml') as wiki_f: #encoding='cp65001'
+    with open('/home/daniela/wiki_pagelinks_2016-10/wikipedia20180401/wikipartfirst12000') as wiki_f: #encoding='cp65001'
         xml_file = wiki_f.read()
         soup = BeautifulSoup(xml_file, "html.parser")
         pages = soup.find_all('page')
