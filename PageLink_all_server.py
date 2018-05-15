@@ -116,6 +116,9 @@ with open('/home/daniela/wiki_pagelinks_2016-10/page_links_en_first5000.ttl') as
                         sentence = extract_sentence(triple_object, page)
                         write_file(ttl_triple, sentence)
                         break
+                    else:
+                        sentence = "NO MATCHING PAGE FOUND"
+                write_file(ttl_triple, sentence)
 
 
 

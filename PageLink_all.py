@@ -72,7 +72,7 @@ def extract_sentence(triple_object, page):
 
 
 # resulting file
-file = open("result/test_file_result1505.txt", "w+", encoding='cp65001')
+file = open("result/test_file_result1605.txt", "w+", encoding='cp65001')
 
 
 # write triple to file 'file_result.txt
@@ -118,8 +118,10 @@ with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/test_t
                         page = enhance_xmlfile(page)  # enhance page
                         previous_page = page
                         sentence = extract_sentence(triple_object, page)
-                        write_file(ttl_triple, sentence)
                         break
+                    else:
+                        sentence = "NO MATCHING PAGE FOUND"
+                write_file(ttl_triple, sentence)
 
 end = time.time()
 print('-- TIME {}'.format(end - start))
