@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3efa297-6864-41c1-92ca-f13d160f62ea" name="Default" comment="" />
+    <list default="true" id="d3efa297-6864-41c1-92ca-f13d160f62ea" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/wiki_crawler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wiki_crawler.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageLink_Cyrano.py" beforeDir="false" afterPath="$PROJECT_DIR$/PageLink_Cyrano.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageLink_onlywiki.py" beforeDir="false" afterPath="$PROJECT_DIR$/PageLink_onlywiki.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,11 +19,12 @@
     <SUITE FILE_PATH="coverage/wiki_crawler$PageLink_all__1_.coverage" NAME="PageLink_all (1) Coverage Results" MODIFIED="1526362989759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/wiki_crawler$PageLink2.coverage" NAME="PageLink2 Coverage Results" MODIFIED="1524039269222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/wiki_crawler$scratch_6.coverage" NAME="scratch_6 Coverage Results" MODIFIED="1526025034308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/wiki_crawler$PageLink_Cyrano.coverage" NAME="PageLink_Cyrano Coverage Results" MODIFIED="1526026951511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/wiki_crawler$PageLink_Cyrano.coverage" NAME="PageLink_Cyrano Coverage Results" MODIFIED="1526655015150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/wiki_crawler$PageLink_onlywiki.coverage" NAME="PageLink_onlywiki Coverage Results" MODIFIED="1526659457417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/wiki_crawler$PageLink_all.coverage" NAME="PageLink_all Coverage Results" MODIFIED="1524932685676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/wiki_crawler$scratch_7.coverage" NAME="scratch_7 Coverage Results" MODIFIED="1523786191062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/wiki_crawler$WikiPart.coverage" NAME="WikiPart Coverage Results" MODIFIED="1524914890884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/creating part" />
-    <SUITE FILE_PATH="coverage/wiki_crawler$scratch_3.coverage" NAME="scratch_3 Coverage Results" MODIFIED="1524928156658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/wiki_crawler$scratch_3.coverage" NAME="scratch_3 Coverage Results" MODIFIED="1526649938542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/wiki_crawler$scratch_4.coverage" NAME="scratch_4 Coverage Results" MODIFIED="1521715708437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/wiki_crawler$PageLink.coverage" NAME="PageLink Coverage Results" MODIFIED="1525675646964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/wiki_crawler$scratch_2.coverage" NAME="scratch_2 Coverage Results" MODIFIED="1522783485220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
@@ -30,8 +37,8 @@
       <file leaf-file-name="PageLink_Cyrano.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PageLink_Cyrano.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="52" column="65" selection-start-line="52" selection-start-column="65" selection-end-line="52" selection-end-column="65" />
+            <state relative-caret-position="255">
+              <caret line="66" column="121" selection-start-line="66" selection-start-column="54" selection-end-line="66" selection-end-column="121" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -39,14 +46,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WikiExtractor.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WikiExtractor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wikiextractor/WikiExtractor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="3205" column="10" selection-start-line="3205" selection-start-column="10" selection-end-line="3205" selection-end-column="10" />
+            <state relative-caret-position="54417">
+              <caret line="3201" selection-start-line="3201" selection-end-line="3201" />
               <folding>
                 <element signature="e#2088#2137#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PageLink_onlywiki.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PageLink_onlywiki.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="935">
+              <caret line="55" column="54" lean-forward="true" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="result518.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/result/result518.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="15" column="77" selection-start-line="15" selection-start-column="77" selection-end-line="15" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -125,19 +153,19 @@
         <option value="$PROJECT_DIR$/PageLink2.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
         <option value="$PROJECT_DIR$/creating part/WikiPart.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py" />
         <option value="$PROJECT_DIR$/PageLink.py" />
         <option value="$PROJECT_DIR$/PageLink_Cyrano_server.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_5.py" />
-        <option value="$PROJECT_DIR$/PageLink_Cyrano.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_6.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_4.py" />
         <option value="$PROJECT_DIR$/PageLink_all.py" />
         <option value="$PROJECT_DIR$/PageLink_all_server.py" />
-        <option value="$PROJECT_DIR$/PageLink_onlywiki.py" />
         <option value="$PROJECT_DIR$/venv/WikiExtractor.py" />
         <option value="$PROJECT_DIR$/wikiextractor/WikiExtractor.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py" />
+        <option value="$PROJECT_DIR$/PageLink_Cyrano.py" />
+        <option value="$PROJECT_DIR$/PageLink_onlywiki.py" />
       </list>
     </option>
   </component>
@@ -168,6 +196,11 @@
             <path>
               <item name="wiki_crawler" type="b2602c69:ProjectViewProjectNode" />
               <item name="wiki_crawler" type="462c0819:PsiDirectoryNode" />
+              <item name="result" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wiki_crawler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wiki_crawler" type="462c0819:PsiDirectoryNode" />
               <item name="wikiextractor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -191,7 +224,7 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -213,17 +246,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.PageLink_all (1)">
+  <component name="RunManager" selected="Python.PageLink_onlywiki">
     <configuration name="PageLink_Cyrano" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FIZ" />
+      <module name="wiki_crawler" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\danielak\PycharmProjects\untitled\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -252,6 +285,25 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="PageLink_onlywiki" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="wiki_crawler" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PageLink_onlywiki.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="scratch_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="FIZ" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -271,8 +323,8 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="scratch_5" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FIZ" />
+    <configuration name="scratch_3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="wiki_crawler" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -284,26 +336,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_5.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="scratch_6" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FIZ" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_6.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -311,18 +344,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.PageLink_all (1)" />
-      <item itemvalue="Python.scratch_5" />
-      <item itemvalue="Python.scratch_6" />
       <item itemvalue="Python.PageLink_Cyrano" />
       <item itemvalue="Python.scratch_1" />
+      <item itemvalue="Python.PageLink_onlywiki" />
+      <item itemvalue="Python.scratch_3" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.PageLink_onlywiki" />
+        <item itemvalue="Python.PageLink_Cyrano" />
+        <item itemvalue="Python.scratch_3" />
         <item itemvalue="Python.PageLink_all (1)" />
         <item itemvalue="Python.scratch_1" />
-        <item itemvalue="Python.PageLink_Cyrano" />
-        <item itemvalue="Python.scratch_6" />
-        <item itemvalue="Python.scratch_5" />
       </list>
     </recent_temporary>
   </component>
@@ -354,16 +387,16 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.35729846" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50319827" side_tool="true" weight="0.5294118" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39978212" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.020697167" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.32897604" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4968017" visible="true" weight="0.5294118" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4968017" visible="true" weight="0.27450982" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.18656716" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4074074" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.48583877" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -373,6 +406,29 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="4" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.35729846" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42156863" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32897604" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.48583877" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4968017" weight="0.27450982" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50319827" side_tool="true" weight="0.5294118" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -448,6 +504,16 @@
           <line>110</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PageLink_Cyrano.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PageLink_Cyrano.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -459,18 +525,10 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="68" />
+      <option name="time" value="90" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py" />
     <entry file="file://$PROJECT_DIR$/PageLink_all_server.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -574,17 +632,6 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_5.py" />
-    <entry file="file://$PROJECT_DIR$/PageLink_Cyrano.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="52" column="65" selection-start-line="52" selection-start-column="65" selection-end-line="52" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -636,12 +683,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wikiextractor/tests.py" />
     <entry file="file://$PROJECT_DIR$/wikiextractor/WikiExtractor.py" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wikiextractor/WikiExtractor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="3205" column="10" selection-start-line="3205" selection-start-column="10" selection-end-line="3205" selection-end-column="10" />
+        <state relative-caret-position="54417">
+          <caret line="3201" selection-start-line="3201" selection-end-line="3201" />
           <folding>
             <element signature="e#2088#2137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageLink_Cyrano.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="66" column="121" selection-start-line="66" selection-start-column="54" selection-end-line="66" selection-end-column="121" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/result/result518.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="15" column="77" selection-start-line="15" selection-start-column="77" selection-end-line="15" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageLink_onlywiki.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="55" column="54" lean-forward="true" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>

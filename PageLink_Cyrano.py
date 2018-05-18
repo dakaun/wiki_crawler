@@ -1,7 +1,9 @@
 import re
 import time
+import datetime
 
 start = time.time()
+now = datetime.datetime.now()
 
 def open_wiki_file():
     with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/Cyrano_de_Bergerac.xml',
@@ -62,7 +64,7 @@ def extract_sentence(triple_object, page):
 
 
 # resulting file
-file = open("result/file_result_split_period_advanced1105.txt", "w+", encoding='cp65001')
+file = open("result/file_result_split_period_advanced"+ str(now.month) + str(now.day) + ".txt", "w+", encoding='cp65001')
 
 
 # write triple to file 'file_result.txt
