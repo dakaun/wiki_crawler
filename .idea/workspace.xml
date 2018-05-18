@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3efa297-6864-41c1-92ca-f13d160f62ea" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/wikiextractor" beforeDir="false" />
-    </list>
+    <list default="true" id="d3efa297-6864-41c1-92ca-f13d160f62ea" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,13 +27,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PageLink_Cyrano.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PageLink_Cyrano.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PageLink_Cyrano.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="77">
               <caret line="52" column="65" selection-start-line="52" selection-start-column="65" selection-end-line="52" selection-end-column="65" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WikiExtractor.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wikiextractor/WikiExtractor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="3205" column="10" selection-start-line="3205" selection-start-column="10" selection-end-line="3205" selection-end-column="10" />
+              <folding>
+                <element signature="e#2088#2137#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,6 +137,7 @@
         <option value="$PROJECT_DIR$/PageLink_all_server.py" />
         <option value="$PROJECT_DIR$/PageLink_onlywiki.py" />
         <option value="$PROJECT_DIR$/venv/WikiExtractor.py" />
+        <option value="$PROJECT_DIR$/wikiextractor/WikiExtractor.py" />
       </list>
     </option>
   </component>
@@ -147,10 +158,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
+            <path>
+              <item name="wiki_crawler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wiki_crawler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wiki_crawler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wiki_crawler" type="462c0819:PsiDirectoryNode" />
+              <item name="wikiextractor" type="462c0819:PsiDirectoryNode" />
+            </path>
             <path>
               <item name="wiki_crawler" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
@@ -164,6 +183,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,13 +352,13 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.35729846" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5026652" side_tool="true" weight="0.5294118" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50319827" side_tool="true" weight="0.5294118" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.39978212" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.32897604" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49733475" visible="true" weight="0.3267974" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18443497" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4968017" visible="true" weight="0.5294118" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -346,26 +366,12 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4074074" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18443497" />
-      <window_info anchor="right" id="SciView" order="4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.35729846" />
-      <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39978212" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5026652" side_tool="true" visible="true" weight="0.5294118" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4074074" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49733475" visible="true" weight="0.5294118" />
-      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32897604" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,22 +399,22 @@
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/PageLink_all.py</url>
           <line>100</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/PageLink_all.py</url>
           <line>114</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/PageLink_all.py</url>
           <line>98</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/PageLink_all.py</url>
           <line>99</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
@@ -423,22 +429,22 @@
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/PageLink_all.py</url>
           <line>120</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/PageLink_all.py</url>
           <line>119</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/PageLink_all.py</url>
           <line>109</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/PageLink_all.py</url>
           <line>110</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
@@ -629,7 +635,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wikiextractor/tests.py" />
-    <entry file="file://$PROJECT_DIR$/WikiExtractor/WikiExtractor.py" />
-    <entry file="file://$PROJECT_DIR$/WikiExtractor/WikiExtractor.py" />
+    <entry file="file://$PROJECT_DIR$/wikiextractor/WikiExtractor.py" />
+    <entry file="file://$PROJECT_DIR$/wikiextractor/WikiExtractor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="3205" column="10" selection-start-line="3205" selection-start-column="10" selection-end-line="3205" selection-end-column="10" />
+          <folding>
+            <element signature="e#2088#2137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
