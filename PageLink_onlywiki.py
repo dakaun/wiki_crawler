@@ -1,7 +1,9 @@
 from bs4 import BeautifulSoup
 import re
 import datetime
+import time
 
+start = time.time()
 now = datetime.datetime.now()
 
 # input --> result_file from wikiExtractor
@@ -14,9 +16,9 @@ def open_wiki_files():
         articles = soup.find_all('doc')
     return articles
 
-file = open('result/result'+ str(now.month) + str(now.day) + ".txt", "w+", encoding='cp65001')
-def write_file(article_url, entity, sentence):
-    file.write('<' + article_url[1] + '> ' + '<https://en.wikipedia.org/wiki?' + entity + '> ' + '\"' + sentence + '\" \n')
+file = open('result/result'+ str(now.month) + str(now.day) + "b.txt", "w+", encoding='cp65001')
+def write_file(title, entity, sentence):
+    file.write('<https://en.wikipedia.org/wiki?' + title[1] + '> ' + '<https://en.wikipedia.org/wiki?' + entity + '> ' + '\"' + sentence + '\" \n')
 
 
 def extract_header(article):
@@ -26,7 +28,11 @@ def extract_header(article):
     re_article_url = re.search(r'url="(.*?)"', article)
     article_url = re_article_url.group()
     url = article_url.split('"')
-    return url
+
+    re_article_title = re.search(r'title=".*?"', article)
+    article_title = re_article_title.group()
+    title = article_title.split('"')
+    return title, article_header
 
 
 def extract_entity(element):
@@ -40,21 +46,31 @@ def extract_entity(element):
 
 
 def extract_sentence(entity, element, article):
-    re_sentence = re.search(r'[^.]*' + entity + '[^.]*\.', article)
+re_sentence = re.search(r'[^.]*>' + entity + '<[^.]*\.', article) #added those >< around the entity, otherwise it doesn't extract the entity literately  stateless vs state
     if not re_sentence:
         sentence = 'NO SENTENCE FOUND'
     else:
         sentence = re_sentence.group()
-        sentence = sentence.replace(element, entity).replace('\n', '')
+        if '<' in sentence:
+            sentence_link = re.findall(r'<a href=.*?</a>', sentence)
+            for link_element in sentence_link:
+                link_entity = link_element.replace('>', '<').split('<')
+                sentence = sentence.replace(link_element, link_entity[2])
+        sentence = sentence.replace('\n', '')
     return sentence
 
 
 articles = open_wiki_files()
 for article in articles:
     article = str(article)
-    url = extract_header(article)
+    header = extract_header(article)
+    article = article.replace(header[1],'')
     re_links = re.findall(r'<a href=.*?</a>', article)
+    print('Article: {} has {} links'.format(header[0][1], len(re_links)))
     for element in re_links:
         entity = extract_entity(element)
         sentence = extract_sentence(entity, element, article)
-        write_file(url, entity, sentence)
+        write_file(header[0], entity, sentence)
+
+end = time.time()
+print('--- TIME {}'.format(end-start))
