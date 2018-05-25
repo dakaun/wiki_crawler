@@ -1,6 +1,6 @@
 import shutil
 
-wiki_AA = open('/home/daniela/wiki_pagelinks_2016-10/wikipedia20180401/wikiextractor/result_wikiextractor_1/AA', 'w')
+wiki_AA = open('/home/daniela/wiki_pagelinks_2016-10/wikipedia20180401/wikiextractor/result_wikiextractor_1/AA/wiki_AA', 'w')
 for file in ['wiki_00', 'wiki_01', 'wiki_02', 'wiki_03', 'wiki_04', 'wiki_05', 'wiki_06', 'wiki_07', 'wiki_08',
              'wiki_09', 'wiki_10', 'wiki_11', 'wiki_12', 'wiki_13', 'wiki_14', 'wiki_15', 'wiki_16', 'wiki_17',
              'wiki_18', 'wiki_19' 'wiki_20', 'wiki_21', 'wiki_22', 'wiki_23', 'wiki_24', 'wiki_25', 'wiki_26',
