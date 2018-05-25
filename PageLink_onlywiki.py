@@ -45,8 +45,8 @@ def extract_entity(element):
     return link
 
 
-def extract_sentence(entity, element, article):
-re_sentence = re.search(r'[^.]*>' + entity + '<[^.]*\.', article) #added those >< around the entity, otherwise it doesn't extract the entity literately  stateless vs state
+def extract_sentence(entity, article):
+    re_sentence = re.search(r'[^.]*>' + entity + '<[^.]*\.', article) #added those >< around the entity, otherwise it doesn't extract the entity literately  stateless vs state
     if not re_sentence:
         sentence = 'NO SENTENCE FOUND'
     else:
@@ -69,7 +69,7 @@ for article in articles:
     print('Article: {} has {} links'.format(header[0][1], len(re_links)))
     for element in re_links:
         entity = extract_entity(element)
-        sentence = extract_sentence(entity, element, article)
+        sentence = extract_sentence(entity, article)
         write_file(header[0], entity, sentence)
 
 end = time.time()
