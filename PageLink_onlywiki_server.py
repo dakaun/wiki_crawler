@@ -20,7 +20,7 @@ def open_wiki_files():
 
 file = open(
     '/home/daniela/wiki_pagelinks_2016-10/wikipedia20180401/wikiextractor/result/wikiresult_' + str(now.month) + str(
-        now.day) + ".txt", "w+")
+        now.day), "w+")
 
 
 def write_file(title, entity, sentence):
