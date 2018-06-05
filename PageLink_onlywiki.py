@@ -9,16 +9,18 @@ now = datetime.datetime.now()
 # input --> result_file from wikiExtractor
 # wiki articles, splitted by <doc id='' url='' title='' ></doc>
 def open_wiki_files():
-    with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_extractor.txt',
+    with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_extractor_test/AB/wiki_00.txt',
               encoding='cp65001') as wiki_f:
         wiki_files = wiki_f.read()
         soup = BeautifulSoup(wiki_files, "html.parser")
         articles = soup.find_all('doc')
     return articles
 
-file = open('result/result'+ str(now.month) + str(now.day) + "b.txt", "w+", encoding='cp65001')
+file = open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/results_wiki_extractor_test/result_ABwiki_00c.txt', "w+", encoding='cp65001')
 def write_file(title, entity, sentence):
-    file.write('<https://en.wikipedia.org/wiki?' + title[1] + '> ' + '<https://en.wikipedia.org/wiki?' + entity + '> ' + '\"' + sentence + '\" \n')
+    title = title.replace(' ', '_')
+    entity = entity.replace(' ', '_')
+    file.write('<https://en.wikipedia.org/wiki?' + title + '> ' + '<https://en.wikipedia.org/wiki?' + entity + '> ' + '\"' + sentence + '\" \n')
 
 
 def extract_header(article):
@@ -28,12 +30,13 @@ def extract_header(article):
     re_article_url = re.search(r'url="(.*?)"', article)
     article_url = re_article_url.group()
     url = article_url.split('"')
+    return article_header
 
+def extract_title(article):
     re_article_title = re.search(r'title=".*?"', article)
     article_title = re_article_title.group()
     title = article_title.split('"')
-    return title, article_header
-
+    return title[1]
 
 def extract_entity(element):
     element = str(element)
@@ -46,7 +49,7 @@ def extract_entity(element):
 
 
 def extract_sentence(entity, article):
-    re_sentence = re.search(r'[^.]*>' + entity + '<[^.]*\.', article) #added those >< around the entity, otherwise it doesn't extract the entity literately  stateless vs state
+    re_sentence = re.search(r'([^.]*>%s<.*?\.)(?!\d)' % entity, article)  #[^.]*>' + entity + '<[^.]*\.   #re_match = re.search(r'([^.]*?>%s<.*?\.)(?!\d)' % element, page)#added those >< around the entity, otherwise it doesn't extract the entity literately  stateless vs state
     if not re_sentence:
         sentence = 'NO SENTENCE FOUND'
     else:
@@ -64,13 +67,15 @@ articles = open_wiki_files()
 for article in articles:
     article = str(article)
     header = extract_header(article)
-    article = article.replace(header[1],'')
+    title = extract_title(article)
+    article = article.replace(header,'')
+    article = article.replace(title, '',1 ) #replace first occurence of title, since this is the header
     re_links = re.findall(r'<a href=.*?</a>', article)
-    print('Article: {} has {} links'.format(header[0][1], len(re_links)))
+    print('Article: {} has {} links'.format(title, len(re_links)))
     for element in re_links:
         entity = extract_entity(element)
         sentence = extract_sentence(entity, article)
-        write_file(header[0], entity, sentence)
+        write_file(title, entity, sentence)
 
 end = time.time()
 print('--- TIME {}'.format(end-start))

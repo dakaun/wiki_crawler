@@ -24,8 +24,10 @@ file = open(
 
 
 def write_file(title, entity, sentence):
-    file.write('<https://en.wikipedia.org/wiki?' + title[
-        1] + '> ' + '<https://en.wikipedia.org/wiki?' + entity + '> ' + '\"' + sentence + '\" \n')
+    title = title.replace(' ', '_')
+    entity = entity.replace(' ', '_')
+    file.write(
+        '<https://en.wikipedia.org/wiki?' + title + '> ' + '<https://en.wikipedia.org/wiki?' + entity + '> ' + '\"' + sentence + '\" \n')
 
 
 def extract_header(article):
@@ -35,11 +37,14 @@ def extract_header(article):
     re_article_url = re.search(r'url="(.*?)"', article)
     article_url = re_article_url.group()
     url = article_url.split('"')
+    return article_header
 
+
+def extract_title(article):
     re_article_title = re.search(r'title=".*?"', article)
     article_title = re_article_title.group()
     title = article_title.split('"')
-    return title, article_header
+    return title[1]
 
 
 def extract_entity(element):
@@ -72,13 +77,14 @@ articles = open_wiki_files()
 for article in articles:
     article = str(article)
     header = extract_header(article)
-    article = article.replace(header[1], '')
+    title = extract_title(article)
+    article = article.replace(header, '').replace(title, '', 1)
     re_links = re.findall(r'<a href=.*?</a>', article)
-    print('Article: {} has {} links'.format(header[0][1], len(re_links)))
+    print('Article: {} has {} links'.format(title, len(re_links)))
     for element in re_links:
         entity = extract_entity(element)
         sentence = extract_sentence(entity, article)
-        write_file(header[0], entity, sentence)
+        write_file(title, entity, sentence)
 
 end = time.time()
 print('--- TIME {}'.format(end - start))
