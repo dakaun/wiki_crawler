@@ -18,12 +18,13 @@ ROOTDIR = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_e
 
 wiki_AA = open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_extractor_test/wiki_AA.txt', 'wb')
 for root, dirs, files in os.walk(ROOTDIR):
+    print('---root {}'.format(root))
     for tempfile in files:
-        print(tempfile)
+        print('---file {}'.format(tempfile))
         tempfile_dir = os.path.join(root, tempfile)
         open_tempfile = open(tempfile_dir, 'rb')
         shutil.copyfileobj(open_tempfile, wiki_AA)
-
+print('--finished with all files')
 
 # works but need to name every single file --enhancement necessary
 # files = [ROOTDIR + '/AA/wiki_00.txt', ROOTDIR + '/AA/wiki_01.txt']
