@@ -58,8 +58,7 @@ def extract_entity(element):
 
 
 def extract_sentence(entity, article):
-    re_sentence = re.search(r'[^.]*>' + entity + '<[^.]*\.',
-                            article)  # added those >< around the entity, otherwise it doesn't extract the entity literately  stateless vs state
+    re_sentence = re.search((r'([^.]*>%s<.*?\.)(?!\d)' % entity, article) # added those >< around the entity, otherwise it doesn't extract the entity literately  stateless vs state
     if not re_sentence:
         sentence = 'NO SENTENCE FOUND'
     else:
