@@ -69,7 +69,7 @@ for article in articles:
     header = extract_header(article)
     title = extract_title(article)
     article = article.replace(header,'')
-    article = article.replace(title, '',1 ) #replace first occurence of title, since this is the header
+    article = article.replace(title, '', 1) #replace first occurence of title, since this is the header
     re_links = re.findall(r'<a href=.*?</a>', article)
     print('Article: {} has {} links'.format(title, len(re_links)))
     for element in re_links:
