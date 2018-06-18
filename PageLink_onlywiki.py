@@ -16,10 +16,12 @@ def open_wiki_files():
         articles = soup.find_all('doc')
     return articles
 
-file = open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/results_wiki_extractor_test/result_ABwiki_00c.txt', "w+", encoding='cp65001')
+file = open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/results_wiki_extractor_test/result_ABwiki_00c123.txt', "w+", encoding='cp65001')
 def write_file(title, entity, sentence):
     title = title.replace(' ', '_')
     entity = entity.replace(' ', '_')
+    # if '=?=' in entity:
+    #     entity = entity.replace('=?=', '.')
     file.write('<https://en.wikipedia.org/wiki?' + title + '> ' + '<https://en.wikipedia.org/wiki?' + entity + '> ' + '\"' + sentence + '\" \n')
 
 
@@ -40,6 +42,8 @@ def extract_title(article):
 
 def extract_entity(element):
     element = str(element)
+    # if '.' in element:
+    #     element = element.replace('.', '=?=')
     link = element.replace('>', '<').split('<')
     if link[2]:
         link = link[2]
@@ -60,6 +64,8 @@ def extract_sentence(entity, article):
                 link_entity = link_element.replace('>', '<').split('<')
                 sentence = sentence.replace(link_element, link_entity[2])
         sentence = sentence.replace('\n', '')
+        # if '=?=' in sentence:
+        #     sentence = sentence.replace('=?=', '.')
     return sentence
 
 
