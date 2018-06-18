@@ -54,26 +54,26 @@ while before_line != '' or after_line != '':
             # If a line does not exist on file2 then mark the output with + sign
             print(">+", "Line-%d" % line_no, after_line)
             # otherwise output the line on file1 and mark it with > sign
-            elif after_line != '':
+        elif after_line != '':
             print(">", "Line-%d" % line_no, after_line)
 
             # If a line does not exist on file1 then mark the output with + sign
-            if after_line == '' and before_line != '':
-                print("<+", "Line-%d" % line_no, before_line)
+        if after_line == '' and before_line != '':
+            print("<+", "Line-%d" % line_no, before_line)
             # otherwise output the line on file2 and mark it with < sign
-            elif before_line != '':
-                print("<", "Line-%d" % line_no, before_line)
+        elif before_line != '':
+            print("<", "Line-%d" % line_no, before_line)
 
-            # Print a blank line
-            print()
+        # Print a blank line
+        print()
 
         # Read the next line from the file
-        before_line = title_result_before.readline()
-        after_line = title_result_after.readline()
+    before_line = title_result_before.readline()
+    after_line = title_result_after.readline()
 
         # Increment line counter
-        line_no += 1
+    line_no += 1
 
         # Close the files
-    title_result_before.close()
-    title_result_after.close()
+title_result_before.close()
+title_result_after.close()
