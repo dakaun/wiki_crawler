@@ -1,7 +1,7 @@
-title = []
 
 title_file_after = open('/home/daniela/wikipedia20180401/compare_title/title_after.txt', 'w+')
 def treat_after():
+    title = []
     with open('/home/daniela/wikipedia20180401/wikiextractor/result_wikiextractor_1_links/wiki_1_title') as after_extraction:
         after_extract = after_extraction.readlines()
         for line in after_extract:
@@ -12,6 +12,7 @@ def treat_after():
 
 title_file_before = open('/home/daniela/wikipedia20180401/compare_title/title_before', 'w+')
 def treat_before():
+    title = []
     with open('/home/daniela/wikipedia20180401/enwiki-20180401-pages-articles-multistream_1_title') as before_extraction:
         before_extract = before_extraction.readlines()
         for line in before_extract:
