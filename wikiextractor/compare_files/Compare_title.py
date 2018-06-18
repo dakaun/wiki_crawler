@@ -1,3 +1,4 @@
+title = []
 
 title_file_after = open('/home/daniela/wikipedia20180401/compare_title/title_after.txt', 'w+')
 def treat_after():
