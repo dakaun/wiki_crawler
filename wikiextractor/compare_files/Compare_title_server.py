@@ -5,7 +5,7 @@ def treat_after():
         after_extract = after_extraction.readlines()
         for line in after_extract:
             title_split = line.split('"')
-            if(title_split[5]):
+            if(len(title_split) > 5):
                 title.append(title_split[5])
     #print('After List created')
     return title
@@ -21,7 +21,7 @@ def treat_before():
                 line, title_split = title_split, []
                 for seq in line:
                     title_split += seq.split(sep)
-            if (title_split[2]):
+            if (len(title_split) > 2):
                 title.append(title_split[2])
     #print('Before List created')
     return title
