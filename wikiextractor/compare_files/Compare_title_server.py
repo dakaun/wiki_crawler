@@ -1,8 +1,7 @@
 
 def treat_after():
     title = []
-    with open(
-            'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/after_extractionb.txt') as after_extraction:
+    with open('/home/daniela/wikipedia20180401/wikiextractor/result_wikiextractor_1_links/wiki_1_title') as after_extraction:
         after_extract = after_extraction.readlines()
         for line in after_extract:
             title_split = line.split('"')
@@ -12,8 +11,7 @@ def treat_after():
 
 def treat_before():
     title = []
-    with open(
-            'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/before_extractionb.txt') as before_extraction:
+    with open('/home/daniela/wikipedia20180401/enwiki-20180401-pages-articles-multistream_1_title') as before_extraction:
         before_extract = before_extraction.readlines()
         for line in before_extract:
             seps = ['<', '>']
@@ -26,10 +24,10 @@ def treat_before():
     #print('Before List created')
     return title
 
-def sort_alph(list):
-    list.sort()  # sort only works with lists
-    return list
 
+def sort_alph(list):
+    list.sort() #sort only works with lists
+    return list
 
 def write_file(list, file):
     for element in list:
@@ -40,12 +38,11 @@ def write_file(list, file):
 def compare_tit():
     line_no = 1
     counter = 0
-    with open(
-            'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_before.txt',
+    with open('/home/daniela/wikipedia20180401/compare_title/title_before',
             'r') as before_f:
         before_line = before_f.readline()
         with open(
-                'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_after.txt',
+                '/home/daniela/wikipedia20180401/compare_title/title_after',
                 'r') as after_f:
             after_line = after_f.readline()
             while before_line != '' or after_line != '':
@@ -79,28 +76,19 @@ def compare_tit():
     print('counter for different files {}'.format(counter))
     return 'readyfready'
 
-
 title_list_before = treat_before()
 sorted_list_before = sort_alph(title_list_before)
 print("List Before has {} items".format(len(sorted_list_before)))
-#print(sorted_list_before)
-with open(
-        'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_before.txt',
-        'w') as title_result_before:
+with open('/home/daniela/wikipedia20180401/compare_title/title_before', 'w') as title_result_before:
     for elementb in sorted_list_before:
         title_result_before.write(elementb + '\n')
-    #print("before file written")
 
 title_list_after = treat_after()
 sorted_list_after = sort_alph(title_list_after)
 print("List After has {} items".format(len(sorted_list_after)))
-#print(sorted_list_after)
-with open(
-        'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_after.txt',
-        'w') as title_result_after:
+with open('/home/daniela/wikipedia20180401/compare_title/title_after', 'w') as title_result_after:
     for elementa in sorted_list_after:
         title_result_after.write(elementa + '\n')
-    #print('after file written')
 
 compare_tit()
 print('--COMAPARISON COMPLETED')
