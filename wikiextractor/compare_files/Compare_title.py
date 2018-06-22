@@ -1,19 +1,20 @@
 
-title_file_after = open('/home/daniela/wikipedia20180401/compare_title/title_after.txt', 'w+')
+title_file_after = open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_after.txt', 'w+')
 def treat_after():
     title = []
-    with open('/home/daniela/wikipedia20180401/wikiextractor/result_wikiextractor_1_links/wiki_1_title') as after_extraction:
+    with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/after_extraction.txt') as after_extraction:
         after_extract = after_extraction.readlines()
         for line in after_extract:
             title_split = line.split('"')
             title.append(title_split[5])
             #title_file_after.write(title + '\n')
+    print('After List created')
     return title #title_file_after
 
-title_file_before = open('/home/daniela/wikipedia20180401/compare_title/title_before', 'w+')
+title_file_before = open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_before.txt', 'w+')
 def treat_before():
     title = []
-    with open('/home/daniela/wikipedia20180401/enwiki-20180401-pages-articles-multistream_1_title') as before_extraction:
+    with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/before_extraction.txt') as before_extraction:
         before_extract = before_extraction.readlines()
         for line in before_extract:
             seps = ['<', '>']
@@ -24,6 +25,7 @@ def treat_before():
                     title_split += seq.split(sep)
             title.append(title_split[2])
             #title_file_before.write(title + '\n')
+    print('Before List created')
     return title #title_file_before
 
 
@@ -34,15 +36,18 @@ def sort_alph(list):
 def write_file(list, file):
     for element in list:
         file.write(element + '\n')
+    print("file written")
     return file
 
 title_list_before = treat_before()
 sorted_list_before = sort_alph(title_list_before)
+print("List Before has {} items".format(len(sorted_list_before)))
 title_result_before = write_file(sorted_list_before, title_file_before)
 before_line = title_result_before.readline()
 
 title_list_after = treat_after()
 sorted_list_after = sort_alph(title_list_after)
+print("List After has {} items".format(len(sorted_list_after)))
 title_result_after = write_file(sorted_list_after, title_file_after)
 after_line = title_result_after.readline()
 
