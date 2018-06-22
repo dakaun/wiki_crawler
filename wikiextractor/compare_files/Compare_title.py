@@ -6,7 +6,7 @@ def treat_after():
         after_extract = after_extraction.readlines()
         for line in after_extract:
             title_split = line.split('"')
-            title = title.append(title_split[5])
+            title.append(title_split[5])
             #title_file_after.write(title + '\n')
     return title #title_file_after
 
@@ -22,7 +22,7 @@ def treat_before():
                 line, title_split = title_split, []
                 for seq in line:
                     title_split += seq.split(sep)
-            title = title.append(title_split[2])
+            title.append(title_split[2])
             #title_file_before.write(title + '\n')
     return title #title_file_before
 
