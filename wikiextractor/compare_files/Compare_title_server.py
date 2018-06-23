@@ -74,16 +74,22 @@ def compare_tit():
 title_list_before = treat_before()
 sorted_list_before = sort_alph(title_list_before)
 print("List Before has {} items".format(len(sorted_list_before)))
-with open('/home/daniela/wikipedia20180401/compare_title/title_before', 'w') as title_result_before:
-    for elementb in sorted_list_before:
-        title_result_before.write(elementb + '\n')
+# with open('/home/daniela/wikipedia20180401/compare_title/title_before', 'w') as title_result_before:
+#     for elementb in sorted_list_before:
+#         title_result_before.write(elementb + '\n')
+before_set = set(sorted_list_before)
+
 
 title_list_after = treat_after()
 sorted_list_after = sort_alph(title_list_after)
 print("List After has {} items".format(len(sorted_list_after)))
-with open('/home/daniela/wikipedia20180401/compare_title/title_after', 'w') as title_result_after:
-    for elementa in sorted_list_after:
-        title_result_after.write(elementa + '\n')
+# with open('/home/daniela/wikipedia20180401/compare_title/title_after', 'w') as title_result_after:
+#     for elementa in sorted_list_after:
+#         title_result_after.write(elementa + '\n')
+after_set = set(sorted_list_after)
 
-compare_tit()
+additionals_in_b = before_set - after_set
+for element in additionals_in_b:
+    print(element)
+#compare_tit()
 print('--COMAPARISON COMPLETED')

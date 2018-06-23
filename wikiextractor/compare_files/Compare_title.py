@@ -73,23 +73,30 @@ title_list_before = treat_before()
 sorted_list_before = sort_alph(title_list_before)
 print("List Before has {} items".format(len(sorted_list_before)))
 print(sorted_list_before)
-with open(
-        'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_before.txt',
-        'w') as title_result_before:
-    for elementb in sorted_list_before:
-        title_result_before.write(elementb + '\n')
-    #print("before file written")
+before_set = set(sorted_list_before)
+print(before_set)
+# with open(
+#         'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_before.txt',
+#         'w') as title_result_before:
+#     for elementb in sorted_list_before:
+#         title_result_before.write(elementb + '\n')
+#     #print("before file written")
 
 title_list_after = treat_after()
 sorted_list_after = sort_alph(title_list_after)
 print("List After has {} items".format(len(sorted_list_after)))
 print(sorted_list_after)
-with open(
-        'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_after.txt',
-        'w') as title_result_after:
-    for elementa in sorted_list_after:
-        title_result_after.write(elementa + '\n')
-    #print('after file written')
+after_set = set(sorted_list_after)
+# with open(
+#         'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_after.txt',
+#         'w') as title_result_after:
+#     for elementa in sorted_list_after:
+#         title_result_after.write(elementa + '\n')
+#     #print('after file written')
 
-compare_tit()
+additionals_in_b = before_set - after_set
+print(additionals_in_b)
+for element in additionals_in_b:
+    print(element)
+#compare_tit()
 print('--COMAPARISON COMPLETED')
