@@ -6,7 +6,7 @@ def treat_after():
         for line in after_extract:
             title_split = line.split('"')
             if (len(title_split) > 5):
-                title_split[5] = title_split[5].replace('&quot;', '\"')
+                #title_split[5] = title_split[5].replace('&quot;', '\"')
                 title.append(title_split[5])
     # print('After List created')
     return title
