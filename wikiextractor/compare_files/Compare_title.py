@@ -6,8 +6,9 @@ def treat_after():
         after_extract = after_extraction.readlines()
         for line in after_extract:
             title_split = line.split('"')
-            title.append(title_split[5])
-    #print('After List created')
+            if(len(title_split) > 5):
+                title.append(title_split[5])
+            #print('After List created')
     return title
 
 def treat_before():
@@ -22,8 +23,9 @@ def treat_before():
                 line, title_split = title_split, []
                 for seq in line:
                     title_split += seq.split(sep)
-            title.append(title_split[2])
-    #print('Before List created')
+            if (len(title_split) > 2):
+                title.append(title_split[2])
+            #print('Before List created')
     return title
 
 def sort_alph(list):
@@ -48,34 +50,21 @@ def compare_tit():
                 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_after.txt',
                 'r') as after_f:
             after_line = after_f.readline()
-            while before_line != '' or after_line != '':
+            while before_line != '':
                 before_line = before_line.rstrip()
                 after_line = after_line.rstrip()
                 if before_line != after_line:
                     counter += 1
-                    if before_line == '' and after_line != '':
-                        # If a line does not exist on file2 then mark the output with + sign
-                        print(">+", "Line-%d" % line_no, after_line)
-                    # otherwise output the line on file1 and mark it with > sign
-                    elif after_line != '':
-                        print(">", "Line-%d" % line_no, after_line)
-
-                    # If a line does not exist on file1 then mark the output with + sign
-                    if after_line == '' and before_line != '':
-                        print("<+", "Line-%d" % line_no, before_line)
-                    # otherwise output the line on file2 and mark it with < sign
-                    elif before_line != '':
-                        print("<", "Line-%d" % line_no, before_line)
-
-                    # Print a blank line
-                    print()
-
-                # Read the next line from the file
-                before_line = before_f.readline()
-                after_line = after_f.readline()
-
-                # Increment line counter
-                line_no += 1
+                    print('> Line-{} '.format(line_no) + before_line)
+                    line_no += 1
+                    before_line = before_f.readline()
+                elif before_line == after_line:
+                    # print('= Line -{} are the same ='.format(line_no) + before_line)
+                    before_line = before_f.readline()
+                    after_line = after_f.readline()
+                    line_no += 1
+                else:
+                    print('came across here !?')
     print('counter for different files {}'.format(counter))
     return 'readyfready'
 
@@ -83,7 +72,7 @@ def compare_tit():
 title_list_before = treat_before()
 sorted_list_before = sort_alph(title_list_before)
 print("List Before has {} items".format(len(sorted_list_before)))
-#print(sorted_list_before)
+print(sorted_list_before)
 with open(
         'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_before.txt',
         'w') as title_result_before:
@@ -94,7 +83,7 @@ with open(
 title_list_after = treat_after()
 sorted_list_after = sort_alph(title_list_after)
 print("List After has {} items".format(len(sorted_list_after)))
-#print(sorted_list_after)
+print(sorted_list_after)
 with open(
         'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_after.txt',
         'w') as title_result_after:
