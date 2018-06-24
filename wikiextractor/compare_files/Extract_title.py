@@ -15,21 +15,25 @@ def open_wiki_files():
         articles = soup.find_all('page')
     return articles
 
+def get_titles():
+    wiki_articles = open_wiki_files()
+    redirect_titles = []
+    preview_titles = []
 
-wiki_articles = open_wiki_files()
-redirect_titles = []
-preview_titles = []
-
-
-for article in wiki_articles:
-    if '>#REDIRECT' in str(article):
-        redirect_title = article.contents[1].text
-        redirect_titles.append(redirect_title)
-    re_preview = re.search(r'>.*?may refer to', str(article))
-    if re_preview:
-        preview = re_preview.group()
-        if preview in str(article):
-            preview_title = article.contents[1].text
-            preview_titles.append(preview_title)
-print(redirect_titles)
-print(preview_titles)
+    for article in wiki_articles:
+        if '>#REDIRECT' in str(article):
+            redirect_title = article.contents[1].text
+            redirect_titles.append(redirect_title)
+        re_preview = re.search(r'>.*?may refer to', str(article))
+        if re_preview:
+            preview = re_preview.group()
+            if preview in str(article):
+                preview_title = article.contents[1].text
+                preview_titles.append(preview_title)
+    #print(redirect_titles)
+    #print(preview_titles)
+    redirect_titles_set = set(redirect_titles)
+    preview_titles_set = set(preview_titles)
+    titles = redirect_titles_set | preview_titles_set
+    #print(titles)
+    return titles

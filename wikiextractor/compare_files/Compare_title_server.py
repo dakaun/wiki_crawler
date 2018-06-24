@@ -1,3 +1,5 @@
+import Extract_title_server
+
 def treat_after():
     title = []
     with open(
@@ -88,8 +90,12 @@ print("List After has {} items".format(len(sorted_list_after)))
 #         title_result_after.write(elementa + '\n')
 after_set = set(sorted_list_after)
 
-additionals_in_b = before_set - after_set
-for element in additionals_in_b:
+red_prev_titles = Extract_title_server.get_titles()
+titles_without_redirect_preview = before_set - red_prev_titles
+
+#additionals_in_b = before_set - after_set
+
+for element in titles_without_redirect_preview:
     print(element)
 #compare_tit()
 print('--COMAPARISON COMPLETED')

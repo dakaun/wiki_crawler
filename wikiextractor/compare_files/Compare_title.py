@@ -1,3 +1,4 @@
+import Extract_title
 
 def treat_after():
     title = []
@@ -71,10 +72,9 @@ def compare_tit():
 
 title_list_before = treat_before()
 sorted_list_before = sort_alph(title_list_before)
-print("List Before has {} items".format(len(sorted_list_before)))
-print(sorted_list_before)
+print("--List Before has {} items".format(len(sorted_list_before)))
+#print(sorted_list_before)
 before_set = set(sorted_list_before)
-print(before_set)
 # with open(
 #         'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_before.txt',
 #         'w') as title_result_before:
@@ -84,8 +84,8 @@ print(before_set)
 
 title_list_after = treat_after()
 sorted_list_after = sort_alph(title_list_after)
-print("List After has {} items".format(len(sorted_list_after)))
-print(sorted_list_after)
+print("--List After has {} items".format(len(sorted_list_after)))
+#print(sorted_list_after)
 after_set = set(sorted_list_after)
 # with open(
 #         'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/result_compare_test/title_after.txt',
@@ -94,9 +94,13 @@ after_set = set(sorted_list_after)
 #         title_result_after.write(elementa + '\n')
 #     #print('after file written')
 
-additionals_in_b = before_set - after_set
-print(additionals_in_b)
-for element in additionals_in_b:
+red_prev_titles = Extract_title.get_titles()
+#additionals_in_b = before_set - after_set
+titles_without_redirect_preview = before_set - red_prev_titles
+#print(additionals_in_b)
+for element in titles_without_redirect_preview:
     print(element)
+
 #compare_tit()
+
 print('--COMAPARISON COMPLETED')
