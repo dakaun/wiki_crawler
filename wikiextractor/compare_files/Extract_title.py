@@ -30,6 +30,7 @@ def get_titles():
             if preview in str(article):
                 preview_title = article.contents[1].text
                 preview_titles.append(preview_title)
+        article.decompose()
     #print(redirect_titles)
     #print(preview_titles)
     redirect_titles_set = set(redirect_titles)
@@ -37,3 +38,5 @@ def get_titles():
     titles = redirect_titles_set | preview_titles_set
     #print(titles)
     return titles
+
+get_titles()

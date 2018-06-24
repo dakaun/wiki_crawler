@@ -102,4 +102,5 @@ for element in titles_without_redirect_preview:
 print('--{} ARTICLES BEFORE'.format(len(title_list_before)))
 print('--{} REDIRECT ARTICLES'.format(len(red_prev_titles[0])))
 print('--{} PREVIEW ARTICLES'.format(len(red_prev_titles[1])))
+print('--{} REST OF ARTICLES'.format(len(titles_without_redirect_preview)))
 print('--COMPARISON COMPLETED')
