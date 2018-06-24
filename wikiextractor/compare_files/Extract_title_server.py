@@ -33,7 +33,9 @@ def get_titles():
                 preview_titles.append(preview_title)
 
     redirect_titles_set = set(redirect_titles)
+    #redirect_titles_length = len(redirect_titles)
     preview_titles_set = set(preview_titles)
-    titles = redirect_titles_set | preview_titles_set
-    return titles
+    #preview_titles_length = len(preview_titles)
+    #titles = redirect_titles_set | preview_titles_set
+    return redirect_titles_set, preview_titles_set
 

@@ -91,11 +91,15 @@ print("List After has {} items".format(len(sorted_list_after)))
 after_set = set(sorted_list_after)
 
 red_prev_titles = Extract_title_server.get_titles()
-titles_without_redirect_preview = before_set - red_prev_titles
+titles_without_redirect_preview = before_set - red_prev_titles[0] - red_prev_titles[1]
+
 
 #additionals_in_b = before_set - after_set
 
 for element in titles_without_redirect_preview:
     print(element)
 #compare_tit()
-print('--COMAPARISON COMPLETED')
+print('--{} ARTICLES BEFORE'.format(len(title_list_before)))
+print('--{} REDIRECT ARTICLES'.format(len(red_prev_titles[0])))
+print('--{} PREVIEW ARTICLES'.format(len(red_prev_titles[1])))
+print('--COMPARISON COMPLETED')
