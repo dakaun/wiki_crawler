@@ -99,6 +99,7 @@ titles_without_redirect_preview = before_set - red_prev_titles[0] - red_prev_tit
 for element in titles_without_redirect_preview:
     print(element)
 #compare_tit()
+#include those prints
 print('--{} ARTICLES BEFORE'.format(len(title_list_before)))
 print('--{} REDIRECT ARTICLES'.format(len(red_prev_titles[0])))
 print('--{} PREVIEW ARTICLES'.format(len(red_prev_titles[1])))
