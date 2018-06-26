@@ -1,5 +1,6 @@
 import Extract_title_server
 
+
 def treat_after():
     title = []
     with open(
@@ -8,7 +9,7 @@ def treat_after():
         for line in after_extract:
             title_split = line.split('"')
             if (len(title_split) > 5):
-                #title_split[5] = title_split[5].replace('&quot;', '\"')
+                # title_split[5] = title_split[5].replace('&quot;', '\"')
                 title.append(title_split[5])
     # print('After List created')
     return title
@@ -81,7 +82,6 @@ print("List Before has {} items".format(len(sorted_list_before)))
 #         title_result_before.write(elementb + '\n')
 before_set = set(sorted_list_before)
 
-
 title_list_after = treat_after()
 sorted_list_after = sort_alph(title_list_after)
 print("List After has {} items".format(len(sorted_list_after)))
@@ -91,19 +91,39 @@ print("List After has {} items".format(len(sorted_list_after)))
 after_set = set(sorted_list_after)
 
 red_prev_titles = Extract_title_server.get_titles()
-titles_inexplicable = before_set - red_prev_titles[0] - red_prev_titles[1] - after_set
+titles_explicable = before_set - red_prev_titles[0] - red_prev_titles[1] - after_set
+# additionals_in_b = before_set - after_set
 
-
-#additionals_in_b = before_set - after_set
+wikipedia_list = []
+category_list = []
+file_list = []
+template_list = []
+for element in titles_explicable:
+    if 'Wikipedia:' in element:
+        wikipedia_list.append(element)
+    elif 'Category^:' in element:
+        category_list.append(element)
+    elif 'File:' in element:
+        file_list.append(element)
+    elif 'Template:' in element:
+        template_list.append(element)
+titles_inexplicable = before_set - red_prev_titles[0] - red_prev_titles[1] - after_set - set(wikipedia_list) - set(
+    category_list) - set(file_list) - set(template_list)
 
 for element in titles_inexplicable:
     print(element)
-#compare_tit()
-#include those prints
+# compare_tit()
+# include those prints
 print('--{} ARTICLES BEFORE'.format(len(title_list_before)))
 print('--{} REDIRECT ARTICLES'.format(len(red_prev_titles[0])))
 print('--{} PREVIEW ARTICLES'.format(len(red_prev_titles[1])))
-print('--{} REST OF ARTICLES'.format(len(titles_inexplicable)))
+print('--{} ARTICLES - BEFORE - PREVIEW - REDIRECT'.format(len(titles_explicable)))
+print('--{} WIKIPEDIA ARTICLES'.format(len(wikipedia_list)))
+print('--{} CATEGORY ARTICLES'.format(len(category_list)))
+print('--{} FILE ARTICLES'.format(len(file_list)))
+print('--{} TEMPLATE ARTICLES'.format(len(template_list)))
+print('--{} INEXPLICABLE ARTICLES'.format(len(titles_inexplicable)))
+
 print('--COMPARISON COMPLETED')
 
-#TODO compare after with redirect and preview
+# TODO compare after with redirect and preview
