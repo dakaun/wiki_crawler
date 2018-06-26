@@ -22,7 +22,7 @@ def get_titles():
     preview_titles = []
 
     for article in wiki_articles:
-        if '>#REDIRECT' in str(article):
+        if '<text xml:space="preserve">#REDIRECT [[' in str(article):
             redirect_title = article.contents[1].text
             redirect_titles.append(redirect_title)
         re_preview = re.search(r'>.*?may refer to', str(article))
