@@ -101,7 +101,7 @@ template_list = []
 for element in titles_explicable:
     if 'Wikipedia:' in element:
         wikipedia_list.append(element)
-    elif 'Category^:' in element:
+    elif 'Category:' in element:
         category_list.append(element)
     elif 'File:' in element:
         file_list.append(element)
