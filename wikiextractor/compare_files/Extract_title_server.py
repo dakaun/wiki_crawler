@@ -20,11 +20,15 @@ def get_titles():
     wiki_articles = open_wiki_files()
     redirect_titles = []
     preview_titles = []
+    redirect2_titles = []
 
     for article in wiki_articles:
         if '<text xml:space="preserve">#REDIRECT [[' in str(article):
             redirect_title = article.contents[1].text
             redirect_titles.append(redirect_title)
+        if '<redirect title=' in str(article):
+            redirect2_title = article.contents[1].text
+            redirect2_titles.append(redirect2_title)
         re_preview = re.search(r'>.*?may refer to', str(article))
         if re_preview:
             preview = re_preview.group()
@@ -35,7 +39,8 @@ def get_titles():
     redirect_titles_set = set(redirect_titles)
     #redirect_titles_length = len(redirect_titles)
     preview_titles_set = set(preview_titles)
+    redirect2_titles_set = set(redirect2_titles)
     #preview_titles_length = len(preview_titles)
     #titles = redirect_titles_set | preview_titles_set
-    return redirect_titles_set, preview_titles_set
+    return redirect_titles_set, preview_titles_set, redirect2_titles_set
 

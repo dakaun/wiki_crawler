@@ -91,7 +91,7 @@ print("List After has {} items".format(len(sorted_list_after)))
 after_set = set(sorted_list_after)
 
 red_prev_titles = Extract_title_server.get_titles()
-titles_explicable = before_set - red_prev_titles[0] - red_prev_titles[1] - after_set
+titles_explicable = before_set - red_prev_titles[0] - red_prev_titles[1] - red_prev_titles[2] - after_set
 # additionals_in_b = before_set - after_set
 
 wikipedia_list = []
@@ -107,15 +107,16 @@ for element in titles_explicable:
         file_list.append(element)
     elif 'Template:' in element:
         template_list.append(element)
-titles_inexplicable = before_set - red_prev_titles[0] - red_prev_titles[1] - after_set - set(wikipedia_list) - set(
-    category_list) - set(file_list) - set(template_list)
+titles_inexplicable = before_set - red_prev_titles[0] - red_prev_titles[1] - red_prev_titles[2] - after_set - set(
+    wikipedia_list) - set(category_list) - set(file_list) - set(template_list)
 
 for element in titles_inexplicable:
     print(element)
 # compare_tit()
 # include those prints
 print('--{} ARTICLES BEFORE'.format(len(title_list_before)))
-print('--{} REDIRECT ARTICLES'.format(len(red_prev_titles[0])))
+print('--{} REDIRECT #REDIRECT ARTICLES'.format(len(red_prev_titles[0])))
+print('--{} REDIRECT <redirect ARTICLES'.format(len(red_prev_titles[2])))
 print('--{} PREVIEW ARTICLES'.format(len(red_prev_titles[1])))
 print('--{} ARTICLES - BEFORE - PREVIEW - REDIRECT'.format(len(titles_explicable)))
 print('--{} WIKIPEDIA ARTICLES'.format(len(wikipedia_list)))

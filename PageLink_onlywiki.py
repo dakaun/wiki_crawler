@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 import re
 import datetime
 import time
@@ -6,6 +5,7 @@ import time
 start = time.time()
 now = datetime.datetime.now()
 
+#TODO if period in entity
 # input --> result_file from wikiExtractor
 # wiki articles, splitted by <doc id='' url='' title='' ></doc>
 def open_wiki_files():
