@@ -1,5 +1,5 @@
 import Extract_title
-
+import time
 def treat_after():
     title = []
     with open(

@@ -1,5 +1,7 @@
 import Extract_title_server
+import time
 
+start = time.time()
 
 def treat_after():
     title = []
@@ -128,3 +130,6 @@ print('--{} INEXPLICABLE ARTICLES'.format(len(titles_inexplicable)))
 print('--COMPARISON COMPLETED')
 
 # TODO compare after with redirect and preview
+
+end = time.time()
+print('/n' + '--- TIME {}'.format(end-start))
