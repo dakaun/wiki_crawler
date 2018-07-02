@@ -9,12 +9,18 @@ now = datetime.datetime.now()
 # input --> result_file from wikiExtractor
 # wiki articles, splitted by <doc id='' url='' title='' ></doc>
 def open_wiki_files():
+    article_list = []
+    article = ""
     with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_extractor_test/AB/wiki_00.txt',
               encoding='cp65001') as wiki_f:
-        wiki_files = wiki_f.read()
-        soup = BeautifulSoup(wiki_files, "html.parser")
-        articles = soup.find_all('doc')
-    return articles
+        wiki_file_line = wiki_f.readline()
+        while(wiki_file_line):
+            article += wiki_file_line
+            if '</doc>' in wiki_file_line:
+                article_list.append(article)
+                article = ""
+            wiki_file_line = wiki_f.readline()
+    return article_list
 
 file = open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/results_wiki_extractor_test/result_ABwiki_00c123.txt', "w+", encoding='cp65001')
 def write_file(title, entity, sentence):
@@ -69,9 +75,8 @@ def extract_sentence(entity, article):
     return sentence
 
 
-articles = open_wiki_files()
+articles = open_wiki_files() #list
 for article in articles:
-    article = str(article)
     header = extract_header(article)
     title = extract_title(article)
     article = article.replace(header,'')
