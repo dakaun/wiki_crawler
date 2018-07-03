@@ -131,6 +131,8 @@ print('--{} WIKIPEDIA ARTICLES'.format(len(wikipedia_list)))
 print('--{} CATEGORY ARTICLES'.format(len(category_list)))
 print('--{} FILE ARTICLES'.format(len(file_list)))
 print('--{} TEMPLATE ARTICLES'.format(len(template_list)))
+print('--{} PORTAL ARTICLES'.format(len(portal_list)))
+print('--{} MEDIAWIKI ARTICLES'.format(len(mediawiki_list)))
 print('--{} INEXPLICABLE ARTICLES'.format(len(titles_inexplicable)))
 
 print('--COMPARISON COMPLETED')
