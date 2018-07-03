@@ -3,6 +3,7 @@ import time
 
 start = time.time()
 
+
 def treat_after():
     title = []
     with open(
@@ -102,6 +103,8 @@ file_list = []
 template_list = []
 portal_list = []
 mediawiki_list = []
+help_list = []
+draft_list = []
 for element in titles_explicable:
     if 'Wikipedia:' in element:
         wikipedia_list.append(element)
@@ -115,8 +118,13 @@ for element in titles_explicable:
         portal_list.append(element)
     elif 'MediaWiki:' in element:
         mediawiki_list.append(element)
+    elif 'Help:' in element:
+        help_list.append(element)
+    elif 'Draft' in element:
+        draft_list.append(element)
 titles_inexplicable = before_set - red_prev_titles[0] - red_prev_titles[1] - red_prev_titles[2] - after_set - set(
-    wikipedia_list) - set(category_list) - set(file_list) - set(template_list) - set(portal_list) - set(mediawiki_list)
+    wikipedia_list) - set(category_list) - set(file_list) - set(template_list) - set(portal_list) - set(
+    mediawiki_list) - set(help_list) - set(draft_list)
 
 for element in titles_inexplicable:
     print(element)
@@ -133,6 +141,8 @@ print('--{} FILE ARTICLES'.format(len(file_list)))
 print('--{} TEMPLATE ARTICLES'.format(len(template_list)))
 print('--{} PORTAL ARTICLES'.format(len(portal_list)))
 print('--{} MEDIAWIKI ARTICLES'.format(len(mediawiki_list)))
+print('--{} HELP ARTICLES'.format(len(help_list)))
+print('--{} DRAFT ARTICLES'.format(len(draft_list)))
 print('--{} INEXPLICABLE ARTICLES'.format(len(titles_inexplicable)))
 
 print('--COMPARISON COMPLETED')
@@ -140,4 +150,4 @@ print('--COMPARISON COMPLETED')
 # TODO compare after with redirect and preview
 
 end = time.time()
-print('/n' + '--- TIME {}'.format(end-start))
+print('/n' + '--- TIME {}'.format(end - start))
