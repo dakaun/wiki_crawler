@@ -10,6 +10,7 @@ import re
 # open wiki files and split into articles
 def open_wiki_files():
     article_list = []
+    article = ""
     with open(
             '/home/daniela/wikipedia20180401/enwiki-20180401-pages-articles-multistream_1.xml') as wiki_f:
         wiki_file_line = wiki_f.readline()
