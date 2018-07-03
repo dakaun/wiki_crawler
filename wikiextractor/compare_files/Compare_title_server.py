@@ -100,6 +100,8 @@ wikipedia_list = []
 category_list = []
 file_list = []
 template_list = []
+portal_list = []
+mediawiki_list = []
 for element in titles_explicable:
     if 'Wikipedia:' in element:
         wikipedia_list.append(element)
@@ -109,8 +111,12 @@ for element in titles_explicable:
         file_list.append(element)
     elif 'Template:' in element:
         template_list.append(element)
+    elif 'Portal:' in element:
+        portal_list.append(element)
+    elif 'MediaWiki:' in element:
+        mediawiki_list.append(element)
 titles_inexplicable = before_set - red_prev_titles[0] - red_prev_titles[1] - red_prev_titles[2] - after_set - set(
-    wikipedia_list) - set(category_list) - set(file_list) - set(template_list)
+    wikipedia_list) - set(category_list) - set(file_list) - set(template_list) - set(portal_list) - set(mediawiki_list)
 
 for element in titles_inexplicable:
     print(element)
