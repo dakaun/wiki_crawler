@@ -8,12 +8,14 @@ import re
 
 # open wiki files and split into articles
 def open_wiki_files():
+    article_list = []
+    article = ""
     with open(
             'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/compare_title/extract title/wiki_pages(redirect_preview).txt',encoding='cp65001') as wiki_f:
         wiki_file_line = wiki_f.readline()
         while (wiki_file_line):
             article += wiki_file_line
-            if '</doc>' in wiki_file_line:
+            if '</page>' in wiki_file_line:
                 article_list.append(article)
                 article = ""
             wiki_file_line = wiki_f.readline()

@@ -16,7 +16,7 @@ def open_wiki_files():
         wiki_file_line = wiki_f.readline()
         while (wiki_file_line):
             article += wiki_file_line
-            if '</doc>' in wiki_file_line:
+            if '</page>' in wiki_file_line:
                 article_list.append(article)
                 article = ""
             wiki_file_line = wiki_f.readline()
