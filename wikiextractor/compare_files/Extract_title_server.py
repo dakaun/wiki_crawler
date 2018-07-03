@@ -28,9 +28,9 @@ def get_titles():
     redirect2_titles = []
 
     for article in wiki_articles:
-        if '<text xml:space="preserve">#REDIRECT [[' in article:
-            redirect_title = article.contents[1].text
-            redirect_titles.append(redirect_title)
+        # if '<text xml:space="preserve">#REDIRECT [[' in article:
+        #     redirect_title = article.contents[1].text
+        #     redirect_titles.append(redirect_title)
         if '<redirect title=' in article:
             redirect2_title = article.contents[1].text
             redirect2_titles.append(redirect2_title)
