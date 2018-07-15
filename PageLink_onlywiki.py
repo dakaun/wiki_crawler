@@ -1,11 +1,12 @@
 import re
 import datetime
 import time
+from nltk.tokenize import sent_tokenize
+
 
 start = time.time()
 now = datetime.datetime.now()
 
-#TODO if period in entity
 # input --> result_file from wikiExtractor
 # wiki articles, splitted by <doc id='' url='' title='' ></doc>
 def open_wiki_files():
@@ -58,20 +59,12 @@ def extract_entity(element):
     return link
 
 
-def extract_sentence(entity, article):
-    re_sentence = re.search(r'([^.]*>%s<.*?\.)(?!\d)' % entity, article)  #[^.]*>' + entity + '<[^.]*\.   #re_match = re.search(r'([^.]*?>%s<.*?\.)(?!\d)' % element, page)#added those >< around the entity, otherwise it doesn't extract the entity literately  stateless vs state
-    if not re_sentence:
-        sentence = 'NO SENTENCE FOUND'
-    else:
-        sentence = re_sentence.group()
-        if '<' in sentence:
-            sentence_link = re.findall(r'<a href=.*?</a>', sentence)
-            for link_element in sentence_link:
-                link_entity = link_element.replace('>', '<').split('<')
-                sentence = sentence.replace(link_element, link_entity[2])
-        sentence = sentence.replace('\n', '')
-        # if '=?=' in sentence:
-        #     sentence = sentence.replace('=?=', '.')
+def extract_sentence(sentence):
+    sentence_link = re.findall(r'<a href=.*?</a>', sentence)
+    for link_element in sentence_link:
+        link_entity = link_element.replace('>', '<').split('<')
+        sentence = sentence.replace(link_element, link_entity[2])
+    sentence = sentence.replace('\n', '')
     return sentence
 
 
@@ -83,10 +76,14 @@ for article in articles:
     article = article.replace(title, '', 1) #replace first occurence of title, since this is the header
     re_links = re.findall(r'<a href=.*?</a>', article)
     print('Article: {} has {} links'.format(title, len(re_links)))
-    for element in re_links:
-        entity = extract_entity(element)
-        sentence = extract_sentence(entity, article)
-        write_file(title, entity, sentence)
+    article_in_sentences = sent_tokenize(article) # find all sentences
+    for link in re_links:
+        for raw_sentence in article_in_sentences:
+            if link in raw_sentence:
+                sentence = extract_sentence(raw_sentence)
+                entity = extract_entity(link)
+                write_file(title, entity, sentence)
+                break
 
 end = time.time()
 print('--- TIME {}'.format(end-start))
