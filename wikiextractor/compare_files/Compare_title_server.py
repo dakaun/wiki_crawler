@@ -150,4 +150,4 @@ print('--COMPARISON COMPLETED')
 # TODO compare after with redirect and preview
 
 end = time.time()
-print('/n' + '--- TIME {}'.format(end - start))
+print('--- TIME {}'.format(end - start))
