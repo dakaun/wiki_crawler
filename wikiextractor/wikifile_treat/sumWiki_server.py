@@ -1,9 +1,9 @@
 import shutil
 import os
 
-ROOTDIR = '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_4/'
+ROOTDIR = '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_5/'
 
-complete_wiki = open('/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_4/wiki_4.txt', 'wb')
+complete_wiki = open('/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_5/wiki_5.txt', 'wb')
 for root, dirs, files in os.walk(ROOTDIR):
     print('---root {}'.format(root))
     for tempfile in files:
