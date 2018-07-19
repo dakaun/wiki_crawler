@@ -7,6 +7,7 @@ from nltk.tokenize import sent_tokenize
 start = time.time()
 now = datetime.datetime.now()
 
+amount_articles = 0
 # input --> result_file from wikiExtractor
 # wiki articles, splitted by <doc id='' url='' title='' ></doc>
 def open_wiki_files():
@@ -21,7 +22,7 @@ def open_wiki_files():
                 article_list.append(article)
                 article = ""
             wiki_file_line = wiki_f.readline()
-    return article_list
+    return article_list, len(article_list)
 
 file = open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/results_wiki_extractor_test/result_ABwiki_00c123.txt', "w+", encoding='cp65001')
 def write_file(title, entity, sentence):
@@ -69,7 +70,8 @@ def extract_sentence(sentence):
 
 
 articles = open_wiki_files() #list
-for article in articles:
+amount_articles =articles[1]
+for article in articles[0]:
     header = extract_header(article)
     title = extract_title(article)
     article = article.replace(header,'')
@@ -84,6 +86,8 @@ for article in articles:
                 entity = extract_entity(link)
                 write_file(title, entity, sentence)
                 break
+
+print('AMOUNT OF ARTICLES {}'.format(amount_articles))
 
 end = time.time()
 print('--- TIME {}'.format(end-start))
