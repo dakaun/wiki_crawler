@@ -15,7 +15,7 @@ def open_wiki_files():
     article_list = []
     article = ""
     with open(
-            '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_2/wiki_2.txt') as wiki_f:
+            '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_3/wiki_3.txt') as wiki_f:
         wiki_file_line = wiki_f.readline()
         while (wiki_file_line):
             article += wiki_file_line
@@ -26,7 +26,7 @@ def open_wiki_files():
     return article_list, len(article_list)
 
 
-file = open('/home/daniela/wikipedia20180401/wikiextractor/result_sentences/wikiresult_2_' + str(now.month) + str(now.day), "w+")
+file = open('/home/daniela/wikipedia20180401/wikiextractor/result_sentences/wikiresult_3_' + str(now.month) + str(now.day), "w+")
 
 
 def write_file(title, entity, sentence):
