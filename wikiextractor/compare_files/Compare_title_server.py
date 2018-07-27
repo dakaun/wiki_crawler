@@ -24,7 +24,7 @@ def treat_after():
 def treat_before():
     title = []
     with open(
-            '/home/daniela/wikipedia20180401/wikipart_5/enwiki-20180401-pages-articles-multistream_1_title') as before_extraction:
+            '/home/daniela/wikipedia20180401/enwiki-20180401-pages-articles-multistream_1_title') as before_extraction:
         before_extract = before_extraction.readlines()
         for line in before_extract:
             seps = ['<', '>']
