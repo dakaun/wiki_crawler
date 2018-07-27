@@ -12,7 +12,7 @@ def open_wiki_files():
     article_list = []
     article = ""
     with open(
-            '/home/daniela/wikipedia20180401/enwiki-20180401-pages-articles-multistream_1.xml') as wiki_f:
+            '/home/daniela/wikipedia20180401/wikipart_5/enwiki-20180401-pages-articles-multistream_1') as wiki_f:
         wiki_file_line = wiki_f.readline()
         while (wiki_file_line):
             article += wiki_file_line

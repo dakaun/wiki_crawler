@@ -4,13 +4,20 @@ import time
 # this script compares the title from the wikidump (but file with only titles) with the file after WikiExtractor run
 # the wikidump. Since many articles got lost along the way, it needed to be checked which files got lost
 # in the end of this script nb all the categories (only those which disapear) are returned
+# input:
+#       - wikidump file after WikiExtractor.py
+#       - wikidump file only article titles
+#       - Extract_title_server.py : wikidump file
+# output: nb of articles for each category listed below --> those articles within those categories are more descriptive
+# and formal wikipedia articles (no content) and therefore are not considered in the WikiExtractor
+
 start = time.time()
 
 
 def treat_after():
     title = []
     with open(
-            '/home/daniela/wikipedia20180401/wikipart_5/enwiki-20180401-pages-articles-multistream_1') as after_extraction:
+            '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_1/wiki_1.txt') as after_extraction: #wiki_dump file after WikiExtractor.py
         after_extract = after_extraction.readlines()
         for line in after_extract:
             title_split = line.split('"')
@@ -24,7 +31,7 @@ def treat_after():
 def treat_before():
     title = []
     with open(
-            '/home/daniela/wikipedia20180401/wikipart_5/enwiki-20180401-pages-articles-multistream_1_title') as before_extraction:
+            '/home/daniela/wikipedia20180401/wikipart_5/enwiki-20180401-pages-articles-multistream_1_title') as before_extraction: # wiki dump file only article titles
         before_extract = before_extraction.readlines()
         for line in before_extract:
             seps = ['<', '>']
