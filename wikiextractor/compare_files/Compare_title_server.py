@@ -5,8 +5,8 @@ import time
 # the wikidump. Since many articles got lost along the way, it needed to be checked which files got lost
 # in the end of this script nb all the categories (only those which disapear) are returned
 # input:
-#       - wikidump file after WikiExtractor.py
-#       - wikidump file only article titles
+#       - wikidump file with only article titles after WikiExtractor.py
+#       - wikidump file only article titles (before WikiExtractor.py)
 #       - Extract_title_server.py : wikidump file
 # output: nb of articles for each category listed below --> those articles within those categories are more descriptive
 # and formal wikipedia articles (no content) and therefore are not considered in the WikiExtractor
@@ -17,7 +17,7 @@ start = time.time()
 def treat_after():
     title = []
     with open(
-            '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_1/wiki_1.txt') as after_extraction: #wiki_dump file after WikiExtractor.py
+            '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_1/wiki_1_title') as after_extraction: #wiki_dump file after WikiExtractor.py
         after_extract = after_extraction.readlines()
         for line in after_extract:
             title_split = line.split('"')
@@ -115,6 +115,7 @@ portal_list = []
 mediawiki_list = []
 help_list = []
 draft_list = []
+module_list = []
 for element in titles_explicable:
     if 'Wikipedia:' in element:
         wikipedia_list.append(element)
@@ -132,9 +133,11 @@ for element in titles_explicable:
         help_list.append(element)
     elif 'Draft' in element:
         draft_list.append(element)
+    elif 'Module:Location map' in element:
+        module_list.append(element)
 titles_inexplicable = before_set - red_prev_titles[0] - red_prev_titles[1] - red_prev_titles[2] - after_set - set(
     wikipedia_list) - set(category_list) - set(file_list) - set(template_list) - set(portal_list) - set(
-    mediawiki_list) - set(help_list) - set(draft_list)
+    mediawiki_list) - set(help_list) - set(draft_list) - set(module_list)
 
 # compare_tit()
 # include those prints
@@ -151,12 +154,15 @@ print('--{} PORTAL ARTICLES'.format(len(portal_list)))
 print('--{} MEDIAWIKI ARTICLES'.format(len(mediawiki_list)))
 print('--{} HELP ARTICLES'.format(len(help_list)))
 print('--{} DRAFT ARTICLES'.format(len(draft_list)))
+print('--{} MODULE:LOCATION ARTICLES'.format(len(module_list)))
 print('--{} INEXPLICABLE ARTICLES'.format(len(titles_inexplicable))) #TODO print inexplicable titles
 
 print('--COMPARISON COMPLETED')
 
-for element_inex in titles_inexplicable:
-    print(element_inex)
+if titles_inexplicable > 0:
+    print('--{} INEXPLICABLES:')
+    for element_inex in titles_inexplicable:
+        print(element_inex)
 
 end = time.time()
 print('--- TIME {}'.format(end - start))
