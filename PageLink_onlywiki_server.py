@@ -3,6 +3,9 @@ import datetime
 import time
 from nltk.tokenize import sent_tokenize
 
+# this script extracts all links and the according sentences from the wikidump files (after parsing with WikiExtractor.py
+# input: parsed wiki file
+# output: result file with triples like: subject as article name, predicate as entity, object as the according sentence
 
 start = time.time()
 now = datetime.datetime.now()
@@ -25,9 +28,8 @@ def open_wiki_files():
             wiki_file_line = wiki_f.readline()
     return article_list, len(article_list)
 
-
+#output file
 file = open('/home/daniela/wikipedia20180401/wikiextractor/result_sentences/wikiresult_4_' + str(now.month) + str(now.day), "w+")
-
 
 def write_file(title, entity, sentence):
     title = title.replace(' ', '_')

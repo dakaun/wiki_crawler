@@ -17,7 +17,7 @@ start = time.time()
 def treat_after():
     title = []
     with open(
-            '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_2/wiki_2_title') as after_extraction: #wiki_dump file after WikiExtractor.py
+            '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_2/wiki_2_title') as after_extraction:  # wiki_dump file after WikiExtractor.py
         after_extract = after_extraction.readlines()
         for line in after_extract:
             title_split = line.split('"')
@@ -31,7 +31,7 @@ def treat_after():
 def treat_before():
     title = []
     with open(
-            '/home/daniela/wikipedia20180401/wikipart_5/enwiki-20180401-pages-articles-multistream_2_title') as before_extraction: # wiki dump file only article titles
+            '/home/daniela/wikipedia20180401/wikipart_5/enwiki-20180401-pages-articles-multistream_2_title') as before_extraction:  # wiki dump file only article titles
         before_extract = before_extraction.readlines()
         for line in before_extract:
             seps = ['<', '>']
@@ -155,14 +155,13 @@ print('--{} MEDIAWIKI ARTICLES'.format(len(mediawiki_list)))
 print('--{} HELP ARTICLES'.format(len(help_list)))
 print('--{} DRAFT ARTICLES'.format(len(draft_list)))
 print('--{} MODULE:LOCATION ARTICLES'.format(len(module_list)))
-print('--{} INEXPLICABLE ARTICLES'.format(len(titles_inexplicable))) #TODO print inexplicable titles
+print('--{} INEXPLICABLE ARTICLES'.format(len(titles_inexplicable)))  # TODO print inexplicable titles
 
 print('--COMPARISON COMPLETED')
 
-if titles_inexplicable > 0:
-    print('--{} INEXPLICABLES:')
-    for element_inex in titles_inexplicable:
-        print(element_inex)
+print('--{} Following titles are INEXPLICABLES:')
+for element_inex in titles_inexplicable:
+    print(element_inex)
 
 end = time.time()
 print('--- TIME {}'.format(end - start))
