@@ -136,8 +136,6 @@ titles_inexplicable = before_set - red_prev_titles[0] - red_prev_titles[1] - red
     wikipedia_list) - set(category_list) - set(file_list) - set(template_list) - set(portal_list) - set(
     mediawiki_list) - set(help_list) - set(draft_list)
 
-for element in titles_inexplicable:
-    print(element)
 # compare_tit()
 # include those prints
 print('--{} ARTICLES BEFORE'.format(len(title_list_before)))
@@ -153,9 +151,12 @@ print('--{} PORTAL ARTICLES'.format(len(portal_list)))
 print('--{} MEDIAWIKI ARTICLES'.format(len(mediawiki_list)))
 print('--{} HELP ARTICLES'.format(len(help_list)))
 print('--{} DRAFT ARTICLES'.format(len(draft_list)))
-print('--{} INEXPLICABLE ARTICLES'.format(len(titles_inexplicable)))
+print('--{} INEXPLICABLE ARTICLES'.format(len(titles_inexplicable))) #TODO print inexplicable titles
 
 print('--COMPARISON COMPLETED')
+
+for element_inex in titles_inexplicable:
+    print(element_inex)
 
 end = time.time()
 print('--- TIME {}'.format(end - start))
