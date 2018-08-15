@@ -12,13 +12,18 @@ now = datetime.datetime.now()
 
 amount_articles = 0
 
+# add e.g. as abbreviation to set
+extra_abbreviation = ['e.g', 'co', 'st', 'mr']
+sentence_tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+sentence_tokenizer._params.abbrev_types.update(extra_abbreviation)
+
 # input --> result_file from wikiExtractor
 # wiki articles, splitted by <doc id='' url='' title='' ></doc>
 def open_wiki_files():
     article_list = []
     article = ""
     with open(
-            '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_4/wiki_4.txt') as wiki_f:
+            '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_1/wiki_1.txt') as wiki_f:
         wiki_file_line = wiki_f.readline()
         while (wiki_file_line):
             article += wiki_file_line
@@ -72,6 +77,7 @@ def extract_sentence(sentence):
         sentence = sentence.replace(link_element, link_entity[2])
     sentence = sentence.replace('\n', '')
     return sentence
+
 
 
 articles = open_wiki_files()
