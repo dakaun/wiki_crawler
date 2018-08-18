@@ -17,7 +17,7 @@ start = time.time()
 def treat_after():
     title = []
     with open(
-            '/home/daniela/wikipedia20180401/wikiextractor/result_wikipart_5/result_wikiextractor_2/wiki_2_title') as after_extraction:  # wiki_dump file after WikiExtractor.py
+            '/home/daniela/wikipedia20180401/wikiextraction/result_wikipart_5/result_wikiextractor_2/wiki_2_title') as after_extraction:  # wiki_dump file after WikiExtractor.py
         after_extract = after_extraction.readlines()
         for line in after_extract:
             title_split = line.split('"')

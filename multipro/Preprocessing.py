@@ -47,7 +47,7 @@ def add_header(file_list, header):
     new_file_list = []
     for file in file_list[1:]:
         new_file_list.append(header + file)
-    new_file_list.insert(0, file_list)
+    new_file_list.insert(0, file_list[0])
     return new_file_list
 
 
@@ -69,10 +69,14 @@ def pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH):
     # splits wikidump into n subfiles
     wiki_dump.seek(0)
     dump_subfile_list = split_file(wiki_dump, nb_lines, NB_OF_SUBFILES)
+    print('-- Wikidump splitted into ' + str(NB_OF_SUBFILES) + ' Files')
+    # dumpf_subfile_list is tuple which contains list with subfiles as elements + str which is the header
 
     # add header to every subfile
     new_subfile_list = add_header(dump_subfile_list[0], dump_subfile_list[1])
+    print('-- Header added to every subfile')
 
     # writes subfiles in folder
     # path for subfiles
     write_subfile(FILEPATH, new_subfile_list)
+    print('-- Subfiles are saved in given directory: ' + FILEPATH)

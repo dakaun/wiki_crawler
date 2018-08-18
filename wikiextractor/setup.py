@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(
-    name='wikiextractor',
+    name='wikiextraction',
 
     description='A script that extracts and cleans text from a Wikipedia'
                 'database dump',
@@ -13,7 +13,7 @@ setup(
     author_email='attardi@di.unipi.it',
     version='2.69',
 
-    url='https://github.com/attardi/wikiextractor',
+    url='https://github.com/attardi/wikiextraction',
 
     license="GPL 3.0",
     keywords=['text', 'nlp'],
