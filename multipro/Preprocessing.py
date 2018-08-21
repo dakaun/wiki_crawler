@@ -81,11 +81,11 @@ def pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH):
     write_subfile(FILEPATH, new_subfile_list)
     print('-- Subfiles are saved in given directory: ' + FILEPATH)
 
-with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/wiki_dump.txt',
-              encoding='cp65001') as wiki_dump:
-    # number of subfiles of wikidump to create
-    NB_OF_SUBFILES = 2
-    # path to save created subfiles of wikidump
-    FILEPATH = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/sub_files/'
-    # Preprocessing,
-    pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH)
+# with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/wiki_dump.txt',
+#               encoding='cp65001') as wiki_dump:
+#     # number of subfiles of wikidump to create
+#     NB_OF_SUBFILES = 2
+#     # path to save created subfiles of wikidump
+#     FILEPATH = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/sub_files/'
+#     # Preprocessing,
+#     pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH)

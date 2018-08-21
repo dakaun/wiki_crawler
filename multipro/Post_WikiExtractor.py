@@ -2,7 +2,6 @@ import shutil
 import os
 
 # After the processing with WikiExtractor.py the articles are in several subdirectories and subfiles with the following structure
-# TODO test if rootdir with result_wikipart_5 is enough to sum up files
 
 ROOTDIR = '/home/daniela/wikipedia20180401/wikiextractor/test_wikipart_5/'
 PATH_COMPLETE_WIKI = '/home/daniela/wikipedia20180401/wikiextractor/test_wikipart_5/'
