@@ -2837,7 +2837,6 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
     :param file_compress: whether to compress files with bzip.
     :param process_count: number of extraction processes to spawn.
     """
-    print(input_file)
 
     if input_file == '-':
         input = sys.stdin
@@ -3080,8 +3079,7 @@ def reduce_process(opts, output_queue, spool_length,
 # Minimum size of output files
 minFileSize = 200 * 1024
 
-def main(): #COMMANDINPUT
-    __name__ == '__main__'
+def main(COMMANDINPUT): #COMMANDINPUT
 
     parser = argparse.ArgumentParser(prog=os.path.basename(sys.argv[0]),
                                      formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -3142,12 +3140,12 @@ def main(): #COMMANDINPUT
                         version='%(prog)s ' + version,
                         help="print program version")
 
-    INPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/sub_files/wikisub_2.txt'
-    OUTPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/result/2'
-    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-    COMMANDINPUT = ['-o', OUTPUT_FILE, '-l', INPUT_FILE]
+    # INPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/sub_files/wikisub_2.txt'
+    # OUTPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/result/2'
+    # os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    # COMMANDINPUT = ['-o', OUTPUT_FILE, '-l', INPUT_FILE]
     args = parser.parse_args(COMMANDINPUT)
-    print(args)
+    #print(args)
 
     options.keepLinks = args.links
     options.keepSections = args.sections

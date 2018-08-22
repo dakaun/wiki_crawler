@@ -64,22 +64,22 @@ def write_subfile(PATH, file_list):
 def pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH):
     # count the number of lines of a file
     nb_lines = count_lines(wiki_dump)
-    print('-- Number of Lines of Wikidump ' + str(nb_lines))
+    print('1 -- Number of Lines of Wikidump ' + str(nb_lines))
 
     # splits wikidump into n subfiles
     wiki_dump.seek(0)
     dump_subfile_list = split_file(wiki_dump, nb_lines, NB_OF_SUBFILES)
-    print('-- Wikidump splitted into ' + str(NB_OF_SUBFILES) + ' Files')
+    print('1 -- Wikidump splitted into ' + str(NB_OF_SUBFILES) + ' Files')
     # dumpf_subfile_list is tuple which contains list with subfiles as elements + str which is the header
 
     # add header to every subfile
     new_subfile_list = add_header(dump_subfile_list[0], dump_subfile_list[1])
-    print('-- Header added to every subfile')
+    print('1 -- Header added to every subfile')
 
     # writes subfiles in folder
     # path for subfiles
     write_subfile(FILEPATH, new_subfile_list)
-    print('-- Subfiles are saved in given directory: ' + FILEPATH)
+    print('1 -- Subfiles are saved in given directory: ' + FILEPATH)
 
 # with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/wiki_dump.txt',
 #               encoding='cp65001') as wiki_dump:
