@@ -57,7 +57,7 @@ def write_subfile(PATH, file_list):
     os.makedirs(os.path.dirname(PATH), exist_ok=True)
     counter = 1
     for file in file_list:
-        with open(PATH + 'wikisub_' + str(counter) + '.txt', 'w', encoding='cp65001') as new_subfile:
+        with open(PATH + 'wikisub_' + str(counter) + '.txt', 'w') as new_subfile: #, encoding='cp65001'
             new_subfile.write(file)
             counter += 1
 

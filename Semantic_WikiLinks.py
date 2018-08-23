@@ -20,7 +20,7 @@ os.makedirs(os.path.dirname(output_path), exist_ok=True)
 NB_OF_SUBFILES = args.nbsplitting     # number of subfiles of wikidump to create
 
 # import initial wikidump and do preprocessing
-with open(input_file, encoding='cp65001') as wiki_dump:
+with open(input_file) as wiki_dump: #, encoding='cp65001'
     # path to save created subfiles of wikidump
     FILEPATH = output_path + '/sub_files/'
     # Preprocessing
