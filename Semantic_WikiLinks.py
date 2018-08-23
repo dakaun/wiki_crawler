@@ -4,6 +4,9 @@ import Extract_Sentences
 import Post_WikiExtractor
 import argparse
 import os
+import time
+
+start = time.time()
 
 parser = argparse.ArgumentParser(
     description='Process wikidumps to extract all links from the articles and the according sentences')
@@ -45,4 +48,6 @@ print('3 ALL FILES SUMMED UP')
 
 # run script to extract sentences
 Extract_Sentences.result_file(PATH_COMPLETE_WIKI + '/wiki_sum.txt', output_path)
-print('COMPLETE')
+end = time.time()
+
+print('COMPLETE. IT TOOK {}'.format(end-start))

@@ -16,7 +16,7 @@ def count_lines(file):
 # and extracts the header which is necessary to process the files with WikiExtractor.py
 def split_file(file, nb_lines, nb_subfiles):
     # split into n files
-    split = math.ceil(nb_lines / nb_subfiles)  # TODO only split by 2 possible
+    split_line = math.ceil(nb_lines / nb_subfiles)
 
     sub_file = ""
     file_list = []
@@ -24,16 +24,17 @@ def split_file(file, nb_lines, nb_subfiles):
     header = ""
 
     # iterate through wikidump and split it after have of the file and end of an article
+    split = split_line
     file_line = file.readline()
     while (file_line):
         sub_file += file_line
-        if (
-                line_counter < 44):  # extracts header, since this is necessary for WikiExtractory to process the different files
+        if (line_counter < 44):  # extracts header, since this is necessary for WikiExtractory to process the different files
             header += file_line
         if (line_counter == split):
             if ('</page>' in file_line):
                 file_list.append(sub_file)
                 sub_file = ""
+                split = split + split_line
             else:
                 split += 1
         line_counter += 1
