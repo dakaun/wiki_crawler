@@ -68,7 +68,7 @@ def extract_sentence(sentence):
     return sentence
 
 
-def result_file(INPUT_PATH):
+def result_file(INPUT_PATH, resulting_path):
     start = time.time()
     # add e.g. as abbreviation to set
     extra_abbreviation = ['e.g', 'co', 'st', 'mr']
@@ -76,7 +76,7 @@ def result_file(INPUT_PATH):
     sentence_tokenizer._params.abbrev_types.update(extra_abbreviation)
 
     now = datetime.datetime.now()
-    resulting_file= open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/result' + str(now.month) + str(now.day) + '.txt', "w+")
+    resulting_file= open(resulting_path+ 'res' + str(now.month) + str(now.day) + '.txt', "w+")
 
 
     articles = open_wiki_files(INPUT_PATH)
