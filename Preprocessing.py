@@ -29,7 +29,9 @@ def split_file(file, nb_lines, nb_subfiles):
     split = split_line
     file_line = file.readline()
     while (file_line):
+        print('1 -- each line')
         sub_file += file_line
+        print('1 -- added to sub_file. Split is ' + str(split))
         if (line_counter < 44):  # extracts header, since this is necessary for WikiExtractory to process the different files
             header += file_line
         if (line_counter == split):
