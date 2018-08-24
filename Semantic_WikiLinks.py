@@ -29,7 +29,7 @@ with open(input_file) as wiki_dump: #, encoding='cp65001'
     FILEPATH = output_path + '/sub_files/'
     # Preprocessing
     Preprocessing.pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH)
-print('1 PREPROPESSING COMPLETE')
+print('1 PREPROPESSING COMPLETE in {}'.format(time.time()- start))
 
 # run WikiExtractor on each files
 for i in range(NB_OF_SUBFILES):
@@ -40,7 +40,7 @@ for i in range(NB_OF_SUBFILES):
     if __name__ == '__main__':
         WikiExtractor.main(['-o', OUTPUT_FILE, '-l', INPUT_FILE])
 
-print('2 WIKIEXTRACTOR COMPLETE')
+print('2 WIKIEXTRACTOR COMPLETE in {}'.format(time.time()- start))
 
 # summing up result files of WikiExtractor to one file
 # After the processing with WikiExtractor.py the articles are in several subdirectories and subfiles with the following structure
@@ -48,7 +48,7 @@ print('2 WIKIEXTRACTOR COMPLETE')
 ROOTDIR = output_path + '/step2/'
 PATH_COMPLETE_WIKI = output_path + '/step3/'
 Post_WikiExtractor.sum_up(ROOTDIR, PATH_COMPLETE_WIKI)
-print('3 ALL FILES SUMMED UP')
+print('3 ALL FILES SUMMED UP in {}'.format(time.time()- start))
 
 # run script to extract sentences
 Extract_Sentences.result_file(PATH_COMPLETE_WIKI + '/wiki_sum.txt', output_path)

@@ -1,5 +1,6 @@
 import math
 import os
+import time
 
 
 # TODO catch exceptions
@@ -65,24 +66,25 @@ def write_subfile(PATH, file_list):
 
 def pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH):
     # count the number of lines of a file
+    start_preprocessing = time.time()
     nb_lines = count_lines(wiki_dump)
-    print('1 -- Number of Lines of Wikidump ' + str(nb_lines))
+    print('1 -- Number of Lines of Wikidump ' + str(nb_lines) + ' and it took ' + str(time.time()- start_preprocessing))
 
     # splits wikidump into n subfiles
     wiki_dump.seek(0)
     print('1 -- start splitting')
     dump_subfile_list = split_file(wiki_dump, nb_lines, NB_OF_SUBFILES)
-    print('1 -- Wikidump splitted into ' + str(NB_OF_SUBFILES) + ' Files')
+    print('1 -- Wikidump splitted into ' + str(NB_OF_SUBFILES) + ' Files' + ' and it took ' + str(time.time()- start_preprocessing))
     # dumpf_subfile_list is tuple which contains list with subfiles as elements + str which is the header
 
     # add header to every subfile
     new_subfile_list = add_header(dump_subfile_list[0], dump_subfile_list[1])
-    print('1 -- Header added to every subfile')
+    print('1 -- Header added to every subfile'+ ' and it took ' + str(time.time()- start_preprocessing))
 
     # writes subfiles in folder
     # path for subfiles
     write_subfile(FILEPATH, new_subfile_list)
-    print('1 -- Subfiles are saved in given directory: ' + FILEPATH)
+    print('1 -- Subfiles are saved in given directory: ' + FILEPATH + ' and it took ' + str(time.time()- start_preprocessing))
 
 # with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/wiki_dump.txt',
 #               encoding='cp65001') as wiki_dump:
