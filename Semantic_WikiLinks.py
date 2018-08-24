@@ -5,6 +5,7 @@ import Post_WikiExtractor
 import argparse
 import os
 import time
+import multiprocessing
 
 start = time.time()
 
@@ -13,11 +14,14 @@ parser = argparse.ArgumentParser(
 parser.add_argument('input', help='XML wiki dump file')
 parser.add_argument('-o', '--output', help='directory for RESULTFILE', default='text')
 parser.add_argument('-nbsplitting', type=int, help='Nb of desired subfiles (default =2)', default=2)
-args = parser.parse_args() #['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
+args = parser.parse_args() #['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res', '-nbsplitting', '5', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
 input_file = args.input
 output_path = args.output  # 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump'
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
-NB_OF_SUBFILES = args.nbsplitting     # number of subfiles of wikidump to create
+if args.nbsplitting > (multiprocessing.cpu_count() -1): # number of subfiles of wikidump to create
+    NB_OF_SUBFILES = multiprocessing.cpu_count() - 1
+else:
+    NB_OF_SUBFILES = args.nbsplitting
 
 # import initial wikidump and do preprocessing
 with open(input_file) as wiki_dump: #, encoding='cp65001'

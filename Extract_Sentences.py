@@ -29,7 +29,7 @@ def write_file(title, entity, sentence, file):
     title = title.replace(' ', '_')
     entity = entity.replace(' ', '_')
     file.write(
-            '<https://en.wikipedia.org/wiki?' + title + '> ' + '<https://en.wikipedia.org/wiki?' + entity + '> ' + '\"' + sentence + '\" \n')
+            '<http://dbpedia.org/resource/' + title + '> ' + '<http://dbpedia.org/resource/' + entity + '> ' + '\"' + sentence + '\" \n')
 
 
 def extract_header(article):
@@ -59,7 +59,7 @@ def extract_entity(element):
     return link
 
 
-def extract_sentence(sentence):
+def extract_sentence(sentence): #TODO insert brackets around entity
     sentence_link = re.findall(r'<a href=.*?</a>', sentence)
     for link_element in sentence_link:
         link_entity = link_element.replace('>', '<').split('<')
@@ -97,6 +97,7 @@ def result_file(INPUT_PATH, resulting_path):
                     break
 
     end = time.time()
+
     print('AMOUNT OF ARTICLES {}'.format(amount_articles))
     print('--- TIME {}'.format(end - start))
 
