@@ -24,6 +24,7 @@ def split_file(file, nb_lines, nb_subfiles):
     header = ""
 
     # iterate through wikidump and split it after have of the file and end of an article
+    print('1 -- start iterating through lines')
     split = split_line
     file_line = file.readline()
     while (file_line):
@@ -69,6 +70,7 @@ def pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH):
 
     # splits wikidump into n subfiles
     wiki_dump.seek(0)
+    print('1 -- start splitting')
     dump_subfile_list = split_file(wiki_dump, nb_lines, NB_OF_SUBFILES)
     print('1 -- Wikidump splitted into ' + str(NB_OF_SUBFILES) + ' Files')
     # dumpf_subfile_list is tuple which contains list with subfiles as elements + str which is the header

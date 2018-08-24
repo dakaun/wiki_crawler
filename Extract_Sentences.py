@@ -59,11 +59,19 @@ def extract_entity(element):
     return link
 
 
-def extract_sentence(sentence): #TODO insert brackets around entity
+def extract_sentence(sentence, link):
+    final_sentence = ""
     sentence_link = re.findall(r'<a href=.*?</a>', sentence)
+    entity_link = link.replace('>', '<').split('<')[2]
     for link_element in sentence_link:
-        link_entity = link_element.replace('>', '<').split('<')
-        sentence = sentence.replace(link_element, link_entity[2])
+        link_entity = link_element.replace('>', '<').split('<')[2]
+        sentence = sentence.replace(link_element, link_entity)
+    sentence = sentence.replace(entity_link, '[[' + entity_link + ']]')
+    # split_sentence = sentence.split()
+    # for word in split_sentence:
+    #     if entity_link in word:
+    #         word = '[[' + word + ']]'
+    #     final_sentence += word + ' '
     sentence = sentence.replace('\n', '')
     return sentence
 
@@ -91,7 +99,7 @@ def result_file(INPUT_PATH, resulting_path):
         for link in re_links:
             for raw_sentence in article_in_sentences:
                 if link in raw_sentence:
-                    sentence = extract_sentence(raw_sentence)
+                    sentence = extract_sentence(raw_sentence, link)
                     entity = extract_entity(link)
                     write_file(title, entity, sentence, resulting_file)
                     break
