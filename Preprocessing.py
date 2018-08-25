@@ -27,22 +27,21 @@ def split_file(file, nb_lines, nb_subfiles):
     # iterate through wikidump and split it after have of the file and end of an article
     print('1 -- start iterating through lines')
     split = split_line
-    file_line = file.readline()
-    while (file_line):
-        print('1 -- each line')
+    # file_line = file.readline()
+    for line_counter, file_line in enumerate(file):
         sub_file += file_line
-        print('1 -- added to sub_file. Split is ' + str(split))
         if (line_counter < 44):  # extracts header, since this is necessary for WikiExtractory to process the different files
             header += file_line
         if (line_counter == split):
             if ('</page>' in file_line):
+                print('1 -- ' + str(math.ceil(split / split_line)) + '/' + str(nb_subfiles))
                 file_list.append(sub_file)
                 sub_file = ""
                 split = split + split_line
             else:
                 split += 1
-        line_counter += 1
-        file_line = file.readline()
+        #line_counter += 1
+        #file_line = file.readline()
     file_list.append(sub_file)
     return file_list, header
 
