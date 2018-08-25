@@ -27,8 +27,8 @@ def split_file(file, nb_lines, nb_subfiles, time_start):
     # iterate through wikidump and split it after have of the file and end of an article
     print('1 -- start iterating through lines')
     split = split_line
-    #file_line = file.readline()
-    for file_line in file:
+    file_line = file.readline()
+    while(file_line):
         sub_file += file_line
         if (line_counter < 44):  # extracts header, since this is necessary for WikiExtractory to process the different files
             header += file_line
@@ -43,7 +43,7 @@ def split_file(file, nb_lines, nb_subfiles, time_start):
             else:
                 split += 1
         line_counter += 1
-        # file_line = file.readline()
+        file_line = file.readline()
     file_list.append(sub_file)
     return file_list, header
 
@@ -67,24 +67,24 @@ def write_subfile(PATH, file_list):
             counter += 1
 
 
-def pre_process(input_file, wiki_file,  NB_OF_SUBFILES, FILEPATH):
+def pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH):
     # count the number of lines of a file
     start_preprocessing = time.time()
     # open file
-    input = fileinput.FileInput(input_file,
-                                openhook=fileinput.hook_compressed)  # openhook=fileinput.hook_compressed openhook=fileinput.hook_encoded('cp65001')
+    #input = fileinput.FileInput(input_file,
+    #                            openhook=fileinput.hook_encoded('cp65001'))  # openhook=fileinput.hook_compressed openhook=fileinput.hook_encoded('cp65001')
 
-    nb_lines = count_lines(wiki_file)
+    nb_lines = count_lines(wiki_dump)
     print('1 -- Number of Lines of Wikidump ' + str(nb_lines) +
             ' and it took ' + str(time.time() - start_preprocessing))
 
     # splits wikidump into n subfiles
-    #input.seek(0)
+    wiki_dump.seek(0)
     print('1 -- start splitting')
-    dump_subfile_list = split_file(input, nb_lines, NB_OF_SUBFILES, start_preprocessing)
+    dump_subfile_list = split_file(wiki_dump, nb_lines, NB_OF_SUBFILES, start_preprocessing)
     print('1 -- Wikidump splitted into ' + str(NB_OF_SUBFILES) + ' Files' + ' and it took ' + str(
         time.time() - start_preprocessing))
-    input.close()
+    # input.close()
     # dumpf_subfile_list is tuple which contains list with subfiles as elements + str which is the header
 
     # add header to every subfile

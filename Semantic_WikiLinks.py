@@ -28,7 +28,7 @@ with open(input_file) as wiki_dump: #, encoding='cp65001'
 # path to save created subfiles of wikidump
     FILEPATH = output_path + '/sub_files/'
 # Preprocessing
-    Preprocessing.pre_process(input_file, wiki_dump, NB_OF_SUBFILES, FILEPATH)
+    Preprocessing.pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH) #input_file, wiki_dump, NB_OF_SUBFILES, FILEPATH)
 print('1 PREPROPESSING COMPLETE in {}'.format(time.time() - start))
 
 # run WikiExtractor on each files
