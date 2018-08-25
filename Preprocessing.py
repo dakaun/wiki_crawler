@@ -38,7 +38,7 @@ def split_file(file, nb_lines, nb_subfiles, time_start):
                 file_list.append(sub_file)
                 sub_file = ""
                 split = split + split_line
-                print('1 -- ' + str(len(file_list)) + '/' + str(nb_subfiles) + ' time: ' + time.time() - time_start)
+                print('1 -- ' + str(len(file_list)) + '/' + str(nb_subfiles) + ' time: ' + str(time.time() - time_start))
             else:
                 split += 1
         #line_counter += 1
