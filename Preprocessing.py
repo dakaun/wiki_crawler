@@ -1,9 +1,9 @@
 import math
 import os
 import time
+import fileinput
 
 
-# TODO catch exceptions
 
 # counts the number lines of a file
 def count_lines(file):
@@ -27,22 +27,23 @@ def split_file(file, nb_lines, nb_subfiles, time_start):
     # iterate through wikidump and split it after have of the file and end of an article
     print('1 -- start iterating through lines')
     split = split_line
-    # file_line = file.readline()
-    for line_counter, file_line in enumerate(file):
+    #file_line = file.readline()
+    for file_line in file:
         sub_file += file_line
         if (line_counter < 44):  # extracts header, since this is necessary for WikiExtractory to process the different files
             header += file_line
         if (line_counter == split):
             if ('</page>' in file_line):
-                #print('1 -- ' + str(math.ceil(split / split_line)) + '/' + str(nb_subfiles))
+                # print('1 -- ' + str(math.ceil(split / split_line)) + '/' + str(nb_subfiles))
                 file_list.append(sub_file)
                 sub_file = ""
                 split = split + split_line
-                print('1 -- ' + str(len(file_list)) + '/' + str(nb_subfiles) + ' time: ' + str(time.time() - time_start))
+                print(
+                    '1 -- ' + str(len(file_list)) + '/' + str(nb_subfiles) + ' time: ' + str(time.time() - time_start))
             else:
                 split += 1
-        #line_counter += 1
-        #file_line = file.readline()
+        line_counter += 1
+        # file_line = file.readline()
     file_list.append(sub_file)
     return file_list, header
 
@@ -61,32 +62,40 @@ def write_subfile(PATH, file_list):
     os.makedirs(os.path.dirname(PATH), exist_ok=True)
     counter = 1
     for file in file_list:
-        with open(PATH + 'wikisub_' + str(counter) + '.txt', 'w') as new_subfile: #, encoding='cp65001'
+        with open(PATH + 'wikisub_' + str(counter) + '.txt', 'w') as new_subfile:  # , encoding='cp65001'
             new_subfile.write(file)
             counter += 1
 
 
-def pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH):
+def pre_process(input_file, wiki_file,  NB_OF_SUBFILES, FILEPATH):
     # count the number of lines of a file
     start_preprocessing = time.time()
-    nb_lines = count_lines(wiki_dump)
-    print('1 -- Number of Lines of Wikidump ' + str(nb_lines) + ' and it took ' + str(time.time()- start_preprocessing))
+    # open file
+    input = fileinput.FileInput(input_file,
+                                openhook=fileinput.hook_compressed)  # openhook=fileinput.hook_compressed openhook=fileinput.hook_encoded('cp65001')
+
+    nb_lines = count_lines(wiki_file)
+    print('1 -- Number of Lines of Wikidump ' + str(nb_lines) +
+            ' and it took ' + str(time.time() - start_preprocessing))
 
     # splits wikidump into n subfiles
-    wiki_dump.seek(0)
+    #input.seek(0)
     print('1 -- start splitting')
-    dump_subfile_list = split_file(wiki_dump, nb_lines, NB_OF_SUBFILES, start_preprocessing)
-    print('1 -- Wikidump splitted into ' + str(NB_OF_SUBFILES) + ' Files' + ' and it took ' + str(time.time()- start_preprocessing))
+    dump_subfile_list = split_file(input, nb_lines, NB_OF_SUBFILES, start_preprocessing)
+    print('1 -- Wikidump splitted into ' + str(NB_OF_SUBFILES) + ' Files' + ' and it took ' + str(
+        time.time() - start_preprocessing))
+    input.close()
     # dumpf_subfile_list is tuple which contains list with subfiles as elements + str which is the header
 
     # add header to every subfile
     new_subfile_list = add_header(dump_subfile_list[0], dump_subfile_list[1])
-    print('1 -- Header added to every subfile'+ ' and it took ' + str(time.time()- start_preprocessing))
+    print('1 -- Header added to every subfile' + ' and it took ' + str(time.time() - start_preprocessing))
 
     # writes subfiles in folder
     # path for subfiles
     write_subfile(FILEPATH, new_subfile_list)
-    print('1 -- Subfiles are saved in given directory: ' + FILEPATH + ' and it took ' + str(time.time()- start_preprocessing))
+    print('1 -- Subfiles are saved in given directory: ' + FILEPATH + ' and it took ' + str(
+        time.time() - start_preprocessing))
 
 # with open('C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump/wiki_dump.txt',
 #               encoding='cp65001') as wiki_dump:
