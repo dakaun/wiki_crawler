@@ -15,7 +15,7 @@ def count_lines(file):
 
 # splits the file into n subfiles
 # and extracts the header which is necessary to process the files with WikiExtractor.py
-def split_file(file, nb_lines, nb_subfiles):
+def split_file(file, nb_lines, nb_subfiles, time_start):
     # split into n files
     split_line = math.ceil(nb_lines / nb_subfiles)
 
@@ -34,10 +34,11 @@ def split_file(file, nb_lines, nb_subfiles):
             header += file_line
         if (line_counter == split):
             if ('</page>' in file_line):
-                print('1 -- ' + str(math.ceil(split / split_line)) + '/' + str(nb_subfiles))
+                #print('1 -- ' + str(math.ceil(split / split_line)) + '/' + str(nb_subfiles))
                 file_list.append(sub_file)
                 sub_file = ""
                 split = split + split_line
+                print('1 -- ' + str(len(file_list)) + '/' + str(nb_subfiles) + ' time: ' + time.time() - time_start)
             else:
                 split += 1
         #line_counter += 1
@@ -74,7 +75,7 @@ def pre_process(wiki_dump, NB_OF_SUBFILES, FILEPATH):
     # splits wikidump into n subfiles
     wiki_dump.seek(0)
     print('1 -- start splitting')
-    dump_subfile_list = split_file(wiki_dump, nb_lines, NB_OF_SUBFILES)
+    dump_subfile_list = split_file(wiki_dump, nb_lines, NB_OF_SUBFILES, start_preprocessing)
     print('1 -- Wikidump splitted into ' + str(NB_OF_SUBFILES) + ' Files' + ' and it took ' + str(time.time()- start_preprocessing))
     # dumpf_subfile_list is tuple which contains list with subfiles as elements + str which is the header
 
