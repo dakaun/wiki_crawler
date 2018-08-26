@@ -77,7 +77,9 @@ def extract_sentence(sentence, link):
     return sentence
 
 
-def result_file(INPUT_PATH, resulting_path):
+def result_file(path):
+    INPUT_PATH = path[0]
+    resulting_path = path[1]
     start = time.time()
     # add e.g. as abbreviation to set
     extra_abbreviation = ['e.g', 'co', 'st', 'mr']

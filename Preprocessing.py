@@ -58,7 +58,7 @@ def add_header_file(PATH, file, header, file_count):
 
 def write_subfile_file(PATH, file, filename):
     os.makedirs(os.path.dirname(PATH), exist_ok=True)
-    with open(PATH + 'wikisub_' + str(filename) + '.txt', 'w', encoding='cp65001') as subfile: # , encoding='cp65001'
+    with open(PATH + 'wikisub_' + str(filename) + '.txt', 'w') as subfile: # , encoding='cp65001'
         subfile.write(file)
 
 
@@ -86,7 +86,7 @@ def pre_process(input_file, wiki_file, NB_OF_SUBFILES, FILEPATH):
     start_preprocessing = time.time()
     # open file
     input = fileinput.FileInput(input_file,
-                                openhook=fileinput.hook_encoded('cp65001'))  # openhook=fileinput.hook_compressed openhook=fileinput.hook_encoded('cp65001')
+                                openhook=fileinput.hook_compressed)  # openhook=fileinput.hook_compressed openhook=fileinput.hook_encoded('cp65001')
 
     nb_lines = count_lines(wiki_file)
     #print('1 -- Number of Lines of Wikidump ' + str(nb_lines) +

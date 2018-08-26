@@ -5,19 +5,10 @@ import Post_WikiExtractor
 import argparse
 import os
 import time
-from multiprocessing import Process, cpu_count, Queue
+from multiprocessing import Process, cpu_count, Queue, Pool
 
 # TODO catch exceptions
 start = time.time()
-
-def creator(in_dir, out_dir, q):
-    data = [in_dir, out_dir]
-    q.put(data)
-
-def consumer(q):
-    in_dir, out_dir = q.get()
-    Extract_Sentences.result_file(in_dir, out_dir)
-
 
 if __name__ == '__main__':
 
@@ -26,7 +17,7 @@ if __name__ == '__main__':
     parser.add_argument('input', help='XML wiki dump file')
     parser.add_argument('-o', '--output', help='directory for RESULTFILE', default='text')
     parser.add_argument('-nbsplitting', type=int, help='Nb of desired subfiles (default =2)', default=2)
-    args = parser.parse_args(['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res', '-nbsplitting', '5', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt'])  # ['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res', '-nbsplitting', '5', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
+    args = parser.parse_args()  # ['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res', '-nbsplitting', '5', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
     input_file = args.input
     output_path = args.output  # 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump'
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -36,7 +27,7 @@ if __name__ == '__main__':
         NB_OF_SUBFILES = args.nbsplitting
 
     # import initial wikidump and do preprocessing
-    with open(input_file, encoding='cp65001') as wiki_dump: #, encoding='cp65001'
+    with open(input_file) as wiki_dump: #, encoding='cp65001'
     # path to save created subfiles of wikidump
         FILEPATH = output_path + '/sub_files/'
     # Preprocessing
@@ -56,21 +47,14 @@ if __name__ == '__main__':
     # After the processing with WikiExtractor.py the articles are in several subdirectories and subfiles with the following structure
     jobs = []
     q = Queue()
+    dir_data = []
     for root, dirs, files in os.walk(output_path + '/step2/'):
         for subfile in files:
-            creator(root + '/' + subfile, root, q)
-            # extract = Process(target=Extract_Sentences.result_file,
-            #                   args=(root + '/' + subfile, root))
-            # extract.start()
-            # print('PROCESS NAME: ' + str(extract))
-            # jobs.append(extract)
-    for i in range(2):
-        consume = Process(target=consumer, args=(q,))
-        consume.start()
-        jobs.append(consume)
+            dir_data.append([root + '/' + subfile, root])
 
-    for j in jobs:
-        j.join()
+    p = Pool(processes=1)
+    p.map(Extract_Sentences.result_file, dir_data)
+
 
     ROOTDIR = output_path + '/step2/'
     Post_WikiExtractor.sum_up(ROOTDIR, output_path)
