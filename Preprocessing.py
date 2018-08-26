@@ -58,7 +58,7 @@ def add_header_file(PATH, file, header, file_count):
 
 def write_subfile_file(PATH, file, filename):
     os.makedirs(os.path.dirname(PATH), exist_ok=True)
-    with open(PATH + 'wikisub_' + str(filename) + '.txt', 'w') as subfile:
+    with open(PATH + 'wikisub_' + str(filename) + '.txt', 'w') as subfile: # , encoding='cp65001'
         subfile.write(file)
 
 

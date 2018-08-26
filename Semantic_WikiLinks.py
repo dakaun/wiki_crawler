@@ -5,7 +5,8 @@ import Post_WikiExtractor
 import argparse
 import os
 import time
-import multiprocessing
+from multiprocessing import Process, cpu_count
+
 # TODO catch exceptions
 start = time.time()
 
@@ -18,8 +19,8 @@ args = parser.parse_args()  # ['-o', 'C:/Users/danielak/Desktop/Dokumente Daniel
 input_file = args.input
 output_path = args.output  # 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump'
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
-if args.nbsplitting > (multiprocessing.cpu_count() - 1):  # number of subfiles of wikidump to create
-    NB_OF_SUBFILES = multiprocessing.cpu_count() - 1
+if args.nbsplitting > (cpu_count() - 1):  # number of subfiles of wikidump to create
+    NB_OF_SUBFILES = cpu_count() - 1
 else:
     NB_OF_SUBFILES = args.nbsplitting
 
@@ -39,19 +40,25 @@ for i in range(NB_OF_SUBFILES):
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     if __name__ == '__main__':
         WikiExtractor.main(['-o', OUTPUT_FILE, '-l', INPUT_FILE])
-
 print('2 WIKIEXTRACTOR COMPLETE in {}'.format(time.time() - start))
 # TODO change order ? first Extract sentences of subfiles and then sum up --> makes it easier to parallize
 # summing up result files of WikiExtractor to one file
 # After the processing with WikiExtractor.py the articles are in several subdirectories and subfiles with the following structure
 
+if __name__ == '__main__':
+    for root, dirs, files in os.walk(output_path + '/step2/'):
+        for subfile in files:
+            extract = Process(target=Extract_Sentences.result_file,
+                              args=(root + '/' + subfile, root))
+            extract.start()
+            extract.join()
+
 ROOTDIR = output_path + '/step2/'
-PATH_COMPLETE_WIKI = output_path + '/step3/'
-Post_WikiExtractor.sum_up(ROOTDIR, PATH_COMPLETE_WIKI)
+Post_WikiExtractor.sum_up(ROOTDIR, output_path)
 print('3 ALL FILES SUMMED UP in {}'.format(time.time() - start))
 
 # run script to extract sentences
-Extract_Sentences.result_file(PATH_COMPLETE_WIKI + '/wiki_sum.txt', output_path)
+#Extract_Sentences.result_file(PATH_COMPLETE_WIKI + '/wiki_sum.txt', output_path)
 end = time.time()
 
 print('COMPLETE. IT TOOK {}'.format(end - start))

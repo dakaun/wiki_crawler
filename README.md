@@ -2,7 +2,7 @@
 
 ##### Input: Wikipedia dump 
 ##### Output: File with triples: 
-<http://dbpedia.org/resource/Cyrano_de_Bergerac> <http://dbpedia.org/resource/Sannois> "He died over a year later on July 28, 1655, aged 36, at the house of his cousin, Pierre De Cyrano, in [[Sannois]]."
+\<http://dbpedia.org/resource/Cyrano_de_Bergerac> \<http://dbpedia.org/resource/Sannois> "He died over a year later on July 28, 1655, aged 36, at the house of his cousin, Pierre De Cyrano, in [[Sannois]]."
 
 ## Usage:
     usage: Semantic_WikiLinks.py [-h] [-o OUTPUT] [-nbsplitting NBSPLITTING] input
