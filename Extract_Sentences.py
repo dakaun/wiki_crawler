@@ -3,6 +3,7 @@ import datetime
 import time
 from nltk.tokenize import sent_tokenize
 import nltk
+from multiprocessing import current_process
 
 # this script extracts all links and the according sentences from the wikidump files (after parsing with WikiExtractor.py
 # input: parsed wiki file
@@ -94,7 +95,7 @@ def result_file(INPUT_PATH, resulting_path):
         title = extract_title(article)
         article = article.replace(header, '').replace(title, '', 1)
         re_links = re.findall(r'<a href=.*?</a>', article)
-        print('Article: {} has {} links'.format(title, len(re_links)))
+        #print('Article: {} has {} links'.format(title, len(re_links)))
         article_in_sentences = sent_tokenize(article)  # find all sentences
         for link in re_links:
             for raw_sentence in article_in_sentences:
