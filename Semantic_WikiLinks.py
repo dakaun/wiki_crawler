@@ -52,7 +52,7 @@ if __name__ == '__main__':
         for subfile in files:
             dir_data.append([root + '/' + subfile, root])
 
-    p = Pool(processes=1)
+    p = Pool(processes=(cpu_count()-5))
     p.map(Extract_Sentences.result_file, dir_data)
 
 
