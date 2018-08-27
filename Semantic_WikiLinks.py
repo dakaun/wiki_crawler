@@ -33,6 +33,7 @@ if __name__ == '__main__':
     # Preprocessing
         Preprocessing.pre_process(input_file, wiki_dump, NB_OF_SUBFILES, FILEPATH)
     #print('1 PREPROPESSING COMPLETE in {}'.format(time.time() - start))
+    start_preprocess = time.time()
 
     # run WikiExtractor on each files
     for i in range(NB_OF_SUBFILES):
@@ -42,26 +43,29 @@ if __name__ == '__main__':
         os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
         WikiExtractor.main(['-o', OUTPUT_FILE, '-l', INPUT_FILE])
     #print('2 WIKIEXTRACTOR COMPLETE in {}'.format(time.time() - start))
+    start_wikextr = time.time()
     # TODO change order ? first Extract sentences of subfiles and then sum up --> makes it easier to parallize
     # summing up result files of WikiExtractor to one file
     # After the processing with WikiExtractor.py the articles are in several subdirectories and subfiles with the following structure
     jobs = []
-    q = Queue()
     dir_data = []
+    start_multi = time.time()
     for root, dirs, files in os.walk(output_path + '/step2/'):
         for subfile in files:
             dir_data.append([root + '/' + subfile, root])
 
     p = Pool(processes=(cpu_count()-5))
     p.map(Extract_Sentences.result_file, dir_data)
-
-
+    start_sum = time.time()
     ROOTDIR = output_path + '/step2/'
     Post_WikiExtractor.sum_up(ROOTDIR, output_path)
     #print('3 ALL FILES SUMMED UP in {}'.format(time.time() - start))
-
     # run script to extract sentences
     #Extract_Sentences.result_file(PATH_COMPLETE_WIKI + '/wiki_sum.txt', output_path)
     end = time.time()
 
     print('COMPLETE. IT TOOK {}'.format(end - start))
+    print('PREPROCESS TOOK {}'.format(start_preprocess-start))
+    print('WIKIEXTRACTOR TOOK {}'.format(start_wikextr - start))
+    print('MULTIPROCESS TOOK {}'.format(start_multi - start))
+    print('SUM FILES UP TOOK {}'.format(start_sum -start))
