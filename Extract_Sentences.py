@@ -3,7 +3,6 @@ import datetime
 import time
 from nltk.tokenize import sent_tokenize
 import nltk
-from multiprocessing import current_process
 
 # this script extracts all links and the according sentences from the wikidump files (after parsing with WikiExtractor.py
 # input: parsed wiki file
