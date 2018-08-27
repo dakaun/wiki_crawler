@@ -11,32 +11,30 @@ from multiprocessing import Process, cpu_count, Queue, Pool
 start = time.time()
 
 if __name__ == '__main__':
-
+    # process commandline input
     parser = argparse.ArgumentParser(
         description='Process wikidumps to extract all links from the articles and the according sentences')
     parser.add_argument('input', help='XML wiki dump file')
     parser.add_argument('-o', '--output', help='directory for RESULTFILE', default='text')
     parser.add_argument('-nbsplitting', type=int, help='Nb of desired subfiles (default =2)', default=2)
+
     args = parser.parse_args()  # ['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res', '-nbsplitting', '5', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
     input_file = args.input
     output_path = args.output  # 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump'
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     if args.nbsplitting > (cpu_count() - 1):  # number of subfiles of wikidump to create
-        NB_OF_SUBFILES = cpu_count() - 1
+        nb_subfiles = cpu_count() - 1
     else:
-        NB_OF_SUBFILES = args.nbsplitting
+        nb_subfiles = args.nbsplitting
 
-    # import initial wikidump and do preprocessing
+    # import initial wikidump and start preprocessing
     with open(input_file) as wiki_dump: #, encoding='cp65001'
-    # path to save created subfiles of wikidump
-        FILEPATH = output_path + '/sub_files/'
-    # Preprocessing
-        Preprocessing.pre_process(input_file, wiki_dump, NB_OF_SUBFILES, FILEPATH)
+        Preprocessing.pre_process(input_file, wiki_dump, nb_subfiles, output_path + '/sub_files/')
     #print('1 PREPROPESSING COMPLETE in {}'.format(time.time() - start))
     start_preprocess = time.time()
 
     # run WikiExtractor on each files
-    for i in range(NB_OF_SUBFILES):
+    for i in range(nb_subfiles):
         #print('2 -- WikiExtractor called for File' + str(i + 1))
         INPUT_FILE = output_path + '/sub_files/wikisub_' + str(i + 1) + '.txt'
         OUTPUT_FILE = output_path + '/step2/' + str(i + 1)
@@ -44,21 +42,29 @@ if __name__ == '__main__':
         WikiExtractor.main(['-o', OUTPUT_FILE, '-l', INPUT_FILE])
     #print('2 WIKIEXTRACTOR COMPLETE in {}'.format(time.time() - start))
     start_wikextr = time.time()
-    # TODO change order ? first Extract sentences of subfiles and then sum up --> makes it easier to parallize
     # summing up result files of WikiExtractor to one file
     # After the processing with WikiExtractor.py the articles are in several subdirectories and subfiles with the following structure
-    jobs = []
-    dir_data = []
-    start_multi = time.time()
-    for root, dirs, files in os.walk(output_path + '/step2/'):
-        for subfile in files:
-            dir_data.append([root + '/' + subfile, root])
 
-    p = Pool(processes=(10))
-    p.map(Extract_Sentences.result_file, dir_data)
-    start_sum = time.time()
     ROOTDIR = output_path + '/step2/'
-    Post_WikiExtractor.sum_up(ROOTDIR, output_path)
+    PATH_COMPLETE_WIKI = output_path + '/step3/'
+    Post_WikiExtractor.sum_up(ROOTDIR, PATH_COMPLETE_WIKI)
+
+    Extract_Sentences.result_file([PATH_COMPLETE_WIKI + '/wiki_sum.txt', output_path])
+
+
+    # jobs = []
+    # dir_data = []
+    # start_multi = time.time()
+    # for root, dirs, files in os.walk(output_path + '/step2/'):
+    #     for subfile in files:
+    #         dir_data.append([root + '/' + subfile, root])
+    #
+    # p = Pool(processes=(1))
+    # p.map(Extract_Sentences.result_file, dir_data)
+    # start_sum = time.time()
+    # ROOTDIR = output_path + '/step2/'
+    # Post_WikiExtractor.sum_up(ROOTDIR, output_path)
+
     #print('3 ALL FILES SUMMED UP in {}'.format(time.time() - start))
     # run script to extract sentences
     #Extract_Sentences.result_file(PATH_COMPLETE_WIKI + '/wiki_sum.txt', output_path)
