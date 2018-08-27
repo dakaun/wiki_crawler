@@ -77,6 +77,16 @@ def extract_sentence(sentence, link):
 
 
 def result_file(path):
+    '''
+    splits file into its articles and safes into a list (def open_wiki_files()). Afterwards the articles are split into
+    its sentences via nltk library (https://www.nltk.org/) and all links in the articles are extracted via regex.
+    Finally the sentences with the links are extracted and saved into the result_file
+    :param path: array of input and output directory
+    :return: a file with all sentences which contain a link. The sentences are saved in triples:
+    the article link as subject, the link (entity) as predicate, and the sentence which contained the entity as object
+    e.g. <http://dbpedia.org/resource/Cyrano_de_Bergerac> <http://dbpedia.org/resource/Sannois> "He died over a year
+    later on July 28, 1655, aged 36, at the house of his cousin, Pierre De Cyrano, in [[Sannois]]."
+    '''
     INPUT_PATH = path[0]
     resulting_path = path[1]
     start = time.time()
