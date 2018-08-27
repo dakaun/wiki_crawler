@@ -66,6 +66,6 @@ if __name__ == '__main__':
 
     print('COMPLETE. IT TOOK {}'.format(end - start))
     print('PREPROCESS TOOK {}'.format(start_preprocess-start))
-    print('WIKIEXTRACTOR TOOK {}'.format(start_wikextr - start))
-    print('MULTIPROCESS TOOK {}'.format(start_multi - start))
-    print('SUM FILES UP TOOK {}'.format(start_sum -start))
+    print('WIKIEXTRACTOR TOOK {}'.format(start_wikextr - start_preprocess))
+    print('MULTIPROCESS TOOK {}'.format(start_multi - start_wikextr))
+    print('SUM FILES UP TOOK {}'.format(start_sum -start_multi))
