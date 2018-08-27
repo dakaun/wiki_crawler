@@ -54,7 +54,7 @@ if __name__ == '__main__':
         for subfile in files:
             dir_data.append([root + '/' + subfile, root])
 
-    p = Pool(processes=(cpu_count()-5))
+    p = Pool(processes=(10))
     p.map(Extract_Sentences.result_file, dir_data)
     start_sum = time.time()
     ROOTDIR = output_path + '/step2/'
