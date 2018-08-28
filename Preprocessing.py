@@ -61,7 +61,7 @@ def pre_process(input_file, nb_subfiles, subfile_path):
     :param input_file: input directory as given from command line
     :param nb_subfiles: nb of subfiles the wiki dump should be split. nb is given from command line
     :param subfile_path: dir for subfiles as given from commandline
-    :return:
+    :return: creates the subfiles as result in dir subfile_path
     """
     # count the number of lines of a file
     start_preprocessing = time.time()

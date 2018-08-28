@@ -5,7 +5,7 @@ import Post_WikiExtractor
 import argparse
 import os
 import time
-from multiprocessing import Process, cpu_count, Queue, Pool
+from multiprocessing import cpu_count, Pool
 
 # TODO catch exceptions
 start = time.time()
