@@ -6,6 +6,7 @@ import argparse
 import os
 import time
 from multiprocessing import cpu_count, Pool
+import shutil
 
 # TODO catch exceptions
 start = time.time()
@@ -20,7 +21,7 @@ if __name__ == '__main__':
     default_processes = max(1, cpu_count()-2)
     parser.add_argument('-processes', type=int, help ='Number of processes to use', default=default_processes)
 
-    args = parser.parse_args()  # ['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res', '-nbsplitting', '5', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
+    args = parser.parse_args()  # ['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res', '-split', '5', '-processes', '3', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
     input_file = args.input
     output_path = args.output  # 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump'
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -52,9 +53,17 @@ if __name__ == '__main__':
     # append subfiles_dir in list to extract sentences by multiprocessing
     jobs = []
     dir_data = []
+    seen = set(dir_data)
     for root, dirs, files in os.walk(output_path + '/step2/'):
-        for subfile in files:
-            dir_data.append([root + '/' + subfile, root])
+        if files:
+            complete_sub_wiki = open(root + '/wiki_sum.txt', 'wb')
+            for subfile in files:
+                subfile_dir = os.path.join(root, subfile)
+                open_subfile = open(subfile_dir, 'rb')
+                shutil.copyfileobj(open_subfile, complete_sub_wiki)
+                if root not in seen:
+                    seen.add(root)
+                    dir_data.append([root + '/wiki_sum.txt', root])
 
     # use Pool for multiprocessing
     p = Pool(processes=nb_processes)

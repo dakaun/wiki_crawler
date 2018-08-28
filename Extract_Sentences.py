@@ -15,7 +15,7 @@ amount_articles = 0
 def open_wiki_files(INPUT_PATH):
     article_list = []
     article = ""
-    with open(INPUT_PATH) as wiki_f:
+    with open(INPUT_PATH) as wiki_f: #, encoding='cp65001'
         wiki_file_line = wiki_f.readline()
         while (wiki_file_line):
             article += wiki_file_line
