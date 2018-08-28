@@ -16,7 +16,7 @@ if __name__ == '__main__':
         description='Process wikidumps to extract all links from the articles and the according sentences')
     parser.add_argument('input', help='XML wiki dump file')
     parser.add_argument('-o', '--output', help='directory for RESULTFILE', default='text')
-    parser.add_argument('-nbsplitting', type=int, help='Nb of desired subfiles (default =2)', default=2)
+    parser.add_argument('-split', type=int, help='Nb of desired subfiles (default =2)', default=2)
     default_processes = max(1, cpu_count()-2)
     parser.add_argument('-processes', type=int, help ='Number of processes to use', default=default_processes)
 
@@ -25,10 +25,10 @@ if __name__ == '__main__':
     output_path = args.output  # 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump'
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     nb_processes = args.processes
-    if args.nbsplitting > (cpu_count() - 1):  # number of subfiles of wikidump to create
+    if args.split > (cpu_count() - 1):  # number of subfiles of wikidump to create
         nb_subfiles = cpu_count() - 1
     else:
-        nb_subfiles = args.nbsplitting
+        nb_subfiles = args.split
 
     # import initial wikidump and start preprocessing
     # with open(input_file) as wiki_dump: #, encoding='cp65001'
@@ -42,7 +42,7 @@ if __name__ == '__main__':
         INPUT_FILE = output_path + '/sub_files/wikisub_' + str(i + 1) + '.txt'
         OUTPUT_FILE = output_path + '/step2/' + str(i + 1)
         os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-        WikiExtractor.main(['-o', OUTPUT_FILE, '-l', 'processes', nb_processes ,INPUT_FILE])
+        WikiExtractor.main(['-o', OUTPUT_FILE, '-l', INPUT_FILE])
     #print('2 WIKIEXTRACTOR COMPLETE in {}'.format(time.time() - start))
     end_wikextr = time.time()
 
