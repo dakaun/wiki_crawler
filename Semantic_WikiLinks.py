@@ -82,4 +82,4 @@ if __name__ == '__main__':
     print('Time tracking: Preprocessing {}'.format(end_preprocess - start))
     print('Time tracking: Wikiextraction {}'.format(end_wikextr - end_preprocess))
     print('Time tracking: Multiprocessing {}'.format(end_multi - end_wikextr))
-    print('Time tracking: Summing up {}'.format(end_multi - end))
+    print('Time tracking: Summing up {}'.format(end - end_multi))
