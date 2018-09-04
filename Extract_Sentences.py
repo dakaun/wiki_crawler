@@ -67,11 +67,6 @@ def extract_sentence(sentence, link):
         link_entity = link_element.replace('>', '<').split('<')[2]
         sentence = sentence.replace(link_element, link_entity)
     sentence = sentence.replace(entity_link, '[[' + entity_link + ']]')
-    # split_sentence = sentence.split()
-    # for word in split_sentence:
-    #     if entity_link in word:
-    #         word = '[[' + word + ']]'
-    #     final_sentence += word + ' '
     sentence = sentence.replace('\n', '')
     return sentence
 

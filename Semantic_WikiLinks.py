@@ -10,7 +10,7 @@ import shutil
 
 # TODO catch exceptions
 start = time.time()
-#paperlapap
+
 if __name__ == '__main__':
     # process commandline input
     parser = argparse.ArgumentParser(
@@ -21,9 +21,9 @@ if __name__ == '__main__':
     default_processes = max(1, cpu_count()-2)
     parser.add_argument('-processes', type=int, help ='Number of processes to use', default=default_processes)
 
-    args = parser.parse_args()  # ['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res', '-split', '5', '-processes', '3', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
+    args = parser.parse_args()  # ['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res2808', '-split', '5', '-processes', '3', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
     input_file = args.input
-    output_path = args.output  # 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/wiki_dump'
+    output_path = args.output
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     nb_processes = args.processes
     if args.split > (cpu_count() - 1):  # number of subfiles of wikidump to create
@@ -64,7 +64,6 @@ if __name__ == '__main__':
                 if root not in seen:
                     seen.add(root)
                     dir_data.append([root + '/wiki_sum.txt', root])
-
     # use Pool for multiprocessing
     p = Pool(processes=nb_processes)
     p.map(Extract_Sentences.result_file, dir_data)
