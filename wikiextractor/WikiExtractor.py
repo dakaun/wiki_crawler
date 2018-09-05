@@ -3140,12 +3140,7 @@ def main(COMMANDINPUT): #COMMANDINPUT
                         version='%(prog)s ' + version,
                         help="print program version")
 
-    # INPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res/sub_files/wikisub_1.txt'
-    # OUTPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res/result/1'
-    # os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-    # COMMANDINPUT = ['-o', OUTPUT_FILE, '-l', INPUT_FILE]
     args = parser.parse_args(COMMANDINPUT) #COMMANDINPUT
-    #print(args)
 
     options.keepLinks = args.links
     options.keepSections = args.sections

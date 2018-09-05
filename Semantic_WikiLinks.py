@@ -47,9 +47,6 @@ if __name__ == '__main__':
     #print('2 WIKIEXTRACTOR COMPLETE in {}'.format(time.time() - start))
     end_wikextr = time.time()
 
-    # summing up result files of WikiExtractor to one file
-    # After the processing with WikiExtractor.py the articles are in several subdirectories and subfiles with the following structure
-
     # append subfiles_dir in list to extract sentences by multiprocessing
     jobs = []
     dir_data = []
