@@ -2848,6 +2848,7 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
         # When an input file is .bz2 or .gz, line can be a bytes even in Python 3.
         if not isinstance(line, text_type): line = line.decode('utf-8')
         m = tagRE.search(line)
+        print('tagRE')
         if not m:
             continue
         tag = m.group(2)
