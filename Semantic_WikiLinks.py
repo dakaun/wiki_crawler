@@ -34,12 +34,12 @@ if __name__ == '__main__':
     # import initial wikidump and start preprocessing
     # with open(input_file) as wiki_dump: #, encoding='cp65001'
     Preprocessing.pre_process(input_file, nb_subfiles, output_path + '/sub_files/')
-    #print('1 PREPROPESSING COMPLETE in {}'.format(time.time() - start))
+    print('1 PREPROPESSING COMPLETE in {}'.format(time.time() - start))
     end_preprocess = time.time()
 
     # run WikiExtractor on each files
     for i in range(nb_subfiles):
-        #print('2 -- WikiExtractor called for File' + str(i + 1))
+        print('2 -- WikiExtractor called for File' + str(i + 1))
         INPUT_FILE = output_path + '/sub_files/wikisub_' + str(i + 1) + '.txt'
         OUTPUT_FILE = output_path + '/step2/' + str(i + 1)
         os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
