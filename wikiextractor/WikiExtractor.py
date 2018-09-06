@@ -2837,7 +2837,7 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
     :param file_compress: whether to compress files with bzip.
     :param process_count: number of extraction processes to spawn.
     """
-
+    print('Calling process_dump')
     if input_file == '-':
         input = sys.stdin
     else:
@@ -3229,8 +3229,7 @@ def main(COMMANDINPUT): #COMMANDINPUT
             logging.error('Could not create: %s', output_path)
             return
 
-    process_dump(input_file, args.templates, output_path, file_size,
-                 args.compress, args.processes)
+    process_dump(input_file, args.templates, output_path, file_size, args.compress, args.processes)
 
 def createLogger(quiet, debug):
     logger = logging.getLogger()
