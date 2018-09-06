@@ -2842,7 +2842,7 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
         input = sys.stdin
     else:
         input = fileinput.FileInput(input_file, openhook=fileinput.hook_compressed) #openhook=fileinput.hook_compressed openhook=fileinput.hook_encoded('cp65001')
-
+    print('collect siteinfo')
     # collect siteinfo
     for line in input:
         # When an input file is .bz2 or .gz, line can be a bytes even in Python 3.
@@ -3079,7 +3079,7 @@ def reduce_process(opts, output_queue, spool_length,
 # Minimum size of output files
 minFileSize = 200 * 1024
 
-def main(): #COMMANDINPUT
+def main(COMMANDINPUT): #COMMANDINPUT
 
     parser = argparse.ArgumentParser(prog=os.path.basename(sys.argv[0]),
                                      formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -3144,7 +3144,7 @@ def main(): #COMMANDINPUT
     #OUTPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res/result/1'
     #os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     #COMMANDINPUT = ['-o', OUTPUT_FILE, '-l', INPUT_FILE]
-    args = parser.parse_args() #COMMANDINPUT
+    args = parser.parse_args(COMMANDINPUT) #COMMANDINPUT
     #print(args)
 
     options.keepLinks = args.links
