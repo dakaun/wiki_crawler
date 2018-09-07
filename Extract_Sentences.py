@@ -91,7 +91,7 @@ def result_file(path):
     sentence_tokenizer._params.abbrev_types.update(extra_abbreviation)
 
     now = datetime.datetime.now()
-    resulting_file= open(resulting_path+ '/res' + str(now.month) + str(now.day) + '.txt', "w+")
+    resulting_file= open(resulting_path+ '/res' + str(now.month) + str(now.day) + '.txt', "w+")#, encoding='cp65001'
 
 
     articles = open_wiki_files(INPUT_PATH)

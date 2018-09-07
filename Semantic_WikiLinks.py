@@ -19,7 +19,7 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output', help='directory for RESULTFILE', default='text')
     parser.add_argument('-split', type=int, help='Nb of desired subfiles (default =2)', default=2)
     default_processes = max(1, cpu_count()-2)
-    parser.add_argument('-processes', type=int, help ='Number of processes to use', default=default_processes)
+    parser.add_argument('-processes', type=int, help='Number of processes to use', default=default_processes)
 
     args = parser.parse_args()  # ['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res2808', '-split', '5', '-processes', '3', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
     input_file = args.input
