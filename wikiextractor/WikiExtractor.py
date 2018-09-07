@@ -2874,6 +2874,7 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
             break
     print('here')
     if options.expand_templates:
+        print('here to start preprocess')
         # preprocess
         template_load_start = default_timer()
         if template_file:
