@@ -3081,7 +3081,7 @@ def reduce_process(opts, output_queue, spool_length,
 # Minimum size of output files
 minFileSize = 200 * 1024
 
-def main(COMMANDINPUT): #COMMANDINPUT
+def main(): #COMMANDINPUT
 
     parser = argparse.ArgumentParser(prog=os.path.basename(sys.argv[0]),
                                      formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -3146,7 +3146,7 @@ def main(COMMANDINPUT): #COMMANDINPUT
     #OUTPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res/result/1'
     #os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     #COMMANDINPUT = ['-o', OUTPUT_FILE, '-l', INPUT_FILE]
-    args = parser.parse_args(COMMANDINPUT) #COMMANDINPUT
+    args = parser.parse_args() #COMMANDINPUT
     #print(args)
 
     options.keepLinks = args.links
