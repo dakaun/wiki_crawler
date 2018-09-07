@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3efa297-6864-41c1-92ca-f13d160f62ea" name="Default" comment="big bug fix - first adding up subfiles to wiki_sum and">
+    <list default="true" id="d3efa297-6864-41c1-92ca-f13d160f62ea" name="Default" comment="add print">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wikiextractor/WikiExtractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/wikiextractor/WikiExtractor.py" afterDir="false" />
     </list>
@@ -76,14 +76,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1103" />
-          <entry key="txt" value="128" />
+          <entry key="py" value="1109" />
+          <entry key="txt" value="138" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="128" />
-          <entry key="Python" value="653" />
+          <entry key="PLAIN_TEXT" value="138" />
+          <entry key="Python" value="659" />
           <entry key="Scratch" value="450" />
         </counts>
       </usages-collector>
@@ -118,8 +118,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wikiextractor/WikiExtractor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="2851" column="21" selection-start-line="2851" selection-start-column="21" selection-end-line="2851" selection-end-column="21" />
+            <state relative-caret-position="376">
+              <caret line="2860" column="24" selection-start-line="2860" selection-start-column="24" selection-end-line="2860" selection-end-column="24" />
               <folding>
                 <element signature="e#2520#3196#0" />
                 <element signature="e#6222#6485#0" />
@@ -537,7 +537,14 @@
       <option name="project" value="LOCAL" />
       <updated>1535471799185</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add print">
+      <created>1536307838116</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1536307838116</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -613,7 +620,8 @@
     </ignored-roots>
     <MESSAGE value="big bug fix - first adding up subfiles to wiki_sum and run Sentence Extraction on wiki_sum" />
     <MESSAGE value="bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fix" />
+    <MESSAGE value="add print" />
+    <option name="LAST_COMMIT_MESSAGE" value="add print" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1019,8 +1027,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wikiextractor/WikiExtractor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="2851" column="21" selection-start-line="2851" selection-start-column="21" selection-end-line="2851" selection-end-column="21" />
+        <state relative-caret-position="376">
+          <caret line="2860" column="24" selection-start-line="2860" selection-start-column="24" selection-end-line="2860" selection-end-column="24" />
           <folding>
             <element signature="e#2520#3196#0" />
             <element signature="e#6222#6485#0" />
