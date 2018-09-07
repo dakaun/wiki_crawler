@@ -24,7 +24,7 @@ if __name__ == '__main__':
     args = parser.parse_args()  # ['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res2808', '-split', '5', '-processes', '3', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/wiki_dump.txt']
     input_file = args.input
     output_path = args.output
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    #os.makedirs(os.path.dirname(output_path), exist_ok=True)
     #nb_processes = args.processes
     #if args.split > (cpu_count() - 1):  # number of subfiles of wikidump to create
     #    nb_subfiles = cpu_count() - 1
