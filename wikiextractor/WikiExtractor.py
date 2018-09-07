@@ -2869,7 +2869,7 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
                 options.modulePrefix = options.moduleNamespace + ':'
         elif tag == '/siteinfo':
             break
-
+    print('here')
     if options.expand_templates:
         # preprocess
         template_load_start = default_timer()
