@@ -53,7 +53,6 @@ Template expansion requires preprocesssng first the whole dump and
 collecting template definitions.
 
 """
-
 from __future__ import unicode_literals, division
 
 import sys
@@ -71,7 +70,8 @@ from io import StringIO
 from multiprocessing import Queue, Process, Value, cpu_count
 from timeit import default_timer
 
-
+sys.path.insert(0, '../')
+import Semantic_WikiLinks
 PY2 = sys.version_info[0] == 2
 # Python 2.7 compatibiity
 if PY2:
@@ -2975,6 +2975,8 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
     logging.info("Finished %d-process extraction of %d articles in %.1fs (%.1f art/s)",
                  process_count, page_num, extract_duration, extract_rate)
 
+    Semantic_WikiLinks.main(out_file, process_count)
+
 
 # ----------------------------------------------------------------------
 # Multiprocess support
@@ -3081,7 +3083,7 @@ def reduce_process(opts, output_queue, spool_length,
 # Minimum size of output files
 minFileSize = 200 * 1024
 
-def main(COMMANDINPUT): #COMMANDINPUT
+def main(): #COMMANDINPUT
 
     parser = argparse.ArgumentParser(prog=os.path.basename(sys.argv[0]),
                                      formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -3142,12 +3144,16 @@ def main(COMMANDINPUT): #COMMANDINPUT
                         version='%(prog)s ' + version,
                         help="print program version")
 
+<<<<<<< HEAD
     #INPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res/sub_files/wikisub_1.txt'
     #OUTPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/First Task/testest/res/result/1'
     #os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     #COMMANDINPUT = ['-o', OUTPUT_FILE, '-l', INPUT_FILE]
     args = parser.parse_args(COMMANDINPUT) #COMMANDINPUT
     #print(args)
+=======
+    args = parser.parse_args() #COMMANDINPUT
+>>>>>>> without_prepro
 
     options.keepLinks = args.links
     options.keepSections = args.sections

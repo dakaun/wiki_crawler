@@ -49,33 +49,36 @@ def extract_title(article):
     return title[1]
 
 
-def extract_entity(element):
-    element = str(element)
-    link = element.replace('>', '<').split('<')
-    if link[2]:
-        link = link[2]
-    else:
-        link = 'NO ENTITY'
-    return link
-
-
-def extract_sentence(sentence, link):
-    final_sentence = ""
+def extract_sentence(sentence):
+    '''
+    This function replaces the links with its entity and gives back two lists: one containing the entities for the
+    resulting triple and the other list containing the matching sentence.
+    :param sentence: the raw sentence containing the raw links indicated by <a href= >
+    :return: one list containing the entities of the sentence, the other list containing the sentence with the according
+    entity in brackets
+    '''
+    sentence = sentence.replace('\n', '')
+    sentence_list = []
+    entity_list = []
     sentence_link = re.findall(r'<a href=.*?</a>', sentence)
-    entity_link = link.replace('>', '<').split('<')[2]
     for link_element in sentence_link:
         link_entity = link_element.replace('>', '<').split('<')[2]
         sentence = sentence.replace(link_element, link_entity)
-    sentence = sentence.replace(entity_link, '[[' + entity_link + ']]')
-    sentence = sentence.replace('\n', '')
-    return sentence
+    for link_element in sentence_link:
+        link_entity = link_element.replace('>', '<').split('<')[2]
+        sentence_entity = sentence.replace(link_entity, '[[' + link_entity + ']]')
+        sentence_list.append(sentence_entity)
+        entity_list.append(link_entity)
+    return entity_list, sentence_list
 
 
 def result_file(path):
     '''
-    splits file into its articles and safes into a list (def open_wiki_files()). Afterwards the articles are split into
-    its sentences via nltk library (https://www.nltk.org/) and all links in the articles are extracted via regex.
-    Finally the sentences with the links are extracted and saved into the result_file
+    splits file into its articles and safes into a list (def open_wiki_files()). By iterating through the articles
+    first all links are extracted via regex and replaced (since often periods are in the links, it was a source of
+    mistakes for splitting it into sentences). After splitting the article into its sentences via
+    nltk library (https://www.nltk.org/), the wildcards for the links are replaced by the links again. Finally the
+    according sentences and the including entities are extracted and saved into the result_file.
     :param path: array of input and output directory
     :return: a file with all sentences which contain a link. The sentences are saved in triples:
     the article link as subject, the link (entity) as predicate, and the sentence which contained the entity as object
@@ -91,25 +94,33 @@ def result_file(path):
     sentence_tokenizer._params.abbrev_types.update(extra_abbreviation)
 
     now = datetime.datetime.now()
+<<<<<<< HEAD
     resulting_file= open(resulting_path+ '/res' + str(now.month) + str(now.day) + '.txt', "w+")#, encoding='cp65001'
+=======
+    resulting_file= open(resulting_path+ '/res' + str(now.month) + str(now.day) + '.txt', "w+") #, encoding='cp65001'
+>>>>>>> without_prepro
 
 
     articles = open_wiki_files(INPUT_PATH)
     amount_articles =articles[1]
     for article in articles[0]:
+        i = 0
+        nb_entities = 0
         header = extract_header(article)
         title = extract_title(article)
         article = article.replace(header, '').replace(title, '', 1)
         re_links = re.findall(r'<a href=.*?</a>', article)
-        #print('Article: {} has {} links'.format(title, len(re_links)))
-        article_in_sentences = sent_tokenize(article)  # find all sentences
         for link in re_links:
-            for raw_sentence in article_in_sentences:
-                if link in raw_sentence:
-                    sentence = extract_sentence(raw_sentence, link)
-                    entity = extract_entity(link)
-                    write_file(title, entity, sentence, resulting_file)
-                    break
+            article = article.replace(link, '[[entity]]')
+        article_in_sentences = sent_tokenize(article) # split into sentence with nltk library
+        for raw_sentence in article_in_sentences:
+            while '[[entity]]' in raw_sentence:
+                raw_sentence = raw_sentence.replace('[[entity]]', re_links[i], 1)
+                i+=1
+            elements = extract_sentence(raw_sentence)
+            nb_entities = len(elements[0])
+            for e in range(nb_entities):
+                write_file(title, elements[0][e], elements[1][e], resulting_file)
 
     end = time.time()
 
