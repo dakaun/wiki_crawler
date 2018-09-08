@@ -2840,7 +2840,7 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
     if input_file == '-':
         input = sys.stdin
     else:
-        input = fileinput.FileInput(input_file, openhook=fileinput.hook_encoded('cp65001')) #openhook=fileinput.hook_compressed openhook=fileinput.hook_encoded('cp65001')
+        input = fileinput.FileInput(input_file, openhook=fileinput.hook_compressed) #openhook=fileinput.hook_compressed openhook=fileinput.hook_encoded('cp65001')
     # collect siteinfo
     for line in input:
         # When an input file is .bz2 or .gz, line can be a bytes even in Python 3.
