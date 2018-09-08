@@ -27,9 +27,9 @@
 
 wikiextractor/WikiExtractor.py : cleans the subfiles for further processing 
 
-Extract_Sentences.py : Extracts the links and the according sentences and creates files for each folder which is created by the WikiExtractor.py 
+Extract_Sentences.py : Extracts the sentences and its links from the articles and creates result sub files for each directory created by the WikiExtractor (wiki_sum.txt)
 
-Post_WikiExtractor.py : Sums all files up to one RESULT FILE
+Post_WikiExtractor.py : Sums all files up to one RESULT FILE (wiki_triples.txt)
 
 ### Running on Windows
 To run the script on Windows the encoding needs to be changed at following locations: \
