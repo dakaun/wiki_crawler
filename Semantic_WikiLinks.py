@@ -5,7 +5,6 @@ import time
 from multiprocessing import Pool
 import shutil
 
-# TODO catch exceptions
 start = time.time()
 
 def main(output_path, nb_processes):

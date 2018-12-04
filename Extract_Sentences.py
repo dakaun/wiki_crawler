@@ -3,6 +3,7 @@ import datetime
 import time
 from nltk.tokenize import sent_tokenize
 import nltk
+import urllib
 
 # this script extracts all links and the according sentences from the wikidump files (after parsing with WikiExtractor.py
 # input: parsed wiki file
@@ -62,7 +63,8 @@ def extract_sentence(sentence):
     entity_list = []
     sentence_link = re.findall(r'<a href=.*?</a>', sentence)
     for link_element in sentence_link:
-        link_entity = link_element.replace('>', '<').split('<')[2]
+        link_entity = link_element.split('"')[1]  # <--------------
+        link_entity = urllib.parse.unquote(link_entity)  # <--------------
         sentence = sentence.replace(link_element, link_entity)
     for link_element in sentence_link:
         link_entity = link_element.replace('>', '<').split('<')[2]
