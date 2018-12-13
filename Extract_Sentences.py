@@ -75,10 +75,10 @@ def extract_sentence(sentence):
     for link_element in sentence_link:
         # mark iteratively each entity in the sentence as entity and save sentence + entity
         link_entity_obj = link_element.replace('>', '<').split('<')[2]
-        sentence = sentence.replace(link_entity_obj, '[[' + link_entity_obj + ']]')
+        sentence_entity = sentence.replace(link_entity_obj, '[[' + link_entity_obj + ']]')
         link_entity_pred = link_element.split('"')[1]  # <--------------
         link_entity_pred = parse_entity(link_entity_pred)  # <--------------
-        sentence_list.append(sentence)
+        sentence_list.append(sentence_entity)
         entity_list.append(link_entity_pred)
     return entity_list, sentence_list
 
