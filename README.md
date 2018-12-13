@@ -34,8 +34,8 @@ Post_WikiExtractor.py : Sums all files up to one RESULT FILE (wiki_triples.txt)
 ### Running on Windows
 To run the script on Windows the encoding needs to be changed at following locations: \
 *WikiExtractor.py:* Line 2843 change encoding to:input = fileinput.FileInput(input_file, openhook=fileinput.hook_encoded('cp65001')) \
-*Extract_Sentence.py:* Line 18 add following encoding: with open(INPUT_PATH, encoding='cp65001') as wiki_f: \
-*Extract_Sentence.py:* Line 97 add following encoding: resulting_file= open(resulting_path+ '/res' + str(now.month) + str(now.day) + '.txt', "w+", encoding='cp65001') \
+*Extract_Sentence.py:* Line 19 add following encoding: with open(INPUT_PATH, encoding='cp65001') as wiki_f: \
+*Extract_Sentence.py:* Line 108 add following encoding: resulting_file= open(resulting_path+ '/res' + str(now.month) + str(now.day) + '.txt', "w+", encoding='cp65001') \
 
  
 

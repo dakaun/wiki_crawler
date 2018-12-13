@@ -50,6 +50,12 @@ def extract_title(article):
     return title[1]
 
 
+def parse_entity(entity):
+    entity = urllib.parse.unquote(entity)
+    entity = entity.replace('&amp;', '&')
+    return entity
+
+
 def extract_sentence(sentence):
     '''
     This function replaces the links with its entity and gives back two lists: one containing the entities for the
@@ -63,14 +69,17 @@ def extract_sentence(sentence):
     entity_list = []
     sentence_link = re.findall(r'<a href=.*?</a>', sentence)
     for link_element in sentence_link:
-        link_entity = link_element.split('"')[1]  # <--------------
-        link_entity = urllib.parse.unquote(link_entity)  # <--------------
+        # extract entity from links and replace every entity in the sentence
+        link_entity = link_element.replace('>', '<').split('<')[2]
         sentence = sentence.replace(link_element, link_entity)
     for link_element in sentence_link:
-        link_entity = link_element.replace('>', '<').split('<')[2]
-        sentence_entity = sentence.replace(link_entity, '[[' + link_entity + ']]')
-        sentence_list.append(sentence_entity)
-        entity_list.append(link_entity)
+        # mark iteratively each entity in the sentence as entity and save sentence + entity
+        link_entity_obj = link_element.replace('>', '<').split('<')[2]
+        sentence = sentence.replace(link_entity_obj, '[[' + link_entity_obj + ']]')
+        link_entity_pred = link_element.split('"')[1]  # <--------------
+        link_entity_pred = parse_entity(link_entity_pred)  # <--------------
+        sentence_list.append(sentence)
+        entity_list.append(link_entity_pred)
     return entity_list, sentence_list
 
 
