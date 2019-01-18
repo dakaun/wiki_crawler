@@ -134,7 +134,7 @@ def result_file(path):
             for e in range(nb_entities):
                 write_file(title, elements[0][e], elements[1][e], df)
 
-    df.to_csv(resulting_path, sep=';', index=False)
+    df.to_csv(resulting_path+ '/res' + str(now.month) + str(now.day)+ '.csv', sep=';', index=False)
     end = time.time()
 
     print('AMOUNT OF ARTICLES {}'.format(amount_articles))
