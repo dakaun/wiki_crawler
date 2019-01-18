@@ -4,6 +4,7 @@ import time
 from nltk.tokenize import sent_tokenize
 import nltk
 import urllib
+import pandas as pd
 
 # this script extracts all links and the according sentences from the wikidump files (after parsing with WikiExtractor.py
 # input: parsed wiki file
@@ -26,11 +27,15 @@ def open_wiki_files(INPUT_PATH):
             wiki_file_line = wiki_f.readline()
     return article_list, len(article_list)
 
-def write_file(title, entity, sentence, file):
+def write_file(title, entity, sentence, df):
     title = title.replace(' ', '_')
     entity = entity.replace(' ', '_')
-    file.write(
-            '<http://dbpedia.org/resource/' + title + '> ' + '<http://dbpedia.org/resource/' + entity + '> ' + '\"' + sentence + '\" \n')
+    #file.write(
+    #        '<http://dbpedia.org/resource/' + title + '> ' + '<http://dbpedia.org/resource/' + entity + '> ' + '\"' + sentence + '\" \n')
+    article_title = '<http://dbpedia.org/resource/' + title + '> '
+    link = '<http://dbpedia.org/resource/' + entity + '> '
+    whole_sentence = '\"' + sentence + '\"'
+    df = df.append({'article_title': article_title, 'link': link, 'sentence': whole_sentence}, ignore_index=True)
 
 
 def extract_header(article):
@@ -106,6 +111,7 @@ def result_file(path):
 
     now = datetime.datetime.now()
     resulting_file= open(resulting_path+ '/res' + str(now.month) + str(now.day) + '.txt', "w+") #, encoding='cp65001'
+    df = pd.DataFrame(columns={'article_title', 'link', 'sentence'})
 
     articles = open_wiki_files(INPUT_PATH)
     amount_articles =articles[1]
@@ -126,8 +132,9 @@ def result_file(path):
             elements = extract_sentence(raw_sentence)
             nb_entities = len(elements[0])
             for e in range(nb_entities):
-                write_file(title, elements[0][e], elements[1][e], resulting_file)
+                write_file(title, elements[0][e], elements[1][e], df)
 
+    df.to_csv(resulting_path, sep=';', index=False)
     end = time.time()
 
     print('AMOUNT OF ARTICLES {}'.format(amount_articles))
