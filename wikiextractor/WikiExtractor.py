@@ -3139,8 +3139,11 @@ def main(): #COMMANDINPUT
                         version='%(prog)s ' + version,
                         help="print program version")
 
-
-    args = parser.parse_args() #COMMANDINPUT
+    #INPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/data/wiki_dump_long.txt'
+    #OUTPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/test_wiki_crawler/test_2712/'
+    #os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    #COMMANDINPUT = ['-o', OUTPUT_FILE, '-l', INPUT_FILE]
+    args = parser.parse_args() #['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/data/wiki_dump_long.txt', '-l', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/test_wiki_crawler/test2712/']
 
     options.keepLinks = args.links
     options.keepSections = args.sections
