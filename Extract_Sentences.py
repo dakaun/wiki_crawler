@@ -17,7 +17,7 @@ amount_articles = 0
 def open_wiki_files(INPUT_PATH):
     article_list = []
     article = ""
-    with open(INPUT_PATH) as wiki_f: #, encoding='cp65001'
+    with open(INPUT_PATH, encoding='cp65001') as wiki_f: #, encoding='cp65001'
         wiki_file_line = wiki_f.readline()
         while (wiki_file_line):
             article += wiki_file_line
@@ -101,8 +101,8 @@ def result_file(path):
     e.g. <http://dbpedia.org/resource/Cyrano_de_Bergerac> <http://dbpedia.org/resource/Sannois> "He died over a year
     later on July 28, 1655, aged 36, at the house of his cousin, Pierre De Cyrano, in [[Sannois]]."
     '''
-    INPUT_PATH = path[0]
-    resulting_path = path[1]
+    INPUT_PATH = path[0] # path to wiki_sum.txt
+    resulting_path = path[1] # path to folder of wiki_sum.txt
     start = time.time()
     # add e.g. as abbreviation to set
     extra_abbreviation = ['e.g', 'co', 'st', 'mr']
@@ -134,10 +134,12 @@ def result_file(path):
             for e in range(nb_entities):
                 write_file(title, elements[0][e], elements[1][e], df)
 
-    df.to_csv(resulting_path+ '/res' + str(now.month) + str(now.day)+ '.csv', sep=';', index=False)
+
+    df.to_csv(resulting_path + '/res' + str(now.month) + str(now.day) + '.csv', sep=';', index=False) # zu spät geschrieben
     end = time.time()
 
     print('AMOUNT OF ARTICLES {}'.format(amount_articles))
     print('--- TIME {}'.format(end - start))
 
-
+if __name__ == '__main__':
+    result_file([r'C:\Users\danielak\Desktop\Dokumente Daniela\UNI\FIZ\Second_Task\test_wiki_crawler\test_1801\AA\wiki_sum.txt', r'C:\Users\danielak\Desktop\Dokumente Daniela\UNI\FIZ\Second_Task\test_wiki_crawler\test_1801\AA'] )

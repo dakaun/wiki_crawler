@@ -19,15 +19,16 @@ def main(output_path, nb_processes):
     seen = set(dir_data)
     for root, dirs, files in os.walk(output_path):
         if files:
-            complete_sub_wiki = open(root + '/wiki_sum.txt', 'wb')
-            for subfile in files:
-                subfile_dir = os.path.join(root, subfile)
+            complete_sub_wiki = open(root + '/wiki_sum.txt', 'wb') #öffne ein dokument
+            for subfile in files:  # iteriere durch verschiedenen subfiles - wiki_00
+                subfile_dir = os.path.join(root, subfile) # file path du subfile
                 open_subfile = open(subfile_dir, 'rb')
                 shutil.copyfileobj(open_subfile, complete_sub_wiki)
                 if root not in seen:
                     seen.add(root)
                     dir_data.append([root + '/wiki_sum.txt', root])
     # use Pool for multiprocessing
+    Extract_Sentences.result_file(dir_data[0])
     p = Pool(processes=nb_processes)
     p.map(Extract_Sentences.result_file, dir_data)
     end_multi = time.time()
