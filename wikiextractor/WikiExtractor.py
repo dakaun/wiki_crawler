@@ -2840,7 +2840,7 @@ def process_dump(input_file, template_file, out_file, file_size, file_compress,
     if input_file == '-':
         input = sys.stdin
     else:
-        input = fileinput.FileInput(input_file, openhook=fileinput.hook_encoded('cp65001')) #openhook=fileinput.hook_compressed openhook=fileinput.hook_encoded('cp65001')
+        input = fileinput.FileInput(input_file, openhook=fileinput.hook_compressed) #openhook=fileinput.hook_compressed openhook=fileinput.hook_encoded('cp65001')
     # collect siteinfo
     for line in input:
         # When an input file is .bz2 or .gz, line can be a bytes even in Python 3.
@@ -3139,11 +3139,11 @@ def main(): #COMMANDINPUT
                         version='%(prog)s ' + version,
                         help="print program version")
 
-    INPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/data/wiki_dump_short.txt'
-    OUTPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/test_wiki_crawler/test_1901/'
+    # INPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/data/wiki_dump_short.txt'
+    # OUTPUT_FILE = 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/test_wiki_crawler/test_1901/'
     #os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-    COMMANDINPUT = ['-o', OUTPUT_FILE, '-l', INPUT_FILE]
-    args = parser.parse_args(COMMANDINPUT) #['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/data/wiki_dump_long.txt', '-l', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/test_wiki_crawler/test2712/']
+    # COMMANDINPUT = ['-o', OUTPUT_FILE, '-l', INPUT_FILE]
+    args = parser.parse_args() #['-o', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/data/wiki_dump_long.txt', '-l', 'C:/Users/danielak/Desktop/Dokumente Daniela/UNI/FIZ/Second_Task/test_wiki_crawler/test2712/']
 
     options.keepLinks = args.links
     options.keepSections = args.sections

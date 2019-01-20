@@ -17,7 +17,7 @@ amount_articles = 0
 def open_wiki_files(INPUT_PATH):
     article_list = []
     article = ""
-    with open(INPUT_PATH, encoding='cp65001') as wiki_f: #, encoding='cp65001'
+    with open(INPUT_PATH) as wiki_f: #, encoding='cp65001'
         wiki_file_line = wiki_f.readline()
         while (wiki_file_line):
             article += wiki_file_line
@@ -32,8 +32,8 @@ def write_file(title, entity, sentence, df):
     entity = entity.replace(' ', '_')
     #file.write(
     #        '<http://dbpedia.org/resource/' + title + '> ' + '<http://dbpedia.org/resource/' + entity + '> ' + '\"' + sentence + '\" \n')
-    article_title = '<http://dbpedia.org/resource/' + title + '> '
-    link = '<http://dbpedia.org/resource/' + entity + '> '
+    article_title = '<http://dbpedia.org/resource/' + title + '>'
+    link = '<http://dbpedia.org/resource/' + entity + '>'
     whole_sentence = '\"' + sentence + '\"'
     df = df.append({'article_title': article_title, 'link': link, 'sentence': whole_sentence}, ignore_index=True)
     return df
