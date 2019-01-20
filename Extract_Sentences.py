@@ -36,6 +36,7 @@ def write_file(title, entity, sentence, df):
     link = '<http://dbpedia.org/resource/' + entity + '> '
     whole_sentence = '\"' + sentence + '\"'
     df = df.append({'article_title': article_title, 'link': link, 'sentence': whole_sentence}, ignore_index=True)
+    return df
 
 
 def extract_header(article):
@@ -132,7 +133,7 @@ def result_file(path):
             elements = extract_sentence(raw_sentence)
             nb_entities = len(elements[0])
             for e in range(nb_entities):
-                write_file(title, elements[0][e], elements[1][e], df)
+                df = write_file(title, elements[0][e], elements[1][e], df)
 
 
     df.to_csv(resulting_path + '/res' + str(now.month) + str(now.day) + '.csv', sep=';', index=False) # zu spät geschrieben
@@ -142,4 +143,4 @@ def result_file(path):
     print('--- TIME {}'.format(end - start))
 
 if __name__ == '__main__':
-    result_file([r'C:\Users\danielak\Desktop\Dokumente Daniela\UNI\FIZ\Second_Task\test_wiki_crawler\test_1801\AA\wiki_sum.txt', r'C:\Users\danielak\Desktop\Dokumente Daniela\UNI\FIZ\Second_Task\test_wiki_crawler\test_1801\AA'] )
+    result_file([r'C:\Users\danielak\Desktop\Dokumente Daniela\UNI\FIZ\Second_Task\test_wiki_crawler\test_1901\AA\wiki_sum.txt', r'C:\Users\danielak\Desktop\Dokumente Daniela\UNI\FIZ\Second_Task\test_wiki_crawler\test_1901\AA'] )

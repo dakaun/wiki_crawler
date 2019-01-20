@@ -29,8 +29,8 @@ def main(output_path, nb_processes):
                     dir_data.append([root + '/wiki_sum.txt', root])
     # use Pool for multiprocessing
     Extract_Sentences.result_file(dir_data[0])
-    p = Pool(processes=nb_processes)
-    p.map(Extract_Sentences.result_file, dir_data)
+    #p = Pool(processes=nb_processes)
+    #p.map(Extract_Sentences.result_file, dir_data)
     end_multi = time.time()
 
     # sum files up to result file
